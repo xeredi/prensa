@@ -1,0 +1,23 @@
+Hola -
+{{vm.results}}
+
+<div class="media" data-ng-repeat="entry in vm.results">
+	<div class="media-left">
+		<a href="#"> <img class="media-object"
+			src="http://ep01.epimg.net/iconos/v1.x/v1.0/promos/promo_og_elpais.png"
+			alt="icono" width="32" height="32">
+		</a>
+	</div>
+	<div class="media-body">
+		<h4 class="media-heading" data-ng-bind="entry.title"></h4>
+
+		<small data-ng-bind="entry.publishedDate"></small>
+
+		<p data-ng-bind-html="entry.contentSnippet"></p>
+	</div>
+</div>
+
+<ul>
+	<li data-ng-repeat="entry in vm.feed.entries"><a
+		href="{{entry.link}}" data-ng-bind="entry.title"></a></li>
+</ul>

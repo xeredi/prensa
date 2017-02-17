@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html data-ng-app="prensa.app" data-ng-cloak>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' type="text/css" href="wro/dependencies.css">
+<link rel="stylesheet" type="text/css" href="wro/core.css" />
+
+<title data-ng-bind="'Prensa'"></title>
+</head>
+<body>
+	<div id="body-content" data-ng-cloack>
+		<div class="container-fluid" data-ng-controller="RssController">
+			<h2>
+				<img data-ng-src="{{rss.channel.image.url}}" alt="Logo RSS"
+					width="128" height="96" /> <span data-ng-bind="rss.channel.title"></span>
+			</h2>
+
+			<div class="media" data-ng-repeat="item in news">
+				<div class="media-left">
+					<a data-ng-href="{{item.link}}"> <img class="media-object"
+						data-ng-src="{{item.thumbnail._url}}" alt="Logo RSS" width="128"
+						height="96">
+					</a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<a data-ng-href="{{item.link}}" data-ng-bind-html="item.title"></a>
+					</h4>
+
+					<small data-ng-bind="item.pubDate | date: datetimeFormat"></small>
+					(<small data-ng-bind-html="item.author"></small>) (<small
+						data-ng-bind-html="item.creator"></small>)
+
+					<h5 data-ng-bind-html="item.description"></h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="wro/dependencies.js"></script>
+	<script type="text/javascript" src="wro/core.js"></script>
+</body>
+</html>
