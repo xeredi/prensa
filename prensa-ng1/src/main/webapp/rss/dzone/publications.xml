@@ -1,275 +1,408 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" media="screen" href="/~files/feed-premium.xsl"?>
 
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedpress="https://feed.press/xmlns" version="2.0">
-  <channel>
-    <feedpress:locale>en</feedpress:locale>
-    <atom:link rel="self" href="http://feeds.dzone.com/publications"/>
-    <atom:link rel="hub" href="http://feedpress.superfeedr.com/"/>
-    <title>Refcardz and Guides Feed</title>
-    <link>https://dzone.com</link>
-    <description>Recent publications on DZone.com</description>
-    <item>
-      <title>Scrum</title>
-      <link>https://dzone.com/refcardz/scrum?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Scrum is a framework that allows people to productively and creatively deliver products of the highest possible value. With over 70% of Agile teams using Scrum or Scrum hybrid, learn more about its benefits in managing complex product development. This newly updated Refcard explores the details of Scrum, including theory, values, roles, and events. It also includes a sample of a popular approach to deliver Integrated Increments in a scaled environment.</description>
-      <category>frameworks</category>
-      <category>agile</category>
-      <category>scrum</category>
-      <pubDate>Thu, 09 Feb 2017 23:13:00 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520160</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=4290048&amp;w=600"/>
-      <dc:creator>Ryan Little</dc:creator>
-    </item>
-    <item>
-      <title>.NET on Linux</title>
-      <link>https://dzone.com/refcardz/net-on-linux?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>This Refcard guides you through productively using .NET on Linux, from installation to debugging. You will find an architectural overview, tips for using the new Command Line Interface (CLI), and tools and helpful settings as they relate to your development efforts. This Refcard also covers building MVC web sites, RESTful services, and standalone applications.</description>
-      <category>open source</category>
-      <category>.net</category>
-      <category>linux</category>
-      <category>xamarin</category>
-      <pubDate>Fri, 03 Feb 2017 19:38:41 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/1457129</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=4215666&amp;w=600"/>
-      <dc:creator>grspain</dc:creator>
-    </item>
-    <item>
-      <title>DevOps: Continuous Delivery and Automation</title>
-      <link>https://dzone.com/guides/devops-continuous-delivery-and-automation?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>DevOps has emerged to be the “new normal” in software development, helping companies react to user feedback real-time and setting higher standards for rapid development. Since becoming a permanent topic of discussion, thought leaders, developers, and businesses have pushed to adopt the necessary DevOps tools and methodologies. In the DZone Guide to DevOps: Continuous Delivery &amp; Automation, we explore the state of DevOps in 2017 including industry challenges, best practices, and solutions. Dive into the best mental model for implementing microservices, implementing unambiguous code requirements, best practices for microservices and containers, and Continuous Delivery anti-patterns.</description>
-      <category>devops</category>
-      <category>continuous delivery</category>
-      <category>automation</category>
-      <category>containers</category>
-      <category>continuous integration</category>
-      <pubDate>Fri, 27 Jan 2017 20:18:32 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/guides/1452006</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=4152688&amp;w=600"/>
-      <dc:creator>Kellet Atkinson</dc:creator>
-    </item>
-    <item>
-      <title>Continuous Integration: Servers and Tools</title>
-      <link>https://dzone.com/refcardz/continuous-integration-servers?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Follow this walkthrough of Continuous Integration that uses Hudson as an example. A must-have for all those working with CI.</description>
-      <category>java</category>
-      <category>continuous integration</category>
-      <category>build automation</category>
-      <category>issue tracking</category>
-      <category>hudson</category>
-      <pubDate>Thu, 19 Jan 2017 16:56:09 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520211</guid>
-      <dc:creator>Ryan Little</dc:creator>
-    </item>
-    <item>
-      <title>Continuous Delivery</title>
-      <link>https://dzone.com/refcardz/continuous-delivery-patterns?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Minimize the time it takes to go from idea to usable software. Learn to use agile techniques and automate the entire software delivery system: build, deploy, test, release.</description>
-      <category>infrastructure</category>
-      <category>continuous delivery</category>
-      <category>process</category>
-      <category>tools &amp;amp; methods</category>
-      <pubDate>Fri, 13 Jan 2017 03:44:06 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520257</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3989236&amp;w=600"/>
-      <dc:creator>Jim Little</dc:creator>
-    </item>
-    <item>
-      <title>Java EE Security Essentials</title>
-      <link>https://dzone.com/refcardz/getting-started-java-ee?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>The Java EE security specification supports a set of required security functionalities including authentication, authorization, data integrity, and transport security. This newly updated Refcard begins by introducing some common terms and concepts related to Java EE security such as identity stores and authentication mechanisms. We then explore authentication authorization, web module security, EJB module security, and application client security with in-depth examples.</description>
-      <category>java</category>
-      <category>security</category>
-      <category>java ee</category>
-      <pubDate>Tue, 27 Dec 2016 13:35:59 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520202</guid>
-      <dc:creator>Ryan Little</dc:creator>
-    </item>
-    <item>
-      <title>Web Development: Applications and Frameworks</title>
-      <link>https://dzone.com/guides/web-development-applications-and-frameworks?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Web development moves at lightning speed and keeping up with these changes is essential for the modern web developer. For those looking to stay in front of this trend, this Guide provides a variety of practical insights for working with the latest frameworks and using third-party APIs. Learn how to implement modular JavaScript for clean and reusable code, 10 starting points to debug JavaScript, and why you may want to choose a static site generator over an app server. Discover new methods for functional reactive UI programming and get access to exclusive survey research from over 600 web developers.</description>
-      <category>javascript</category>
-      <category>web dev</category>
-      <pubDate>Fri, 16 Dec 2016 21:03:09 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/guides/1396362</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3755665&amp;w=600"/>
-      <dc:creator>Caitlin Candelmo</dc:creator>
-    </item>
-    <item>
-      <title>Foundations of RESTful Architecture</title>
-      <link>https://dzone.com/refcardz/rest-foundations-restful?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>The Representational State Transfer (REST) architectural style is a worldview that elevates information into a first-class element of architectures. REST allows us to achieve the architectural properties of performance, scalability, generality, simplicity, modifiability, and extensibility. This newly updated Refcard explains main HTTP verbs, describes response codes, and lists libraries and frameworks. It also gives additional resources to further explore each topic.</description>
-      <category>integration</category>
-      <category>web dev</category>
-      <category>rest</category>
-      <pubDate>Wed, 14 Dec 2016 21:21:02 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520189</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3713532&amp;w=600"/>
-      <dc:creator>Chris Smith</dc:creator>
-    </item>
-    <item>
-      <title>Software Development Lifecycle: QA and Testing</title>
-      <link>https://dzone.com/guides/software-development-lifecycle-qa-and-testing?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>While the software development lifecycle (SDLC) can look very different for every team and every application; careful planning, graceful coordination, and clear communication are essential ingredients for quality and speed.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"
+	xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedpress="https://feed.press/xmlns"
+	version="2.0">
+	<channel>
+		<feedpress:locale>en</feedpress:locale>
+		<atom:link rel="self" href="http://feeds.dzone.com/publications" />
+		<atom:link rel="hub" href="http://feedpress.superfeedr.com/" />
+		<title>Refcardz and Guides Feed</title>
+		<link>https://dzone.com</link>
+		<description>Recent publications on DZone.com</description>
+		<item>
+			<title>Scrum</title>
+			<link>https://dzone.com/refcardz/scrum?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Scrum is a framework that allows people to productively
+				and creatively deliver products of the highest possible value. With
+				over 70% of Agile teams using Scrum or Scrum hybrid, learn more
+				about its benefits in managing complex product development. This
+				newly updated Refcard explores the details of Scrum, including
+				theory, values, roles, and events. It also includes a sample of a
+				popular approach to deliver Integrated Increments in a scaled
+				environment.</description>
+			<category>frameworks</category>
+			<category>agile</category>
+			<category>scrum</category>
+			<pubDate>Thu, 09 Feb 2017 23:13:00 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520160</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=4290048&amp;w=600" />
+			<dc:creator>Ryan Little</dc:creator>
+		</item>
+		<item>
+			<title>.NET on Linux</title>
+			<link>https://dzone.com/refcardz/net-on-linux?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>This Refcard guides you through productively using .NET
+				on Linux, from installation to debugging. You will find an
+				architectural overview, tips for using the new Command Line
+				Interface (CLI), and tools and helpful settings as they relate to
+				your development efforts. This Refcard also covers building MVC web
+				sites, RESTful services, and standalone applications.</description>
+			<category>open source</category>
+			<category>.net</category>
+			<category>linux</category>
+			<category>xamarin</category>
+			<pubDate>Fri, 03 Feb 2017 19:38:41 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/1457129</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=4215666&amp;w=600" />
+			<dc:creator>grspain</dc:creator>
+		</item>
+		<item>
+			<title>DevOps: Continuous Delivery and Automation</title>
+			<link>https://dzone.com/guides/devops-continuous-delivery-and-automation?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>DevOps has emerged to be the “new normal” in software
+				development, helping companies react to user feedback real-time and
+				setting higher standards for rapid development. Since becoming a
+				permanent topic of discussion, thought leaders, developers, and
+				businesses have pushed to adopt the necessary DevOps tools and
+				methodologies. In the DZone Guide to DevOps: Continuous Delivery
+				&amp; Automation, we explore the state of DevOps in 2017 including
+				industry challenges, best practices, and solutions. Dive into the
+				best mental model for implementing microservices, implementing
+				unambiguous code requirements, best practices for microservices and
+				containers, and Continuous Delivery anti-patterns.</description>
+			<category>devops</category>
+			<category>continuous delivery</category>
+			<category>automation</category>
+			<category>containers</category>
+			<category>continuous integration</category>
+			<pubDate>Fri, 27 Jan 2017 20:18:32 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/guides/1452006</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=4152688&amp;w=600" />
+			<dc:creator>Kellet Atkinson</dc:creator>
+		</item>
+		<item>
+			<title>Continuous Integration: Servers and Tools</title>
+			<link>https://dzone.com/refcardz/continuous-integration-servers?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Follow this walkthrough of Continuous Integration that
+				uses Hudson as an example. A must-have for all those working with
+				CI.</description>
+			<category>java</category>
+			<category>continuous integration</category>
+			<category>build automation</category>
+			<category>issue tracking</category>
+			<category>hudson</category>
+			<pubDate>Thu, 19 Jan 2017 16:56:09 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520211</guid>
+			<dc:creator>Ryan Little</dc:creator>
+		</item>
+		<item>
+			<title>Continuous Delivery</title>
+			<link>https://dzone.com/refcardz/continuous-delivery-patterns?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Minimize the time it takes to go from idea to usable
+				software. Learn to use agile techniques and automate the entire
+				software delivery system: build, deploy, test, release.</description>
+			<category>infrastructure</category>
+			<category>continuous delivery</category>
+			<category>process</category>
+			<category>tools &amp;amp; methods</category>
+			<pubDate>Fri, 13 Jan 2017 03:44:06 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520257</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3989236&amp;w=600" />
+			<dc:creator>Jim Little</dc:creator>
+		</item>
+		<item>
+			<title>Java EE Security Essentials</title>
+			<link>https://dzone.com/refcardz/getting-started-java-ee?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>The Java EE security specification supports a set of
+				required security functionalities including authentication,
+				authorization, data integrity, and transport security. This newly
+				updated Refcard begins by introducing some common terms and concepts
+				related to Java EE security such as identity stores and
+				authentication mechanisms. We then explore authentication
+				authorization, web module security, EJB module security, and
+				application client security with in-depth examples.</description>
+			<category>java</category>
+			<category>security</category>
+			<category>java ee</category>
+			<pubDate>Tue, 27 Dec 2016 13:35:59 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520202</guid>
+			<dc:creator>Ryan Little</dc:creator>
+		</item>
+		<item>
+			<title>Web Development: Applications and Frameworks</title>
+			<link>https://dzone.com/guides/web-development-applications-and-frameworks?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Web development moves at lightning speed and keeping up
+				with these changes is essential for the modern web developer. For
+				those looking to stay in front of this trend, this Guide provides a
+				variety of practical insights for working with the latest frameworks
+				and using third-party APIs. Learn how to implement modular
+				JavaScript for clean and reusable code, 10 starting points to debug
+				JavaScript, and why you may want to choose a static site generator
+				over an app server. Discover new methods for functional reactive UI
+				programming and get access to exclusive survey research from over
+				600 web developers.</description>
+			<category>javascript</category>
+			<category>web dev</category>
+			<pubDate>Fri, 16 Dec 2016 21:03:09 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/guides/1396362</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3755665&amp;w=600" />
+			<dc:creator>Caitlin Candelmo</dc:creator>
+		</item>
+		<item>
+			<title>Foundations of RESTful Architecture</title>
+			<link>https://dzone.com/refcardz/rest-foundations-restful?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>The Representational State Transfer (REST) architectural
+				style is a worldview that elevates information into a first-class
+				element of architectures. REST allows us to achieve the
+				architectural properties of performance, scalability, generality,
+				simplicity, modifiability, and extensibility. This newly updated
+				Refcard explains main HTTP verbs, describes response codes, and
+				lists libraries and frameworks. It also gives additional resources
+				to further explore each topic.</description>
+			<category>integration</category>
+			<category>web dev</category>
+			<category>rest</category>
+			<pubDate>Wed, 14 Dec 2016 21:21:02 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520189</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3713532&amp;w=600" />
+			<dc:creator>Chris Smith</dc:creator>
+		</item>
+		<item>
+			<title>Software Development Lifecycle: QA and Testing</title>
+			<link>https://dzone.com/guides/software-development-lifecycle-qa-and-testing?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>While the software development lifecycle (SDLC) can look
+				very different for every team and every application; careful
+				planning, graceful coordination, and clear communication are
+				essential ingredients for quality and speed.
 
-In this Guide, you will discover practical insights for improving Agile development including: the right questions to ask when using Test Driven Design (TDD), how to assess and improve your team’s collaboration, and how to facilitate retrospectives for continuous improvement of your team’s execution. Download for free and learn how to transform the “better software faster” mantra from aspiration to reality.</description>
-      <category>agile adoption</category>
-      <category>tdd</category>
-      <category>sdlc</category>
-      <pubDate>Fri, 09 Dec 2016 18:40:38 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/guides/1396361</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3648878&amp;w=600"/>
-      <dc:creator>Caitlin Candelmo</dc:creator>
-    </item>
-    <item>
-      <title>Contexts and Dependency Injection for the Java EE Platform</title>
-      <link>https://dzone.com/refcardz/contexts-and-depencency?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Java EE 6 introduced Contexts and Dependency Injections (CDI) as a set of component management services that allow for loose coupling of components across layers (through dependency injection) in a type-safe way. The benefits of CDI include a simplified architecture and more reusable code. In this newly updated Refcard, you will learn about the main features of CDI 1.2 in Java EE 7, how to get the most from CDI, and how to get your CDI code up and running.</description>
-      <category>java</category>
-      <category>java ee</category>
-      <category>dependency injection</category>
-      <category>container</category>
-      <category>contexts</category>
-      <pubDate>Thu, 08 Dec 2016 11:32:06 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520206</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3628657&amp;w=600"/>
-      <dc:creator>Ryan Little</dc:creator>
-    </item>
-    <item>
-      <title>Getting Started with Hibernate Search</title>
-      <link>https://dzone.com/refcardz/getting-started-with-hibernate?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Hibernate Search is an extension to Hibernate ORM that adds powerful capabilities, boosting the power and efficiency of queries. It depends on Apache Lucene and is typically used to implement “full-text search.” This newly updated Refcard breaks down getting started with Hibernate Search and searching your database. Learn more about configuration properties, mapping entities and executing queries, synchronizing the index and database, and more.</description>
-      <category>persistence</category>
-      <category>hibernate</category>
-      <category>search</category>
-      <pubDate>Mon, 05 Dec 2016 14:47:27 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520139</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3592171&amp;w=600"/>
-      <dc:creator>Jill Tomich</dc:creator>
-    </item>
-    <item>
-      <title>Application and Data Security</title>
-      <link>https://dzone.com/guides/application-and-data-security?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>For the past 9 years, vulnerabilities in software have been the leading cause of security breaches. Although technology advances have simplified writing web applications, implementing secure practices during Agile development grows increasingly complex. This Guide offers a deeper look into challenges and solutions for implementing secure practices. Dive into building applications that automatically defend themselves and building a three layer fort to protect your IoT device. Take a look inside blockchains and smart contract security, see the layers to build an app security stack, and more.</description>
-      <category>security</category>
-      <category>application security</category>
-      <category>cryptography</category>
-      <category>web security</category>
-      <category>defense systems</category>
-      <pubDate>Wed, 23 Nov 2016 23:29:05 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/guides/1396360</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3522699&amp;w=600"/>
-      <dc:creator>Caitlin Candelmo</dc:creator>
-    </item>
-    <item>
-      <title>Getting Started with Eclipse</title>
-      <link>https://dzone.com/refcardz/getting-started-eclipse?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Eclipse IDE is a cross-platform, multi-purpose, open-source Integrated Development Environment. It is widely used to develop projects in Java, JavaScript, PHP, C++, Scala, and many others. This newly updated Refcard breaks down installing, setting up, and getting started with Eclipse. It also covers productivity tips, creating new projects and files, accessing Source Control Managers, and debugging configurations.</description>
-      <category>java</category>
-      <category>eclipse</category>
-      <category>ides</category>
-      <pubDate>Fri, 11 Nov 2016 21:31:57 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520108</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3441355&amp;w=600"/>
-      <dc:creator>Jill Tomich</dc:creator>
-    </item>
-    <item>
-      <title>Getting Started with Infinispan</title>
-      <link>https://dzone.com/refcardz/getting-started-infinispan?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Infinispan is an open-source, ASL 2.0-licensed, in-memory data grid platform based on Java 8. This newly updated Refcard offers tips for implementing Infinispan, gives a practical example for using it in embedded mode, and lists key APIs and cache features. Learn more about running Infinispan in containers and how to integrate the platform with Hibernate ORM, Apache Hadoop, Apache Spark, and Apache Camel.</description>
-      <category>java</category>
-      <category>architecture</category>
-      <category>jboss</category>
-      <category>grid computing</category>
-      <category>infinispan</category>
-      <pubDate>Mon, 07 Nov 2016 18:01:16 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520236</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3393419&amp;w=600"/>
-      <dc:creator>Jeffrey Talley</dc:creator>
-    </item>
-    <item>
-      <title>Integration: Microservices, APIs, and Platforms</title>
-      <link>https://dzone.com/guides/integration-microservices-apis-and-platforms?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>The cloud, microservices, and the continued expansion of real-time data are driving rapid change and new challenges for service integration. This Guide introduces solutions to common integration issues, offers API guidelines and best practices for design, and examines various modern architectures for optimal integration. Learn from a real-world example from Spotify that reveals the company’s experience with cataloguing microservices and a tutorial to integrate the Spring Cloud Netflix framework into your API.</description>
-      <category>integration</category>
-      <category>rest api</category>
-      <category>platform</category>
-      <category>api management</category>
-      <category>microservices architecture</category>
-      <pubDate>Thu, 27 Oct 2016 19:37:29 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/guides/1373680</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3347299&amp;w=600"/>
-      <dc:creator>Caitlin Candelmo</dc:creator>
-    </item>
-    <item>
-      <title>Node.js</title>
-      <link>https://dzone.com/refcardz/nodejs?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Node.js is a JavaScript runtime that runs on top of Google’s open-source JavaScript engine called V8. Pairing JavaScript’s naturally event-driven, asynchronous coding style with non-blocking I/O libraries makes Node.js fast, lightweight, and efficient. This newly updated Refcard introduces Node, explains how it works, and dives into its architecture. Learn how to install and use Node to its full potential and access a list of the most commonly used APIs.</description>
-      <category>java</category>
-      <category>javascript</category>
-      <category>html5</category>
-      <category>server-side</category>
-      <category>nodejs</category>
-      <category>backend</category>
-      <pubDate>Thu, 27 Oct 2016 17:22:10 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520251</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3339978&amp;w=600"/>
-      <dc:creator>John Esposito</dc:creator>
-    </item>
-    <item>
-      <title>Camel Essential Components</title>
-      <link>https://dzone.com/refcardz/essential-camel-components?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Apache Camel is an open-source, lightweight integration library that allows your applications to accomplish intelligent routing, message transformation, and protocol mediation. This newly updated Refcard introduces Apache Camel, explains its benefits, and demonstrates essential components. Gain a deeper understanding of implementing JMS and ActiveMQ, the Bean Component, Log and Metrics Components, and Camel's REST DSL.</description>
-      <category>java</category>
-      <category>architecture</category>
-      <category>xml</category>
-      <category>integration</category>
-      <pubDate>Fri, 21 Oct 2016 22:01:06 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520286</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3305315&amp;w=600"/>
-      <dc:creator>Eric Genesky</dc:creator>
-    </item>
-    <item>
-      <title>Getting Started With Microservices</title>
-      <link>https://dzone.com/refcardz/getting-started-with-microservices?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Welcome to the world of microservices, where continuous deployment isn’t just an aspiration, but a reality.
+				In this Guide, you will discover practical insights for improving
+				Agile development including: the right questions to ask when using
+				Test Driven Design (TDD), how to assess and improve your team’s
+				collaboration, and how to facilitate retrospectives for continuous
+				improvement of your team’s execution. Download for free and learn
+				how to transform the “better software faster” mantra from aspiration
+				to reality.</description>
+			<category>agile adoption</category>
+			<category>tdd</category>
+			<category>sdlc</category>
+			<pubDate>Fri, 09 Dec 2016 18:40:38 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/guides/1396361</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3648878&amp;w=600" />
+			<dc:creator>Caitlin Candelmo</dc:creator>
+		</item>
+		<item>
+			<title>Contexts and Dependency Injection for the Java EE Platform</title>
+			<link>https://dzone.com/refcardz/contexts-and-depencency?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Java EE 6 introduced Contexts and Dependency Injections
+				(CDI) as a set of component management services that allow for loose
+				coupling of components across layers (through dependency injection)
+				in a type-safe way. The benefits of CDI include a simplified
+				architecture and more reusable code. In this newly updated Refcard,
+				you will learn about the main features of CDI 1.2 in Java EE 7, how
+				to get the most from CDI, and how to get your CDI code up and
+				running.</description>
+			<category>java</category>
+			<category>java ee</category>
+			<category>dependency injection</category>
+			<category>container</category>
+			<category>contexts</category>
+			<pubDate>Thu, 08 Dec 2016 11:32:06 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520206</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3628657&amp;w=600" />
+			<dc:creator>Ryan Little</dc:creator>
+		</item>
+		<item>
+			<title>Getting Started with Hibernate Search</title>
+			<link>https://dzone.com/refcardz/getting-started-with-hibernate?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Hibernate Search is an extension to Hibernate ORM that
+				adds powerful capabilities, boosting the power and efficiency of
+				queries. It depends on Apache Lucene and is typically used to
+				implement “full-text search.” This newly updated Refcard breaks down
+				getting started with Hibernate Search and searching your database.
+				Learn more about configuration properties, mapping entities and
+				executing queries, synchronizing the index and database, and more.</description>
+			<category>persistence</category>
+			<category>hibernate</category>
+			<category>search</category>
+			<pubDate>Mon, 05 Dec 2016 14:47:27 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520139</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3592171&amp;w=600" />
+			<dc:creator>Jill Tomich</dc:creator>
+		</item>
+		<item>
+			<title>Application and Data Security</title>
+			<link>https://dzone.com/guides/application-and-data-security?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>For the past 9 years, vulnerabilities in software have
+				been the leading cause of security breaches. Although technology
+				advances have simplified writing web applications, implementing
+				secure practices during Agile development grows increasingly
+				complex. This Guide offers a deeper look into challenges and
+				solutions for implementing secure practices. Dive into building
+				applications that automatically defend themselves and building a
+				three layer fort to protect your IoT device. Take a look inside
+				blockchains and smart contract security, see the layers to build an
+				app security stack, and more.</description>
+			<category>security</category>
+			<category>application security</category>
+			<category>cryptography</category>
+			<category>web security</category>
+			<category>defense systems</category>
+			<pubDate>Wed, 23 Nov 2016 23:29:05 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/guides/1396360</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3522699&amp;w=600" />
+			<dc:creator>Caitlin Candelmo</dc:creator>
+		</item>
+		<item>
+			<title>Getting Started with Eclipse</title>
+			<link>https://dzone.com/refcardz/getting-started-eclipse?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Eclipse IDE is a cross-platform, multi-purpose,
+				open-source Integrated Development Environment. It is widely used to
+				develop projects in Java, JavaScript, PHP, C++, Scala, and many
+				others. This newly updated Refcard breaks down installing, setting
+				up, and getting started with Eclipse. It also covers productivity
+				tips, creating new projects and files, accessing Source Control
+				Managers, and debugging configurations.</description>
+			<category>java</category>
+			<category>eclipse</category>
+			<category>ides</category>
+			<pubDate>Fri, 11 Nov 2016 21:31:57 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520108</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3441355&amp;w=600" />
+			<dc:creator>Jill Tomich</dc:creator>
+		</item>
+		<item>
+			<title>Getting Started with Infinispan</title>
+			<link>https://dzone.com/refcardz/getting-started-infinispan?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Infinispan is an open-source, ASL 2.0-licensed,
+				in-memory data grid platform based on Java 8. This newly updated
+				Refcard offers tips for implementing Infinispan, gives a practical
+				example for using it in embedded mode, and lists key APIs and cache
+				features. Learn more about running Infinispan in containers and how
+				to integrate the platform with Hibernate ORM, Apache Hadoop, Apache
+				Spark, and Apache Camel.</description>
+			<category>java</category>
+			<category>architecture</category>
+			<category>jboss</category>
+			<category>grid computing</category>
+			<category>infinispan</category>
+			<pubDate>Mon, 07 Nov 2016 18:01:16 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520236</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3393419&amp;w=600" />
+			<dc:creator>Jeffrey Talley</dc:creator>
+		</item>
+		<item>
+			<title>Integration: Microservices, APIs, and Platforms</title>
+			<link>https://dzone.com/guides/integration-microservices-apis-and-platforms?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>The cloud, microservices, and the continued expansion of
+				real-time data are driving rapid change and new challenges for
+				service integration. This Guide introduces solutions to common
+				integration issues, offers API guidelines and best practices for
+				design, and examines various modern architectures for optimal
+				integration. Learn from a real-world example from Spotify that
+				reveals the company’s experience with cataloguing microservices and
+				a tutorial to integrate the Spring Cloud Netflix framework into your
+				API.</description>
+			<category>integration</category>
+			<category>rest api</category>
+			<category>platform</category>
+			<category>api management</category>
+			<category>microservices architecture</category>
+			<pubDate>Thu, 27 Oct 2016 19:37:29 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/guides/1373680</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3347299&amp;w=600" />
+			<dc:creator>Caitlin Candelmo</dc:creator>
+		</item>
+		<item>
+			<title>Node.js</title>
+			<link>https://dzone.com/refcardz/nodejs?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Node.js is a JavaScript runtime that runs on top of
+				Google’s open-source JavaScript engine called V8. Pairing
+				JavaScript’s naturally event-driven, asynchronous coding style with
+				non-blocking I/O libraries makes Node.js fast, lightweight, and
+				efficient. This newly updated Refcard introduces Node, explains how
+				it works, and dives into its architecture. Learn how to install and
+				use Node to its full potential and access a list of the most
+				commonly used APIs.</description>
+			<category>java</category>
+			<category>javascript</category>
+			<category>html5</category>
+			<category>server-side</category>
+			<category>nodejs</category>
+			<category>backend</category>
+			<pubDate>Thu, 27 Oct 2016 17:22:10 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520251</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3339978&amp;w=600" />
+			<dc:creator>John Esposito</dc:creator>
+		</item>
+		<item>
+			<title>Camel Essential Components</title>
+			<link>https://dzone.com/refcardz/essential-camel-components?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Apache Camel is an open-source, lightweight integration
+				library that allows your applications to accomplish intelligent
+				routing, message transformation, and protocol mediation. This newly
+				updated Refcard introduces Apache Camel, explains its benefits, and
+				demonstrates essential components. Gain a deeper understanding of
+				implementing JMS and ActiveMQ, the Bean Component, Log and Metrics
+				Components, and Camel's REST DSL.</description>
+			<category>java</category>
+			<category>architecture</category>
+			<category>xml</category>
+			<category>integration</category>
+			<pubDate>Fri, 21 Oct 2016 22:01:06 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520286</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3305315&amp;w=600" />
+			<dc:creator>Eric Genesky</dc:creator>
+		</item>
+		<item>
+			<title>Getting Started With Microservices</title>
+			<link>https://dzone.com/refcardz/getting-started-with-microservices?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Welcome to the world of microservices, where continuous
+				deployment isn’t just an aspiration, but a reality.
 
-With microservices, you can ditch the complexities of monolithic architecture for the nimble and flexible approach that embraces the “do one thing, and do it well” mentality. In this updated Refcard, you will learn why microservices are becoming the cornerstone of modern architecture, how to begin refactoring your monolithic application, and common patterns to help you get started.</description>
-      <category>devops</category>
-      <category>integration</category>
-      <category>microservices</category>
-      <pubDate>Mon, 17 Oct 2016 13:40:22 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/1001845</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3259605&amp;w=600"/>
-      <dc:creator>grspain</dc:creator>
-    </item>
-    <item>
-      <title>Getting Started With JBoss Enterprise Application Platform 7</title>
-      <link>https://dzone.com/refcardz/getting-started-jboss?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Red Hat JBoss EAP is a middleware platform built on open standards, compliant with the Java EE 7 specification. This newly updated Refcard walks you through installing JBoss EAP 7, gives an overview of the standalone vs. domain directory structure, provides administration and application deployment tutorials, and explains how JBoss EAP uses modular-based class loading.</description>
-      <category>java</category>
-      <category>integration</category>
-      <category>jboss</category>
-      <category>java ee</category>
-      <category>jboss eap</category>
-      <pubDate>Thu, 13 Oct 2016 13:53:33 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/520223</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3243969&amp;w=600"/>
-      <dc:creator>Ryan Little</dc:creator>
-    </item>
-    <item>
-      <title>Introduction to Docker Monitoring</title>
-      <link>https://dzone.com/refcardz/intro-to-docker-monitoring?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
-      <description>Docker has rapidly evolved into a production-ready infrastructure platform, promising flexible and scalable delivery of software to end users. This Refcard looks into the challenges that containers (or black boxes) present in DevOps, explores architectural models for monitoring containers, and investigates pros and cons of Docker monitoring and troubleshooting options. It also covers a complex, real-world example with Sysdig Cloud to understand what to monitor and how.</description>
-      <category>docker</category>
-      <category>monitoring</category>
-      <category>container</category>
-      <category>sysdig</category>
-      <pubDate>Thu, 06 Oct 2016 18:55:39 GMT</pubDate>
-      <guid isPermaLink="false">https://dzone.com/refcardz/1364448</guid>
-      <media:thumbnail url="https://dzone.com/thumbnail?fid=3202927&amp;w=600"/>
-      <dc:creator>grspain</dc:creator>
-    </item>
-  </channel>
+				With microservices, you can ditch the complexities of monolithic
+				architecture for the nimble and flexible approach that embraces the
+				“do one thing, and do it well” mentality. In this updated Refcard,
+				you will learn why microservices are becoming the cornerstone of
+				modern architecture, how to begin refactoring your monolithic
+				application, and common patterns to help you get started.</description>
+			<category>devops</category>
+			<category>integration</category>
+			<category>microservices</category>
+			<pubDate>Mon, 17 Oct 2016 13:40:22 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/1001845</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3259605&amp;w=600" />
+			<dc:creator>grspain</dc:creator>
+		</item>
+		<item>
+			<title>Getting Started With JBoss Enterprise Application Platform 7</title>
+			<link>https://dzone.com/refcardz/getting-started-jboss?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Red Hat JBoss EAP is a middleware platform built on open
+				standards, compliant with the Java EE 7 specification. This newly
+				updated Refcard walks you through installing JBoss EAP 7, gives an
+				overview of the standalone vs. domain directory structure, provides
+				administration and application deployment tutorials, and explains
+				how JBoss EAP uses modular-based class loading.</description>
+			<category>java</category>
+			<category>integration</category>
+			<category>jboss</category>
+			<category>java ee</category>
+			<category>jboss eap</category>
+			<pubDate>Thu, 13 Oct 2016 13:53:33 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/520223</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3243969&amp;w=600" />
+			<dc:creator>Ryan Little</dc:creator>
+		</item>
+		<item>
+			<title>Introduction to Docker Monitoring</title>
+			<link>https://dzone.com/refcardz/intro-to-docker-monitoring?utm_medium=feed&amp;utm_source=feedpress.me&amp;utm_campaign=Feed%3A+dzone%2Fpublications</link>
+			<description>Docker has rapidly evolved into a production-ready
+				infrastructure platform, promising flexible and scalable delivery of
+				software to end users. This Refcard looks into the challenges that
+				containers (or black boxes) present in DevOps, explores
+				architectural models for monitoring containers, and investigates
+				pros and cons of Docker monitoring and troubleshooting options. It
+				also covers a complex, real-world example with Sysdig Cloud to
+				understand what to monitor and how.</description>
+			<category>docker</category>
+			<category>monitoring</category>
+			<category>container</category>
+			<category>sysdig</category>
+			<pubDate>Thu, 06 Oct 2016 18:55:39 GMT</pubDate>
+			<guid isPermaLink="false">https://dzone.com/refcardz/1364448</guid>
+			<media:thumbnail url="https://dzone.com/thumbnail?fid=3202927&amp;w=600" />
+			<dc:creator>grspain</dc:creator>
+		</item>
+	</channel>
 </rss>

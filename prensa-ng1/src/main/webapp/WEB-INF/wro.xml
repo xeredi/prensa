@@ -18,6 +18,7 @@
 		<js>https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js
 		</js>
 		<js>https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js</js>
+		<js>/lib/angular-indexed-db.js</js>
 
 		<css>https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css
 		</css>
@@ -29,6 +30,7 @@
 		<js>/*.js</js>
 		<js>/modules/common/*.js</js>
 		<js>/modules/rss/*.js</js>
+		<js>/modules/database/*.js</js>
 		<css>/*.css</css>
 	</group>
 </groups>
