@@ -3,14 +3,14 @@
 
     angular.module(
             "prensa.common.config",
-            [ "ngRoute", "ngSanitize", "pascalprecht.translate", "LocalStorageModule", "indexedDB",
+            [ "ngRoute", "ngSanitize", "pascalprecht.translate", "LocalStorageModule", "indexed-db",
                     "prensa.rss.rss", "prensa.database.database" ])
 
     .config(translateProvider_config)
 
     .config(localStorageServiceProvider_config)
 
-    .config(indexedDB_config)
+    .config(indexeddb_config)
 
     .run(run)
 
@@ -26,22 +26,80 @@
         localStorageServiceProvider.setPrefix('argo');
     }
 
-    /* @ngInject */
-    function indexedDB_config($indexedDBProvider) {
-        $indexedDBProvider.connection("xeredi.prensa.db").upgradeDatabase(1, function(event, db, tx) {
-            console.log("Create table: items");
+    function indexeddb_config(indexeddbProvider) {
+        indexeddbProvider.setDbName("xeredi.prensa.db");
+        indexeddbProvider.setDbVersion(1);
 
-            var store = db.createObjectStore("items", {
-                keyPath : "id",
-                autoIncrement : true
-            });
+        var tables = [ {
+            name : "publishers",
+            fields : [ {
+                name : '_id',
+                keyPath : true
+            }, {
+                name : "name",
+                unique : true
+            }, {
+                name : "countryCode"
+            } ]
+        }, {
+            name : "channelGroups",
+            fields : [ {
+                name : '_id',
+                keyPath : true
+            }, {
+                name : "name"
+            }, {
+                name : "publisherId"
+            } ]
+        }, {
+            name : "channels",
+            fields : [ {
+                name : '_id',
+                keyPath : true
+            }, {
+                name : "publisherId"
+            }, {
+                name : "title"
+            }, {
+                name : "selfLink",
+                unique : true
+            }, {
+                name : "description"
+            }, {
+                name : "language"
+            }, {
+                name : "pubDate"
+            }, {
+                name : "lastBuildDate"
+            }, {
+                name : "ttl"
+            }, {
+                name : "imageLink"
+            } ]
+        }, {
+            name : "items",
+            fields : [ {
+                name : '_id',
+                keyPath : true
+            }, {
+                name : "link",
+                unique : true
+            }, {
+                name : "publisherId"
+            }, {
+                name : "title"
+            }, {
+                name : "thumbnail"
+            }, {
+                name : "creator"
+            }, {
+                name : "pubDate"
+            }, {
+                name : "description"
+            } ]
+        } ];
 
-            console.log("Create index: ix_items_link");
-
-            store.createIndex("ix_items_link", "link", {
-                unique : false
-            });
-        });
+        indexeddbProvider.setDbTables(tables);
     }
 
     /* @ngInject */

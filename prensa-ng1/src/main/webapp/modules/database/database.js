@@ -3,108 +3,116 @@
 
     angular.module("prensa.database.database", [])
 
+    .factory('PublisherService', PublisherService)
+
+    .factory('ChannelGroupService', ChannelGroupService)
+
+    .factory('ChannelService', ChannelService)
+
     .factory('ItemService', ItemService)
 
     ;
 
-    function ItemService($window, $q) {
-        var indexedDB = $window.indexedDB;
-        var db = null;
-        var tableName = "items";
-        var indexLinkName = "ix_items_link";
+    function PublisherService(indexeddb) {
+        function addPublisher(db, publisher) {
+            return db.models.publishers.select("name").equal(publisher.name).find().then(
+                    function(publisherFound) {
+                        if (publisherFound) {
+                            console.log("Duplicated publisher!");
+                            console.log(publisherFound);
 
-        function open() {
-            var deferred = $q.defer();
-            var version = 10;
-            var request = indexedDB.open("xeredi.prensa.db");
+                            return publisherFound;
+                        } else {
+                            console.log("New publisher!");
 
-            request.onupgradeneeded = function(e) {
-                console.log("Upgrade Needed!!");
+                            return db.models.publishers.add(publisher).then(function(inserted) {
+                                console.log("inserted");
+                                console.log(inserted);
 
-                db = e.target.result;
-
-                e.target.transaction.onerror = indexedDB.onerror;
-
-                if (db.objectStoreNames.contains(tableName)) {
-                    db.deleteObjectStore(tableName);
-                }
-
-                // var store = db.createObjectStore(tableName, {
-                // keyPath : "link"
-                // });
-
-                console.log("Create table: " + tableName);
-
-                var store = db.createObjectStore(tableName, {
-                    keyPath : "id",
-                    autoIncrement : true
-                });
-
-                console.log("Create index: " + indexLinkName);
-
-                store.createIndex(indexLinkName, "link", {
-                    unique : false
-                });
-            };
-
-            request.onsuccess = function(e) {
-                console.log("Database Opened");
-
-                db = e.target.result;
-                deferred.resolve();
-            };
-
-            request.onerror = function(e) {
-                console.log("Error opening Database");
-                console.log(e.value);
-
-                deferred.reject();
-            };
-
-            return deferred.promise;
-        }
-
-        function addItem(item) {
-            console.log("- addItem");
-            console.log(item);
-
-            var deferred = $q.defer();
-
-            if (db === null) {
-                deferred.reject("IndexDB is not opened yet!");
-            } else {
-                var trans = db.transaction([ tableName ], "readwrite");
-                var store = trans.objectStore(tableName);
-                var request = store.put({
-                    "link" : item.link,
-                    "title" : item.title
-                });
-
-                request.onsuccess = function(e) {
-                    deferred.resolve();
-                };
-
-                request.onerror = function(e) {
-                    console.log(e.value);
-                    deferred.reject("Todo item couldn't be added!: " + item);
-                };
-            }
-            return deferred.promise;
-        }
-
-        function existsItem(item) {
-
-        }
-
-        function findItemByLink(link) {
-
+                                return inserted;
+                            });
+                        }
+                    });
         }
 
         return {
-            open : open,
-            addItem : addItem,
-            existsItem : existsItem,
-            findItemByLink : findItemByLink
+            addPublisher : addPublisher
         }
     }
+
+    function ChannelGroupService(indexeddb) {
+        function addChannelGroup(db, channelGroup) {
+            return db.models.channelGroups.select("name").equal(channelGroup.name).find().then(
+                    function(channelGroupFound) {
+                        if (channelGroupFound) {
+                            console.log("Duplicated channelGroup!");
+
+                            return channelGroupFound;
+                        } else {
+                            console.log("New channelGroup!");
+
+                            return db.models.channelGroups.add(channelGroup).then(function(inserted) {
+                                console.log("inserted");
+
+                                return inserted;
+                            });
+                        }
+                    });
+        }
+
+        return {
+            addChannelGroup : addChannelGroup
+        }
+    }
+
+    function ChannelService(indexeddb) {
+        function addChannel(db, channel) {
+            return db.models.channels.select("link").equal(channel.link).find().then(function(channelFound) {
+                if (channelFound) {
+                    console.log("Duplicated channel!");
+
+                    return channelFound;
+                } else {
+                    console.log("New channel!");
+
+                    return db.models.channels.add(channel).then(function(inserted) {
+                        console.log("inserted");
+
+                        return inserted;
+                    });
+                }
+            });
+        }
+
+        return {
+            addChannel : addChannel
+        }
+    }
+
+    function ItemService(indexeddb) {
+        function addItem(db, item) {
+            console.log("Add item");
+
+            return db.models.items.select("link").equal(item.link).find().then(function(itemFound) {
+                if (itemFound) {
+                    console.log("Duplicated item!");
+
+                    return null;
+                } else {
+                    console.log("New item!");
+
+                    return db.models.items.add(item).then(function(inserted) {
+                        console.log("inserted");
+
+                        return inserted;
+                    });
+                }
+            });
+        }
+
+        return {
+            addItem : addItem
+        }
+    }
+
 })();

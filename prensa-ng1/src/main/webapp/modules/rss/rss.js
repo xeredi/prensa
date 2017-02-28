@@ -9,11 +9,11 @@
 
     ;
 
-    function RssService($http, $indexedDB) {
-        function readChannel(url) {
-            console.log("Loading RSS: " + url);
+    function RssService($http, indexeddb, PublisherService, ChannelGroupService, ItemService) {
+        function readChannel(channel) {
+            console.log("Loading RSS: " + channel.url);
 
-            return $http.get(url, {
+            return $http.get(channel.url, {
                 transformResponse : function(cnv) {
                     var x2js = new X2JS({
                         enableToStringFunc : true
@@ -25,61 +25,20 @@
                     return aftCnv;
                 }
             }).then(function(responseRss) {
-                console.log("Loaded RSS: " + url);
+                console.log("Loaded RSS: " + channel.url);
                 console.log(responseRss.data);
 
-                $indexedDB.openStore("items", function(store) {
-                    console.log("Storing items");
-
-                    var items = [];
-
+                indexeddb.then(function(db) {
                     for (var i = 0; i < responseRss.data.rss.channel.item.length; i++) {
                         var item = responseRss.data.rss.channel.item[i];
 
-                        items.push({
+                        ItemService.addItem(db, {
                             "title" : item.title.toString(),
                             "link" : item.link,
                             "thumbnail" : item.thumbnail ? item.thumbnail._url : null,
                             "creator" : item.creator ? item.creator.toString() : null,
                             "pubDate" : Date.parse(item.pubDate),
                             "description" : item.description ? item.description.toString() : null
-                        });
-                    }
-
-                    //
-                    // for (var i = 0; i <
-                    // responseRss.data.rss.channel.item.length; i++) {
-                    // var item = responseRss.data.rss.channel.item[i];
-                    //
-                    // console.log("Exists: " + item.link);
-                    //
-                    // store.findBy("ix_items_link",
-                    // item.ĺink).then(function(foundItem) {
-                    // if (foundItem != null) {
-                    // console.log("- Duplicate entry: ");
-                    // console.log(foundItem);
-                    //
-                    // items.push({
-                    // "title" : item.title.toString(),
-                    // "link" : item.link,
-                    // "thumbnail" : item.thumbnail ? item.thumbnail._url :
-                    // null,
-                    // "creator" : item.creator ? item.creator.toString() :
-                    // null,
-                    // "pubDate" : Date.parse(item.pubDate),
-                    // "description" : item.description ?
-                    // item.description.toString() : null
-                    // });
-                    // }
-                    // });
-                    // }
-
-                    console.log(items);
-
-                    if (items.length > 0) {
-                        store.insert(items).then(function(inserted) {
-                            console.log("Inserted");
-                            console.log(inserted);
                         });
                     }
                 });
@@ -92,10 +51,36 @@
             console.log("Loading RSS Channels from: " + url);
 
             return $http.get(url).then(function(response) {
-                console.log("Loaded RSS channnels: " + url);
-                console.log(response.data);
+                var publishers = response.data;
 
-                return response.data;
+                console.log("Loaded RSS channnels: " + url);
+                console.log(publishers);
+
+                if (publishers) {
+                    indexeddb.then(function(db) {
+                        publishers.forEach(function(publisher) {
+                            console.log("publisher: " + publisher.name);
+
+                            PublisherService.addPublisher(db, {
+                                "name" : publisher.name,
+                                "countryCode" : publisher.countryCode
+                            }).then(function(publisherAdded) {
+                                if (publisher.cathegories) {
+                                    publisher.cathegories.forEach(function(cathegory) {
+                                        console.log("cathegory: " + cathegory.name);
+
+                                        ChannelGroupService.addChannelGroup(db, {
+                                            "name" : cathegory.name,
+                                            "publisherId" : publisherAdded._id
+                                        });
+                                    });
+                                }
+                            });
+                        });
+                    });
+                }
+
+                return publishers;
             });
         }
 
@@ -122,7 +107,7 @@
                 $scope.publishers.forEach(function(publisher) {
                     console.log("publisher: " + publisher.name);
 
-                    RssService.readChannel(publisher.defaultChannel.url).then(function(data) {
+                    RssService.readChannel(publisher.defaultChannel).then(function(data) {
                         $scope.news = $scope.news.concat(data.rss.channel.item)
                     });
 
@@ -133,7 +118,7 @@
                             cathegory.channels.forEach(function(channel) {
                                 console.log("channel: " + channel.name);
 
-                                RssService.readChannel(channel.url).then(function(data) {
+                                RssService.readChannel(channel).then(function(data) {
                                     $scope.news = $scope.news.concat(data.rss.channel.item)
                                 });
                             });
