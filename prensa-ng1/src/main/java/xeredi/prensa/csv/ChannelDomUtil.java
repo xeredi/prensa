@@ -1,6 +1,5 @@
 package xeredi.prensa.csv;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -63,78 +62,119 @@ public final class ChannelDomUtil {
 	 *             the SAX exception
 	 */
 	public static final void findChannelDependencies(final Channel channel)
-			throws IOException, ParserConfigurationException, SAXException {
+			throws ParserConfigurationException, SAXException {
 		System.out.println("Loading dependencies from: " + channel.getUrl());
 
-		final File file = new File("/home/xeredi/git/prensa/prensa-ng1/src/main/webapp/" + channel.getUrl());
-		final DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		final Document doc = dBuilder.parse(file);
+		try {
+			final DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			final Document doc = dBuilder.parse(channel.getUrl());
 
-		final Element root = doc.getDocumentElement();
+			final Element root = doc.getDocumentElement();
 
-		if (!root.hasChildNodes()) {
-			throw new Error("No Channels");
-		}
+			if (!root.hasChildNodes()) {
+				throw new Error("No Channels");
+			}
 
-		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
-			final Node node = root.getChildNodes().item(i);
+			for (int i = 0; i < root.getChildNodes().getLength(); i++) {
+				final Node node = root.getChildNodes().item(i);
 
-			if ("channel".equals(node.getNodeName())) {
-				for (int j = 0; j < node.getChildNodes().getLength(); j++) {
-					final Node channelChild = node.getChildNodes().item(j);
-					final String childName = channelChild.getNodeName();
-					final String childText = channelChild.getTextContent();
-					final short childType = channelChild.getNodeType();
+				if ("channel".equals(node.getNodeName())) {
+					for (int j = 0; j < node.getChildNodes().getLength(); j++) {
+						final Node channelChild = node.getChildNodes().item(j);
+						final String childName = channelChild.getNodeName();
+						final String childText = channelChild.getTextContent();
+						final short childType = channelChild.getNodeType();
 
-					switch (childName) {
-					case "feedpress:locale":
-					case "language":
-						System.out.println("node: " + childName + " - value: " + childText + " - type: " + childType);
+						switch (childName) {
+						case "feedpress:locale":
+						case "language":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						channel.setLanguage(childText);
+							channel.setLanguage(childText);
 
-						break;
-					case "title":
-						System.out.println("node: " + childName + " - value: " + childText + " - type: " + childType);
+							break;
+						case "title":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						channel.setName(childText);
+							channel.setName(childText);
 
-						break;
-					case "description":
-						System.out.println("node: " + childName + " - value: " + childText + " - type: " + childType);
+							break;
+						case "description":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						channel.setDescription(childText);
+							channel.setDescription(childText);
 
-						break;
-					case "ttl":
-						System.out.println("node: " + childName + " - value: " + childText + " - type: " + childType);
+							break;
+						case "ttl":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						channel.setTtl(childText);
+							channel.setTtl(childText);
 
-						break;
-					case "image":
-						System.out.println("node: " + childName + " - value: " + childText + " - type: " + childType);
+							break;
+						case "itunes:author":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						break;
-					case "item":
-					case "#text":
-					case "atom:link":
-					case "link":
-					case "copyright":
-					case "category":
-					case "pubDate":
-					case "lastBuildDate":
-						// No Action
+							channel.getItunes().setAuthor(childText);
 
-						break;
-					default:
-						System.out.println(
-								"Unknown node: " + childName + " - value: " + childText + " - type: " + childType);
+							break;
+						case "itunes:subtitle":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
 
-						break;
+							channel.getItunes().setSubtitle(childText);
+
+							break;
+						case "itunes:summary":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
+
+							channel.getItunes().setSummary(childText);
+
+							break;
+						case "itunes:category":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
+
+							channel.getItunes().setCategory(childText);
+
+							break;
+						case "itunes:explicit":
+							// System.out.println("node: " + childName + " -
+							// value: " + childText + " - type: " + childType);
+
+							channel.getItunes().setExplicit(childText);
+
+							break;
+						case "itunes:owner":
+						case "itunes:keywords":
+						case "item":
+						case "#text":
+						case "atom:link":
+						case "link":
+						case "copyright":
+						case "category":
+						case "pubDate":
+						case "lastBuildDate":
+							// No Action
+
+							break;
+						default:
+							System.out.println(
+									"Unknown node: " + childName + " - value: " + childText + " - type: " + childType);
+
+							break;
+						}
 					}
 				}
 			}
+		} catch (IOException ex) {
+			System.err.println("Error accediendo a la url: " + channel.getUrl());
+			ex.printStackTrace(System.err);
 		}
 	}
 }

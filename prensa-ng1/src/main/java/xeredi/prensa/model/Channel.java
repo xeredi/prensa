@@ -13,4 +13,6 @@ public final class Channel {
 	private String language;
 
 	private String ttl;
+
+	private Itunes itunes = new Itunes();
 }
