@@ -16,8 +16,10 @@ import lombok.Data;
 /**
  * The Class Feed.
  */
-@Entity("feed")
-@Indexes(@Index(fields = @Field("publisherId"), options = @IndexOptions(name = "ix_feed_publisherId", unique = false)))
+@Entity(value = "feed", noClassnameStored = true)
+@Indexes({
+		@Index(fields = @Field("publisherId"), options = @IndexOptions(name = "ix_feed_publisherId", unique = false)),
+		@Index(fields = @Field("url"), options = @IndexOptions(name = "ix_feed_url", unique = true)) })
 @Data
 public final class Feed {
 
@@ -29,7 +31,6 @@ public final class Feed {
 	private ObjectId publisherId;
 
 	private Boolean podcast;
-
 
 	/** The url. */
 	private String url;

@@ -18,6 +18,9 @@ public final class DatastoreLocator {
 	 */
 	public static Datastore findDatastore() {
 		final Morphia morphia = new Morphia();
+
+		morphia.mapPackage("xeredi.prensa.db");
+
 		final Datastore datastore = morphia.createDatastore(new MongoClient(), "press");
 
 		datastore.ensureIndexes();

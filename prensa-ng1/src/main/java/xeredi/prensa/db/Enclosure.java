@@ -14,12 +14,9 @@ import lombok.Data;
 /**
  * The Class Enclosure.
  */
-@Entity("enclosure")
-@Indexes(@Index(fields = @Field("entryId"), options = @IndexOptions(name = "ix_encl_entryId", unique = false)))
-
-/**
- * Instantiates a new enclosure.
- */
+@Entity(value = "enclosure", noClassnameStored = true)
+@Indexes(@Index(fields = { @Field("entryId"),
+		@Field("url") }, options = @IndexOptions(name = "ix_encl_entryId", unique = true)))
 @Data
 public final class Enclosure {
 

@@ -1,20 +1,23 @@
 package xeredi.prensa.finder;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 
 import org.jdom2.Element;
 import org.mongodb.morphia.Datastore;
+import org.xml.sax.InputSource;
 
 import com.rometools.rome.feed.synd.SyndEnclosure;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 
+import xeredi.prensa.dao.EnclosureDAO;
+import xeredi.prensa.dao.EntryDAO;
 import xeredi.prensa.db.Enclosure;
 import xeredi.prensa.db.Entry;
 import xeredi.prensa.db.Feed;
@@ -36,24 +39,27 @@ public final class EntryFinder {
 	 */
 	public void findEntries(final Datastore datastore, final Feed feed) {
 		final SyndFeedInput input = new SyndFeedInput();
-		// final Datastore datastore = DatastoreLocator.findDatastore();
 
-		try {
+		final EntryDAO entryDAO = new EntryDAO(datastore);
+		final EnclosureDAO enclosureDAO = new EnclosureDAO(datastore);
+
+		try (final InputStream is = new URL(feed.getUrl()).openConnection().getInputStream()) {
 			// System.out.println("Get: " +
-			// channelUrl);
+			// feed.getUrl());
 
-			final URL feedUrl = new URL(feed.getUrl());
-			final SyndFeed syndFeed = input.build(new XmlReader(feedUrl));
+			final InputSource source = new InputSource(is);
+			final SyndFeed syndFeed = input.build(source);
 
 			for (final SyndEntry syndEntry : syndFeed.getEntries()) {
 				final Entry entry = new Entry();
 
 				entry.setPublisherId(feed.getPublisherId());
+				entry.getFeedIds().add(feed.getId());
 
 				entry.setAuthor(syndEntry.getAuthor());
 				entry.setComments(syndEntry.getComments());
-				entry.setLink(syndEntry.getLink());
 				entry.setTitle(syndEntry.getTitle());
+				// entry.setLink(syndEntry.getLink());
 				entry.setUri(syndEntry.getUri());
 
 				if (syndEntry.getDescription() != null) {
@@ -92,18 +98,30 @@ public final class EntryFinder {
 					}
 				}
 
-				datastore.save(entry);
+				if (entry.getUri() == null) {
+					System.err.println("URI null for Entry: " + entry);
+				} else {
+					if (entryDAO.exists(entry)) {
+						entryDAO.update(entry);
+					} else {
+						entryDAO.insert(entry);
+					}
 
-				for (final SyndEnclosure syndEnclosure : syndEntry.getEnclosures()) {
-					final Enclosure enclosure = new Enclosure();
+					for (final SyndEnclosure syndEnclosure : syndEntry.getEnclosures()) {
+						final Enclosure enclosure = new Enclosure();
 
-					enclosure.setEntryId(entry.getId());
+						enclosure.setEntryId(entry.getId());
 
-					enclosure.setLength(syndEnclosure.getLength());
-					enclosure.setType(syndEnclosure.getType());
-					enclosure.setUrl(syndEnclosure.getUrl());
+						enclosure.setLength(syndEnclosure.getLength());
+						enclosure.setType(syndEnclosure.getType());
+						enclosure.setUrl(syndEnclosure.getUrl());
 
-					datastore.save(enclosure);
+						if (enclosureDAO.exists(enclosure)) {
+							enclosureDAO.update(enclosure);
+						} else {
+							enclosureDAO.insert(enclosure);
+						}
+					}
 				}
 			}
 

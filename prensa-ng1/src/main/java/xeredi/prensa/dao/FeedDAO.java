@@ -1,5 +1,7 @@
 package xeredi.prensa.dao;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
@@ -7,6 +9,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 
 import lombok.NonNull;
 import xeredi.prensa.db.Feed;
+import xeredi.prensa.db.FeedCriteria;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -133,6 +136,31 @@ public final class FeedDAO {
 		}
 
 		datastore.update(query, operations);
+	}
+
+	public List<Feed> selectList(final @NonNull FeedCriteria criteria) {
+		final Query<Feed> query = datastore.createQuery(Feed.class);
+
+		if (criteria.getId() != null) {
+			query.field("_id").equal(criteria.getId());
+		}
+		if (criteria.getPodcast() != null) {
+			query.field("podcast").equal(criteria.getPodcast());
+		}
+		if (criteria.getFeedType() != null) {
+			query.field("feedType").equal(criteria.getFeedType());
+		}
+		if (criteria.getLanguage() != null) {
+			query.field("language").equal(criteria.getLanguage());
+		}
+		if (criteria.getPublisherId() != null) {
+			query.field("publisherId").equal(criteria.getPublisherId());
+		}
+		if (criteria.getPublisherId() != null) {
+			query.field("url").equal(criteria.getUrl());
+		}
+
+		return query.asList();
 	}
 
 }
