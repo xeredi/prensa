@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jdom2.Element;
 import org.mongodb.morphia.Datastore;
 import org.xml.sax.InputSource;
@@ -28,6 +30,8 @@ import xeredi.prensa.morphia.DatastoreLocator;
  * The Class ItemFinder.
  */
 public final class EntryFinder {
+    private static final Log LOG = LogFactory.getLog(EntryFinder.class);
+
 
 	/**
 	 * Find items.
@@ -99,7 +103,7 @@ public final class EntryFinder {
 				}
 
 				if (entry.getUri() == null) {
-					System.err.println("URI null for Entry: " + entry);
+				    LOG.error("URI null for Entry: " + entry);
 				} else {
 					if (entryDAO.exists(entry)) {
 						entryDAO.update(entry);
@@ -125,15 +129,15 @@ public final class EntryFinder {
 				}
 			}
 
-			System.out.println("OK: " + feed.getUrl());
+			LOG.info("OK: " + feed.getUrl());
 		} catch (final MalformedURLException ex) {
-			System.err.println("MalformedURLException with: " + feed.getUrl());
+		    LOG.error("MalformedURLException with: " + feed.getUrl());
 		} catch (final FeedException ex) {
-			System.err.println("FeedException with: " + feed.getUrl());
+		    LOG.error("FeedException with: " + feed.getUrl());
 		} catch (final IllegalArgumentException ex) {
-			System.err.println("IllegalArgumentException with: " + feed.getUrl());
+		    LOG.error("IllegalArgumentException with: " + feed.getUrl());
 		} catch (final IOException ex) {
-			System.err.println("IOException with: " + feed.getUrl());
+		    LOG.error("IOException with: " + feed.getUrl());
 		}
 	}
 
@@ -153,7 +157,7 @@ public final class EntryFinder {
 			itemFinder.findEntries(datastore, feed);
 		}
 
-		System.out.println((Calendar.getInstance().getTimeInMillis() - start) + " ms.");
+		LOG.info((Calendar.getInstance().getTimeInMillis() - start) + " ms.");
 	}
 
 }

@@ -5,20 +5,25 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Scanner;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.routines.UrlValidator;
-import org.jdom2.Element;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.mongodb.morphia.Datastore;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
@@ -36,6 +41,9 @@ import xeredi.prensa.morphia.DatastoreLocator;
  */
 public final class FeedFinder {
 
+    /** The Constant LOG. */
+    private static final Log LOG = LogFactory.getLog(FeedFinder.class);
+
     /** The Constant HREF_TOKEN. */
     public static final String HREF_TOKEN = "href";
 
@@ -47,6 +55,18 @@ public final class FeedFinder {
 
     /** The Constant CHANNEL_FILE_EXTENSION. */
     public static final String CHANNEL_FILE_EXTENSION = "xml";
+
+    /** The datastore. */
+    private final Datastore datastore;
+
+    /**
+     * Instantiates a new feed finder.
+     */
+    public FeedFinder() {
+        super();
+
+        datastore = DatastoreLocator.findDatastore();
+    }
 
     /**
      * Find channels.
@@ -62,163 +82,209 @@ public final class FeedFinder {
      */
     public void findFeeds(final Publisher publisher)
             throws SAXException, ParserConfigurationException, MalformedURLException {
-        final URL webUrl = new URL(publisher.getRssHomeUrl());
-        final SyndFeedInput input = new SyndFeedInput();
-        final UrlValidator urlValidator = new UrlValidator();
+        LOG.info("PUBLISHER: " + publisher.getName());
 
-        final Datastore datastore = DatastoreLocator.findDatastore();
-        final FeedDAO feedDAO = new FeedDAO(datastore);
         final Set<String> urlProcessedSet = new HashSet<>();
 
-        try (final Scanner scanner = new Scanner(new URL(publisher.getRssHomeUrl()).openStream())) {
-            while (scanner.hasNextLine()) {
-                final String line = scanner.nextLine();
-                int startPosition = 0;
+        if (publisher.getChannelUrlList() != null) {
 
-                do {
-                    System.out.print('.');
+            for (final String channelUrl : publisher.getChannelUrlList()) {
+                try {
+                    LOG.info("Load specific channel: " + channelUrl);
 
-                    final int hrefPosition = line.indexOf(HREF_TOKEN, startPosition);
+                    loadFeed(publisher, channelUrl);
 
-                    if (hrefPosition >= startPosition) {
-                        startPosition = hrefPosition;
+                    urlProcessedSet.add(channelUrl);
+                } catch (final MalformedURLException ex) {
+                    LOG.fatal("MalformedURLException with: " + channelUrl);
+                    LOG.fatal(ex.getMessage());
+                } catch (final FeedException ex) {
+                    LOG.fatal("FeedException with: " + channelUrl);
+                    LOG.fatal(ex.getMessage());
+                } catch (final IllegalArgumentException ex) {
+                    LOG.fatal("IllegalArgumentException with: " + channelUrl);
+                    LOG.fatal(ex.getMessage());
+                } catch (final IOException ex) {
+                    LOG.fatal("IOException with: " + channelUrl);
+                    LOG.fatal(ex.getMessage());
+                }
+            }
+        }
 
-                        final int firstLimit = line.indexOf(FIRST_LIMIT_TOKEN, hrefPosition);
+        if (publisher.getRssHomeUrl() != null) {
+            LOG.info("Scan looking for channels: " + publisher.getRssHomeUrl());
 
-                        if (firstLimit >= hrefPosition) {
-                            startPosition = firstLimit;
+            try {
+                final URL webUrl = new URL(publisher.getRssHomeUrl());
+                final UrlValidator urlValidator = new UrlValidator();
 
-                            final int secondLimit = line.indexOf(SECOND_LIMIT_TOKEN, firstLimit + 1);
+                final Document document = Jsoup.parse(new URL(publisher.getRssHomeUrl()), 30000);
+                final Elements links = document.select("a[href]");
+                final Iterator<Element> iterator = links.iterator();
 
-                            if (secondLimit > firstLimit) {
-                                startPosition = secondLimit;
+                while (iterator.hasNext()) {
+                    final Element link = iterator.next();
+                    final String fileUrl = link.attr("href").trim();
 
-                                final String fileUrl = line.substring(firstLimit + 1, secondLimit).trim();
+                    // System.out.println("fileUrl: " + fileUrl);
+                    String channelUrl = null;
 
-                                String channelUrl = null;
+                    if (fileUrl.startsWith("http") || fileUrl.startsWith("www") || fileUrl.startsWith("itpc://")) {
+                        channelUrl = fileUrl;
+                    } else if (fileUrl.startsWith("//")) {
+                        channelUrl = webUrl.getProtocol() + ":" + fileUrl;
+                    } else if (fileUrl.startsWith("/")) {
+                        channelUrl = webUrl.getProtocol() + "://" + webUrl.getHost() + fileUrl;
+                    } else {
+                        channelUrl = webUrl.getProtocol() + "://" + webUrl.getHost()
+                                + webUrl.getPath().substring(0, webUrl.getPath().lastIndexOf("/") + 1) + fileUrl;
+                    }
 
-                                if (fileUrl.startsWith("http") || fileUrl.startsWith("www")) {
-                                    channelUrl = fileUrl;
-                                } else if (fileUrl.startsWith("/")) {
-                                    channelUrl = webUrl.getProtocol() + "://" + webUrl.getHost() + fileUrl;
-                                } else {
-                                    channelUrl = webUrl.getProtocol() + "://" + webUrl.getHost()
-                                            + webUrl.getPath().substring(0, webUrl.getPath().lastIndexOf("/") + 1)
-                                            + fileUrl;
-                                }
+                    if (!urlProcessedSet.contains(channelUrl)) {
+                        urlProcessedSet.add(channelUrl);
 
-                                if (!channelUrl.endsWith("css") && !channelUrl.endsWith("js")
-                                        && !channelUrl.endsWith("gif") && !channelUrl.endsWith("png")
-                                        && !channelUrl.endsWith("ico") && !channelUrl.endsWith("json")
-                                        && channelUrl.startsWith("http")) {
+                        if (urlValidator.isValid(channelUrl)) {
+                            // System.out.println("channelUrl: " + channelUrl);
 
-                                    if (!urlProcessedSet.contains(channelUrl)) {
-                                        System.out.println("channelUrl: " + channelUrl);
-
-                                        urlProcessedSet.add(channelUrl);
-
-                                        if (urlValidator.isValid(channelUrl)) {
-                                            final HttpURLConnection urlConnection = (HttpURLConnection) (new URL(
-                                                    channelUrl).openConnection());
-
-                                            urlConnection.setConnectTimeout(5000);
-                                            urlConnection.setReadTimeout(5000);
-
-                                            try {
-                                                urlConnection.connect();
-
-                                                try (final InputStream is = urlConnection.getInputStream()) {
-                                                    // System.out.println("Get: " +
-                                                    // channelUrl);
-
-                                                    final InputSource source = new InputSource(is);
-                                                    final SyndFeed syndFeed = input.build(source);
-
-                                                    final Feed feed = new Feed();
-
-                                                    feed.setPublisherId(publisher.getId());
-                                                    feed.setUrl(channelUrl);
-
-                                                    feed.setAuthor(syndFeed.getAuthor());
-                                                    feed.setCopyright(syndFeed.getCopyright());
-                                                    feed.setDescription(syndFeed.getDescription());
-                                                    feed.setEncoding(syndFeed.getEncoding());
-                                                    feed.setFeedType(syndFeed.getFeedType());
-                                                    feed.setGenerator(syndFeed.getGenerator());
-                                                    feed.setLanguage(syndFeed.getLanguage());
-                                                    feed.setLink(syndFeed.getLink());
-                                                    feed.setPublishedDate(syndFeed.getPublishedDate());
-                                                    feed.setTitle(syndFeed.getTitle());
-                                                    feed.setUri(syndFeed.getUri());
-
-                                                    if (syndFeed.getImage() != null) {
-                                                        feed.setImUrl(syndFeed.getImage().getUrl());
-                                                        feed.setImWidth(syndFeed.getImage().getWidth());
-                                                        feed.setImHeight(syndFeed.getImage().getHeight());
-                                                    }
-
-                                                    feed.setPodcast(false);
-
-                                                    for (final Element element : syndFeed.getForeignMarkup()) {
-                                                        if ("itunes".equals(element.getNamespace().getPrefix())) {
-                                                            feed.setPodcast(true);
-                                                        }
-
-                                                        if ("image".equals(element.getName())) {
-                                                            System.out.println("Element: " + element.getName());
-                                                            System.out
-                                                                    .println("Attributes: " + element.getAttributes());
-
-                                                            feed.setImUrl(element.getAttributeValue("href"));
-                                                        }
-                                                    }
-
-                                                    if (feedDAO.exists(feed)) {
-                                                        feedDAO.update(feed);
-                                                    } else {
-                                                        feedDAO.insert(feed);
-                                                    }
-
-                                                    System.out.println("OK: " + channelUrl);
-                                                } catch (final MalformedURLException ex) {
-                                                } catch (final FeedException ex) {
-                                                    System.err.println("FeedException with: " + channelUrl);
-                                                } catch (final IllegalArgumentException ex) {
-                                                    System.err.println("IllegalArgumentException with: " + channelUrl);
-                                                } catch (final IOException ex) {
-                                                    System.err.println("IOException with: " + channelUrl);
-                                                }
-                                            } catch (final IOException ex) {
-                                                System.err.println("IOException with: " + channelUrl);
-                                            } finally {
-                                                urlConnection.disconnect();
-                                            }
-                                        } else {
-                                            System.err.println("Invalid URL: " + channelUrl);
-                                        }
-                                    }
-                                }
-                            } else {
-                                // System.out.println("No more channels");
-
-                                startPosition = -1;
+                            try {
+                                loadFeed(publisher, channelUrl);
+                            } catch (final MalformedURLException ex) {
+                            } catch (final FeedException ex) {
+                            } catch (final IllegalArgumentException ex) {
+                                LOG.error("IllegalArgumentException with: " + channelUrl + ", fileUrl: " + fileUrl);
+                                LOG.error(ex.getMessage());
+                            } catch (final IOException ex) {
+                                LOG.error("IOException with: " + channelUrl + ", fileUrl: " + fileUrl);
+                                LOG.error(ex.getMessage());
                             }
                         } else {
-                            // System.out.println("No more channels");
-
-                            startPosition = -1;
+                            LOG.error("Invalid URL: " + channelUrl + ", fileUrl: " + fileUrl);
                         }
-                    } else {
-                        // System.out.println("No more channels");
-
-                        startPosition = -1;
                     }
-                } while (startPosition > 0);
+                }
+            } catch (final IOException ex) {
+                LOG.error("Error accediendo a la url: " + publisher.getRssHomeUrl());
+                LOG.error(ex, ex);
             }
-        } catch (final IOException ex) {
-            System.err.println("Error accediendo a la url: " + publisher.getRssHomeUrl());
-            ex.printStackTrace(System.err);
         }
+    }
+
+    /**
+     * Load feed.
+     *
+     * @param publisher
+     *            the publisher
+     * @param channelUrl
+     *            the channel url
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     * @throws MalformedURLException
+     *             the malformed URL exception
+     * @throws FeedException
+     *             the feed exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     */
+    private void loadFeed(final Publisher publisher, final String channelUrl)
+            throws IOException, MalformedURLException, FeedException, IllegalArgumentException {
+        final HttpURLConnection urlConnection = (HttpURLConnection) (new URL(channelUrl).openConnection());
+
+        urlConnection.setConnectTimeout(5000);
+        urlConnection.setReadTimeout(5000);
+
+        urlConnection.connect();
+
+        try (final InputStream is = urlConnection.getInputStream()) {
+            // System.out.println("Get: " + channelUrl);
+
+            final SyndFeedInput input = new SyndFeedInput();
+            final InputSource source = new InputSource(is);
+            final SyndFeed syndFeed = input.build(source);
+
+            final Feed feed = new Feed();
+
+            feed.setPublisherId(publisher.getId());
+            feed.setUrl(channelUrl);
+
+            feed.setAuthor(syndFeed.getAuthor());
+            feed.setCopyright(syndFeed.getCopyright());
+            feed.setDescription(syndFeed.getDescription());
+            feed.setEncoding(syndFeed.getEncoding());
+            feed.setFeedType(syndFeed.getFeedType());
+            feed.setGenerator(syndFeed.getGenerator());
+            feed.setLanguage(syndFeed.getLanguage());
+            feed.setLink(syndFeed.getLink());
+            feed.setPublishedDate(syndFeed.getPublishedDate());
+            feed.setTitle(syndFeed.getTitle());
+            feed.setUri(syndFeed.getUri());
+
+            if (syndFeed.getImage() != null) {
+                feed.setImUrl(syndFeed.getImage().getUrl());
+                feed.setImWidth(syndFeed.getImage().getWidth());
+                feed.setImHeight(syndFeed.getImage().getHeight());
+            }
+
+            feed.setPodcast(false);
+
+            for (final org.jdom2.Element element : syndFeed.getForeignMarkup()) {
+                if ("itunes".equals(element.getNamespace().getPrefix())) {
+                    feed.setPodcast(true);
+                }
+
+                if ("image".equals(element.getName())) {
+                    LOG.debug("Element: " + element.getName());
+                    LOG.debug("Attributes: " + element.getAttributes());
+
+                    feed.setImUrl(element.getAttributeValue("href"));
+                }
+            }
+
+            if (publisher.getValidType() == null || feed.getFeedType().startsWith(publisher.getValidType())) {
+                final FeedDAO feedDAO = new FeedDAO(datastore);
+
+                if (isDeprecated(syndFeed, 90)) {
+                    LOG.info("Deprecated: " + channelUrl);
+                } else {
+                    if (feedDAO.exists(feed)) {
+                        feedDAO.update(feed);
+                    } else {
+                        feedDAO.insert(feed);
+                    }
+
+                    LOG.info("OK: " + channelUrl);
+                }
+            } else {
+                LOG.info("Not Valid Type: " + channelUrl);
+            }
+        }
+    }
+
+    /**
+     * Checks if is deprecated.
+     *
+     * @param syndFeed
+     *            the synd feed
+     * @param daysNumber
+     *            the days number
+     * @return true, if is deprecated
+     */
+    private boolean isDeprecated(final SyndFeed syndFeed, final int daysNumber) {
+        final Calendar calendar = Calendar.getInstance();
+
+        calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
+
+        for (final SyndEntry syndEntry : syndFeed.getEntries()) {
+            if (syndEntry.getPublishedDate() == null && syndEntry.getUpdatedDate() == null) {
+                LOG.error("Null Date: " + syndEntry.getPublishedDate());
+            } else if (syndEntry.getPublishedDate() != null
+                    && calendar.getTime().before(syndEntry.getPublishedDate())) {
+                return false;
+            } else if (syndEntry.getUpdatedDate() != null && calendar.getTime().before(syndEntry.getUpdatedDate())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -261,13 +327,13 @@ public final class FeedFinder {
             // channelFinder.findChannels("http://www.marca.com/deporte/rss/");
 
         } catch (final SAXException ex) {
-            ex.printStackTrace(System.err);
+            LOG.error(ex, ex);
         } catch (final ParserConfigurationException ex) {
-            ex.printStackTrace(System.err);
+            LOG.error(ex, ex);
         } catch (final MalformedURLException ex) {
-            ex.printStackTrace(System.err);
+            LOG.error(ex, ex);
         }
 
-        System.out.println((Calendar.getInstance().getTimeInMillis() - start) + " ms.");
+        LOG.info((Calendar.getInstance().getTimeInMillis() - start) + " ms.");
     }
 }
