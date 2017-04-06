@@ -50,7 +50,9 @@ public final class Entry {
 	// private String link;
 
 	/** The title. */
-	private String title;
+    private String title;
+
+    private String subtitle;
 
 	/** The uri. */
 	private String uri;

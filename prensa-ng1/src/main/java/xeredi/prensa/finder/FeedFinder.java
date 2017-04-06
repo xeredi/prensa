@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -126,7 +127,7 @@ public final class FeedFinder {
                     final Element link = iterator.next();
                     final String fileUrl = link.attr("href").trim();
 
-                    // System.out.println("fileUrl: " + fileUrl);
+                    // LOG.debug("fileUrl: " + fileUrl);
                     String channelUrl = null;
 
                     if (fileUrl.startsWith("http") || fileUrl.startsWith("www") || fileUrl.startsWith("itpc://")) {
@@ -144,7 +145,7 @@ public final class FeedFinder {
                         urlProcessedSet.add(channelUrl);
 
                         if (urlValidator.isValid(channelUrl)) {
-                            // System.out.println("channelUrl: " + channelUrl);
+                            // LOG.debug("channelUrl: " + channelUrl);
 
                             try {
                                 loadFeed(publisher, channelUrl);
@@ -187,7 +188,8 @@ public final class FeedFinder {
      */
     private void loadFeed(final Publisher publisher, final String channelUrl)
             throws IOException, MalformedURLException, FeedException, IllegalArgumentException {
-        final HttpURLConnection urlConnection = (HttpURLConnection) (new URL(channelUrl).openConnection());
+        final URL url = new URL(channelUrl);
+        final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         urlConnection.setConnectTimeout(5000);
         urlConnection.setReadTimeout(5000);
@@ -195,9 +197,9 @@ public final class FeedFinder {
         urlConnection.connect();
 
         try (final InputStream is = urlConnection.getInputStream()) {
-            // System.out.println("Get: " + channelUrl);
+            // LOG.debug("Get: " + channelUrl);
 
-            final SyndFeedInput input = new SyndFeedInput();
+            final SyndFeedInput input = new SyndFeedInput(true, new Locale(publisher.getRssLang()));
             final InputSource source = new InputSource(is);
             final SyndFeed syndFeed = input.build(source);
 
@@ -231,11 +233,133 @@ public final class FeedFinder {
                     feed.setPodcast(true);
                 }
 
-                if ("image".equals(element.getName())) {
-                    LOG.debug("Element: " + element.getName());
-                    LOG.debug("Attributes: " + element.getAttributes());
+                // if ("image".equals(element.getName())) {
+                // LOG.debug("Element: " + element.getName());
+                // LOG.debug("Attributes: " + element.getAttributes());
+                //
+                // feed.setImUrl(element.getAttributeValue("href"));
+                // }
 
-                    feed.setImUrl(element.getAttributeValue("href"));
+                switch (element.getNamespace().getPrefix()) {
+                case "itunes":
+                    switch (element.getName()) {
+                    case "image":
+                        if (feed.getImUrl() == null) {
+                            feed.setImUrl(element.getAttributeValue("href"));
+                        }
+
+                        break;
+                    case "subtitle":
+                        feed.setSubtitle(element.getText());
+
+                        break;
+                    case "summary":
+                        if (feed.getDescription() == null) {
+                            feed.setDescription(element.getText());
+                        }
+
+                        break;
+                    case "author":
+                        if (feed.getAuthor() == null) {
+                            feed.setAuthor(element.getText());
+                        }
+
+                        break;
+                    case "owner":
+                        break;
+                    case "category":
+                        break;
+                    case "explicit":
+                        break;
+                    case "new-feed-url":
+                        break;
+                    case "keywords":
+                        break;
+                    case "block":
+                        break;
+                    case "link":
+                        break;
+                    default:
+                        LOG.debug("Unknown itunes Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                case "atom":
+                    switch (element.getName()) {
+                    case "link":
+                        break;
+                    default:
+                        LOG.debug("Unknown atom Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                case "atom10":
+                    switch (element.getName()) {
+                    case "link":
+                        break;
+                    default:
+                        LOG.debug("Unknown atom10 Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                case "feedburner":
+                    switch (element.getName()) {
+                    case "info":
+                        break;
+                    case "feedburnerHostname":
+                        break;
+                    case "emailServiceId":
+                        break;
+                    default:
+                        LOG.debug("Unknown feedburner Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                case "geo":
+                    switch (element.getName()) {
+                    case "lat":
+                        break;
+                    case "long":
+                        break;
+                    default:
+                        LOG.debug("Unknown geo Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                case "sy":
+                    switch (element.getName()) {
+                    case "updatePeriod":
+                        break;
+                    case "updateFrequency":
+                        break;
+                    default:
+                        LOG.debug("Unknown sy Element: " + element.getName() + ", Attributes: "
+                                + element.getAttributes());
+
+                        break;
+                    }
+
+                    break;
+                default:
+                    LOG.debug("Unknown Prefix: " + element.getNamespace().getPrefix() + ", Name: " + element.getName()
+                            + ", Attributes: " + element.getAttributes());
+
+                    break;
                 }
             }
 

@@ -65,6 +65,8 @@ public final class Feed {
 	/** The title. */
 	private String title;
 
+    private String subtitle;
+
 	/** The uri. */
 	private String uri;
 
