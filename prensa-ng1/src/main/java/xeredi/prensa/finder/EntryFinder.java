@@ -80,8 +80,11 @@ public final class EntryFinder {
                 entry.setAuthor(syndEntry.getAuthor());
                 entry.setComments(syndEntry.getComments());
                 entry.setTitle(syndEntry.getTitle());
-                // entry.setLink(syndEntry.getLink());
                 entry.setUri(syndEntry.getUri());
+
+                if (syndEntry.getLink() != null) {
+                    entry.setUri(syndEntry.getLink());
+                }
 
                 if (syndEntry.getDescription() != null) {
                     entry.setDescriptionType(syndEntry.getDescription().getType());

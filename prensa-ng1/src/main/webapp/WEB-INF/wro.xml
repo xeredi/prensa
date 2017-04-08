@@ -3,22 +3,25 @@
 	xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
 
 	<group name="dependencies">
-		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js
+		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js
 		</js>
-		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-route.js
+		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js
 		</js>
-		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-sanitize.js
+		<js>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-sanitize.js
 		</js>
-		<js>https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.2/angular-locale_es-es.js
+		<js>https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.3/angular-locale_es-es.js
 		</js>
-		<js>https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.14.0/angular-translate.js
+		<js>https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate.js
 		</js>
 		<js>https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.5.2/angular-local-storage.js
 		</js>
 		<js>https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js
 		</js>
-		<js>https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js</js>
 		<js>/lib/angular-indexeddb.js</js>
+
+		<js>https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js</js>
+		<js>https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js
+		</js>
 
 		<css>https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css
 		</css>

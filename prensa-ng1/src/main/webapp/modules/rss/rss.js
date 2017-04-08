@@ -13,6 +13,37 @@
         function readChannel(channel) {
             console.log("Loading RSS: " + channel.url);
 
+            console.log("Loading JQuery: " + "http://www.huffingtonpost.es/feeds/index.xml");
+            $.ajax({
+                headers : {
+                    "Access-Control-Allow-Origin" : "http://www.huffingtonpost.es",
+                    "Access-Control-Allow-Headers" : "content-type"
+                },
+                url : "http://www.huffingtonpost.es/feeds/index.xml",
+                type : 'GET',
+                crossDomain : true,
+                dataType : 'xml',
+                success : function() {
+                    console.log("JQuery Loaded: " + "http://www.huffingtonpost.es/feeds/index.xml");
+                    console.log(data);
+                    // $(data).find("entry").each(function() {
+                    // console.log("Item JQuery: " + channel.url);
+                    // var el = $(this);
+                    //
+                    // console.log("------------------------");
+                    // console.log("title : " + el.find("title").text());
+                    // console.log("author : " + el.find("author").text());
+                    // console.log("description: " +
+                    // el.find("description").text());
+                    // });
+                },
+                error : function() {
+                    alert('Failed!');
+                }/*
+                     * , beforeSend : setHeader
+                     */
+            });
+
             return $http.get(channel.url, {
                 transformResponse : function(cnv) {
                     var x2js = new X2JS({
