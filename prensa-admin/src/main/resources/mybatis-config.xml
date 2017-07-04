@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="Configuration_env.properties" />
+
+	<settings>
+		<setting name="logImpl" value="NO_LOGGING" />
+		<setting name="proxyFactory" value="CGLIB" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<package name="xeredi.press.model" />
+	</typeAliases>
+
+	<typeHandlers>
+		<typeHandler handler="xeredi.press.model.util.mybatis.BooleanTypeHandler"
+			javaType="java.lang.Boolean" jdbcType="INTEGER" />
+	</typeHandlers>
+
+	<environments default="local">
+		<environment id="local">
+			<transactionManager type="JDBC"></transactionManager>
+
+			<dataSource type="xeredi.press.model.util.mybatis.DbcpDataSourceFactory">
+				<property name="url" value="${db.dataSource.url}" />
+				<property name="driverClassName" value="${db.dataSource.driver}" />
+				<property name="username" value="${db.dataSource.username}" />
+				<property name="password" value="${db.dataSource.password}" />
+				<property name="defaultAutoCommit" value="false" />
+				<property name="rollbackOnReturn" value="false" />
+				<property name="initialSize" value="4" />
+				<property name="maxTotal" value="8" />
+				<property name="minIdle" value="4" />
+				<property name="maxIdle" value="4" />
+				<property name="validationQuery" value="select 1+1" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<databaseIdProvider type="DB_VENDOR">
+		<property name="SQL Server" value="sqlserver" />
+		<property name="Oracle" value="oracle" />
+		<property name="PostgreSQL" value="postgres" />
+	</databaseIdProvider>
+
+	<mappers>
+		<package name="xeredi.press.model" />
+	</mappers>
+</configuration>

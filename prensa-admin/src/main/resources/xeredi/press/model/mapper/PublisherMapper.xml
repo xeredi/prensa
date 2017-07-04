@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xeredi.press.model.mapper.PublisherMapper">
+	<resultMap type="Publisher" id="ResultMap">
+		<id column="pblr_pk" />
+
+		<result column="pblr_pk" property="id" />
+		<result column="pblr_country" property="country" />
+		<result column="pblr_lang" property="language" />
+		<result column="pblr_name" property="name" />
+		<result column="pblr_webUrl" property="webUrl" />
+		<result column="pblr_logoUrl" property="logoUrl" />
+	</resultMap>
+
+	<sql id="SelectPrefix">
+    <![CDATA[
+    SELECT
+        pblr_pk, pblr_country, pblr_lang, pblr_name, pblr_webUrl, pblr_logoUrl
+    FROM publisher_pblr
+    ]]>
+	</sql>
+
+	<sql id="SelectWhere">
+		<where>
+			<if test="country != null">
+				AND pblr_country LIKE #{country}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectList" parameterType="PublisherCriteria" resultMap="ResultMap">
+		<include refid="SelectPrefix" />
+		<include refid="SelectWhere" />
+		ORDER BY pblr_pk
+	</select>
+</mapper>
