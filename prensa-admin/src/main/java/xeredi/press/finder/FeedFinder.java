@@ -127,7 +127,7 @@ public final class FeedFinder {
 
 					LOG.debug("fileUrl: " + fileUrl);
 
-					if (!fileUrl.startsWith("javascript")) {
+					if (!fileUrl.startsWith("javascript:") && !fileUrl.startsWith("itpc://")) {
 						String channelUrl = null;
 
 						if (fileUrl.startsWith("http") || fileUrl.startsWith("www") || fileUrl.startsWith("itpc://")) {

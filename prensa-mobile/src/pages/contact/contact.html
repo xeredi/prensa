@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Noticias
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="resultList">
+    <button ion-item *ngFor="let item of resultList" text-wrap (click)="viewNew(item)">
+      <ion-thumbnail item-left><img *ngIf="item.image" src="{{item.enclosures[0].url}}"></ion-thumbnail>
+      <h2>{{ item.title }}</h2>
+      <p><span>{{item.meta.title}}</span></p>
+      <p *ngIf="item.author">        
+        <ion-icon name="person"></ion-icon>
+        <small>{{item.author}}</small>
+      </p>
+      <p *ngIf="item.pubDate">        
+        <ion-icon name="clock"></ion-icon>
+        <small>{{item.pubDate}}</small>
+      </p>
+      <!--p><ion-datetime displayFormat="HH:mm" [(ngModel)]="item.pubDate"></ion-datetime></p-->
+    </button>
+  </ion-list>
+</ion-content>

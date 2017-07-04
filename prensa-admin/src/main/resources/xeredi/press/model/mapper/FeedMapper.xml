@@ -17,12 +17,21 @@
 		<result column="feed_generator" property="generator" />
 		<result column="feed_language" property="language" />
 		<result column="feed_link" property="link" />
+		<result column="feed_publishedDate" property="publishedDate" />
+		<result column="feed_title" property="title" />
+		<result column="feed_uri" property="uri" />
+		<result column="feed_imUrl" property="imUrl" />
+		<result column="feed_imHeight" property="imHeight" />
+		<result column="feed_imWidth" property="imWidth" />
+		<result column="feed_podcast" property="podcast" />
+		<result column="feed_subtitle" property="subtitle" />
 	</resultMap>
 
 	<sql id="SelectPrefix">
     <![CDATA[
     SELECT
         feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language, feed_link
+        , feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle
     FROM feed_feed
     ]]>
 	</sql>
@@ -42,8 +51,10 @@
 	<insert id="insert" parameterType="Feed">
 		INSERT INTO feed_feed (
 			feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language, feed_link
+			, feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle
 		) VALUES (
 			#{pblrId}, #{url}, #{author}, #{copyright}, #{description}, #{encoding}, #{feedType}, #{generator}, #{language}, #{link}
+			, #{publishedDate}, #{title}, #{uri}, #{imUrl}, #{imHeight}, #{imWidth}, #{podcast}, #{subtitle}
 		)
 	</insert>
 
@@ -57,6 +68,14 @@
 			, feed_generator = #{generator}
 			, feed_language = #{language}
 			, feed_link = #{link}
+			, feed_publishedDate = #{publishedDate}
+			, feed_title = #{title}
+			, feed_uri = #{uri}
+			, feed_imUrl = #{imUrl}
+			, feed_imHeight = #{imHeight}
+			, feed_imWidth = #{imWidth}
+			, feed_podcast = #{podcast}
+			, feed_subtitle = #{subtitle}
 		WHERE feed_url = #{url}
 	</insert>
 </mapper>

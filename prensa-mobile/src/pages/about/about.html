@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Categorias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item icon-start *ngFor="let item of categoriesList" (click)="viewCategory(item)">
+      <ion-icon name="{{item.icon}}" item-start></ion-icon> {{item.name}}
+    </button>
+  </ion-list>
+</ion-content>

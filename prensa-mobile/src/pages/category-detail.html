@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{category.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item icon-start *ngFor="let item of publisherList" text-wrap>
+            <ion-thumbnail item-left><img src="{{item.thumbnail}}"></ion-thumbnail> 
+            <h2>{{item.name}}</h2>
+        </ion-item>
+    </ion-list>
+</ion-content>
