@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { DbService } from './database/db.service';
+import { InitDbService } from './database/init-db.service';
+import { CategoryService } from './database/category.service';
+
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -14,6 +18,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage, 
+    TabsPage,
     CategoryDetailPage, NewDetailPage
   ],
   imports: [
@@ -31,17 +36,22 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage, 
-    CategoryDetailPage, NewDetailPage
+    MyApp
+    , AboutPage
+    , ContactPage
+    , HomePage
+    , TabsPage
+    , CategoryDetailPage
+    , NewDetailPage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    DbService
+    , InitDbService
+    , CategoryService
+
+    , StatusBar
+    , SplashScreen
+    , { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule { }

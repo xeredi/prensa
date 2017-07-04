@@ -10,7 +10,7 @@ import * as feedparser from 'feedparser-promised';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-  resultList: any;
+  resultList: any[];
 
   constructor(public navCtrl: NavController) {
     console.log("CONTACTS PAGE!!!");
@@ -23,7 +23,9 @@ export class ContactPage {
     feedparser.parse('https://recursosweb.prisaradio.com/podcasts/324p.xml').then((items) => {
       this.resultList = items;
 
-      items.forEach(item => console.log('item:' + JSON.stringify(item)));
+      console.log("CONTACTS LOADED: " + this.resultList.length);
+
+      // items.forEach(item => console.log('item:' + JSON.stringify(item)));
     }).catch(error => console.error('error: ', error));
   }
 
