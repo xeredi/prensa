@@ -46,6 +46,8 @@ export class InitDbService extends DbService {
                     this.db.executeSql(feeds[i], []);
                 }
             });
+
+            this.db.executeSql("CREATE TABLE IF NOT EXISTS follow_feed_flfd(flfd_feed_pk INTEGER PRIMARY KEY)", []);
         }).catch(e => { console.log(e); });
     }
 }
