@@ -1,6 +1,9 @@
 package xeredi.press.model.mapper;
 
+import java.util.List;
+
 import xeredi.press.model.Feed;
+import xeredi.press.model.FeedCriteria;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -33,4 +36,13 @@ public interface FeedMapper {
 	 * @return the int
 	 */
 	int update(final Feed feed);
+
+	/**
+	 * Select list.
+	 *
+	 * @param criteria
+	 *            the criteria
+	 * @return the list
+	 */
+	List<Feed> selectList(final FeedCriteria criteria);
 }

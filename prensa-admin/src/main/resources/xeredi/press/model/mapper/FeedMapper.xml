@@ -48,6 +48,12 @@
 		SELECT COUNT(1) FROM feed_feed WHERE feed_url = #{url}
 	</select>
 
+	<select id="selectList" parameterType="FeedCriteria" resultMap="ResultMap">
+		<include refid="SelectPrefix"></include>
+		<include refid="SelectWhere"></include>
+		ORDER BY feed_pblr_pk, feed_pk
+	</select>
+
 	<insert id="insert" parameterType="Feed">
 		INSERT INTO feed_feed (
 			feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language, feed_link

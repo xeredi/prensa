@@ -1,28 +1,8 @@
+import { DbService } from './db.service';
 import { Injectable } from '@angular/core';
 
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-
 @Injectable()
-export class CategoryService {
-    private db: SQLiteObject;
-    private isOpen: boolean;
-
-    constructor() {
-        console.log("CategoryService CONSTRUCTOR");
-
-        var sqlite = new SQLite();
-
-        sqlite.create({
-            name: 'press.db',
-            location: 'default'
-        })
-            .then((db: SQLiteObject) => {
-                console.log("CategoryService CONNECTED");
-
-                this.db = db;
-            })
-            .catch(e => console.log(e));
-    }
+export class CategoryService extends DbService {
 
     selectAll() {
         console.log("CategoryService SELECTALL");
@@ -45,33 +25,6 @@ export class CategoryService {
                 return items;
             });
         }).catch(e => { console.log(e); return null; });
-    }
-
-    public openSQLiteDatabase() {
-        return new Promise((resolve, reject) => {
-            if (this.isOpen) {
-                console.log("DB IS OPEN");
-                resolve(this.isOpen);
-            }
-
-            else {
-                console.log("DB IS NOT OPEN");
-                var sqlite = new SQLite();
-
-                sqlite.create({
-                    name: 'press.db',
-                    location: 'default'
-                })
-                    .then((db: SQLiteObject) => {
-                        console.log("CategoryService CONNECTED");
-
-                        this.db = db;
-                        this.isOpen = true;
-                        resolve(this.isOpen);
-                    })
-                    .catch(e => console.log(e));
-            }
-        });
     }
 
 }

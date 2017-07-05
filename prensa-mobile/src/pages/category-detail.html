@@ -6,9 +6,9 @@
 
 <ion-content>
     <ion-list>
-        <ion-item icon-start *ngFor="let item of publisherList" text-wrap>
-            <ion-thumbnail item-left><img src="{{item.thumbnail}}"></ion-thumbnail> 
+        <button ion-item icon-start *ngFor="let item of publisherList" (click)="viewPublisher(item)">
+            <ion-thumbnail item-left><img src="{{item.logoUrl}}"></ion-thumbnail> 
             <h2>{{item.name}}</h2>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-content>

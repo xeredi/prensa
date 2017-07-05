@@ -1,11 +1,14 @@
 package xeredi.press.model.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.ExecutorType;
 import org.mybatis.guice.transactional.Transactional;
 
 import xeredi.press.model.Feed;
+import xeredi.press.model.FeedCriteria;
 import xeredi.press.model.mapper.FeedMapper;
 
 // TODO: Auto-generated Javadoc
@@ -49,6 +52,17 @@ public class FeedService {
 	 */
 	public int update(final Feed feed) {
 		return feedMapper.update(feed);
+	}
+
+	/**
+	 * Select list.
+	 *
+	 * @param criteria
+	 *            the criteria
+	 * @return the list
+	 */
+	public List<Feed> selectList(final FeedCriteria criteria) {
+		return feedMapper.selectList(criteria);
 	}
 
 }

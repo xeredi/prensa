@@ -1,23 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 @Injectable()
 export class DbService {
-    public database: SQLite;
+    public db: SQLiteObject;
+    private isOpen: boolean;
 
-    constructor(private platform: Platform) {
-/*
-        console.log("CONNECTING TO DB");
+    public openSQLiteDatabase() {
+        return new Promise((resolve, reject) => {
+            if (this.isOpen) {
+                console.log("DB IS OPEN");
+                resolve(this.isOpen);
+            }
 
-        this.platform.ready().then(() => {
-            this.database = new SQLite();
-            this.database.create({ name: "press.db", location: "default" }).then(() => {
-                console.log("DATABASE OPENED");
-            }, (error) => {
-                console.log("ERROR CONNECTING: ", error);
-            });
+            else {
+                console.log("DB IS NOT OPEN");
+                var sqlite = new SQLite();
+
+                sqlite.create({
+                    name: 'press.db',
+                    location: 'default'
+                })
+                    .then((db: SQLiteObject) => {
+                        console.log("CategoryService CONNECTED");
+
+                        this.db = db;
+                        this.isOpen = true;
+                        resolve(this.isOpen);
+                    })
+                    .catch(e => console.log(e));
+            }
         });
-*/
     }
 }
