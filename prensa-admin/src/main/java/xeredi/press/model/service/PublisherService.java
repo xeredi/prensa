@@ -29,11 +29,11 @@ public class PublisherService {
 	/**
 	 * Select list.
 	 *
+	 * @param pblrCriteria
+	 *            the pblr criteria
 	 * @return the list
 	 */
-	public List<Publisher> selectList() {
-		final PublisherCriteria pblrCriteria = new PublisherCriteria();
-
+	public List<Publisher> selectList(final PublisherCriteria pblrCriteria) {
 		return pblrMapper.selectList(pblrCriteria);
 	}
 
@@ -49,7 +49,7 @@ public class PublisherService {
 		final Injector injector = Guice.createInjector(new PressGuiceModule());
 		final PublisherService pblrService = injector.getInstance(PublisherService.class);
 
-		for (final Publisher pblr : pblrService.selectList()) {
+		for (final Publisher pblr : pblrService.selectList(new PublisherCriteria())) {
 			System.out.println(pblr);
 		}
 

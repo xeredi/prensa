@@ -34,6 +34,7 @@ import com.rometools.rome.io.SyndFeedInput;
 
 import xeredi.press.model.Feed;
 import xeredi.press.model.Publisher;
+import xeredi.press.model.PublisherCriteria;
 import xeredi.press.model.service.FeedService;
 import xeredi.press.model.service.PublisherService;
 import xeredi.press.model.util.mybatis.PressGuiceModule;
@@ -414,7 +415,7 @@ public final class FeedFinder {
 		final PublisherService pblrService = injector.getInstance(PublisherService.class);
 		final FeedService feedService = injector.getInstance(FeedService.class);
 
-		for (final Publisher pblr : pblrService.selectList()) {
+		for (final Publisher pblr : pblrService.selectList(new PublisherCriteria())) {
 			System.out.println(pblr);
 
 			try {

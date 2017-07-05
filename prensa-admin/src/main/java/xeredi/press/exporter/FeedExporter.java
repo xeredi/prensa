@@ -2,7 +2,6 @@ package xeredi.press.exporter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.Iterator;
 
 import com.google.inject.Guice;
@@ -13,27 +12,27 @@ import xeredi.press.model.FeedCriteria;
 import xeredi.press.model.service.FeedService;
 import xeredi.press.model.util.mybatis.PressGuiceModule;
 
-public final class FeedExporter {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FeedExporter.
+ */
+public final class FeedExporter extends JsonExporter {
+
+	/**
+	 * Export feeds.
+	 */
 	public void exportFeeds() {
 
 	}
 
-	private String getString(final String value) {
-		return value == null ? "NULL" : "'" + value + "'";
-	}
-
-	private String getNumber(final Number value) {
-		return value == null ? "NULL" : value.toString();
-	}
-
-	private String getDate(final Date value) {
-		return value == null ? "NULL" : "'" + value.toString() + "'";
-	}
-
-	private String getBoolean(final Boolean value) {
-		return value == null ? "NULL" : (value ? "1" : "0");
-	}
-
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public static void main(final String[] args) throws IOException {
 		System.out.println("Start test");
 
@@ -73,9 +72,6 @@ public final class FeedExporter {
 			}
 
 			writer.println("]}");
-		}
-
-		for (final Feed feed : feedService.selectList(new FeedCriteria())) {
 		}
 
 		System.out.println("End test");

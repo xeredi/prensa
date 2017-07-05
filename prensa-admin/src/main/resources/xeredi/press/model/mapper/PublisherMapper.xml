@@ -7,6 +7,7 @@
 		<id column="pblr_pk" />
 
 		<result column="pblr_pk" property="id" />
+		<result column="pblr_ctgr_pk" property="ctgrId" />
 		<result column="pblr_country" property="country" />
 		<result column="pblr_lang" property="language" />
 		<result column="pblr_name" property="name" />
@@ -17,7 +18,7 @@
 	<sql id="SelectPrefix">
     <![CDATA[
     SELECT
-        pblr_pk, pblr_country, pblr_lang, pblr_name, pblr_webUrl, pblr_logoUrl
+        pblr_pk, pblr_ctgr_pk, pblr_country, pblr_lang, pblr_name, pblr_webUrl, pblr_logoUrl
     FROM publisher_pblr
     ]]>
 	</sql>

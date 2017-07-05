@@ -12,6 +12,9 @@ public final class Publisher {
 	/** The id. */
 	private Long id;
 
+	/** The ctgr id. */
+	private Long ctgrId;
+
 	/** The country. */
 	private String country;
 
