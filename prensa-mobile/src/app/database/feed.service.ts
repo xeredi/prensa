@@ -9,8 +9,6 @@ export class FeedService extends DbService {
 
         return this.openSQLiteDatabase().then(() => {
             return this.db.executeSql(
-
-
                 "SELECT feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator "
                 + " , feed_language, feed_link, feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle "
                 + " , (SELECT 1 FROM follow_feed_flfd WHERE flfd_feed_pk = feed_pk) AS feed_followed "

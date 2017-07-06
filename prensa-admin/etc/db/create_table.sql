@@ -61,6 +61,17 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'es', 'ES', 'Onda Cero', 'http://www.ondacero.es/podcast/', NULL
 );
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'es', 'ES', 'Cadena Ser', 'http://cadenaser.com/ser/podcasts/', NULL
+);
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
+	2, 'es', 'ES', 'El Pais', 'https://servicios.elpais.com/rss/', NULL
+);
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'es', 'ES', 'Diario.es', 'http://www.eldiario.es/Feeds.html', NULL
+);
+
+
 
 
 
