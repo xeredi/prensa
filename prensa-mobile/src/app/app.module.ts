@@ -10,6 +10,7 @@ import { CategoryService } from './database/category.service';
 import { PublisherService } from './database/publisher.service';
 import { FeedService } from './database/feed.service';
 import { FollowFeedService } from './database/follow-feed.service';
+import { FeedReaderService } from './feed/feed-reader.service';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,6 +18,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CategoryDetailPage } from '../pages/category-detail';
 import { PublisherDetailPage } from '../pages/publisher-detail';
+import { FeedDetailPage } from './../pages/feed-detail';
 import { NewDetailPage } from '../pages/new-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,6 +34,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     HomePage,
     TabsPage,
     CategoryDetailPage, 
+    FeedDetailPage,
     NewDetailPage, 
     PublisherDetailPage
   ],
@@ -49,6 +52,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     , TabsPage
     , CategoryDetailPage
     , PublisherDetailPage
+    , FeedDetailPage
     , NewDetailPage
   ],
   providers: [
@@ -58,6 +62,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     , PublisherService
     , FeedService
     , FollowFeedService
+    , FeedReaderService
 
     , StatusBar
     , SplashScreen

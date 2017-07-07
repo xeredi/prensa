@@ -9,8 +9,8 @@
         <ion-card-title text-wrap> {{new.title}} </ion-card-title>
 
         <div *ngIf="audio">
-            <img src="{{audio.art}}" *ngIf="audio.art">
             <ion-card-content>
+                <!--
                 <audio-track #track [track]="audio">
                     <ion-item>
                         <ion-thumbnail item-left>
@@ -27,12 +27,14 @@
                             <audio-track-progress-bar duration progress [audioTrack]="track"></audio-track-progress-bar>
                         </div>
                     </ion-item>
-                    <ion-item>
-                        <audio controls preload="metadata">
-                            <source src="{{audio.src}}" type="audio/mpeg"> 
-                        </audio>
-                    </ion-item>
                 </audio-track>
+-->
+                <ion-item>
+                    <audio controls preload="metadata">
+                        <source src="{{audio.src}}" type="audio/mpeg">
+                    </audio>
+                </ion-item>
+                <img src="{{audio.art}}" *ngIf="audio.art">
             </ion-card-content>
         </div>
 

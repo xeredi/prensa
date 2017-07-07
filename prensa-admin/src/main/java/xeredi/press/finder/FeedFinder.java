@@ -422,6 +422,8 @@ public final class FeedFinder {
 				for (final Feed feed : feedFinder.findFeeds(pblr)) {
 					System.out.println(feed);
 
+					feed.setImUrl(pblr.getLogoUrl());
+
 					if (feedService.exists(feed)) {
 						feedService.update(feed);
 					} else {

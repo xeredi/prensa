@@ -59,16 +59,16 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 	5, 'es', 'ES', 'Sport', 'http://www.sport.es/es/rss/', 'http://www.sport.es/img/logo.png'
 );
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'es', 'ES', 'Onda Cero', 'http://www.ondacero.es/podcast/', NULL
+	1, 'es', 'ES', 'Onda Cero', 'http://www.ondacero.es/podcast/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Onda_Cero_logo.svg/225px-Onda_Cero_logo.svg.png'
 );
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'es', 'ES', 'Cadena Ser', 'http://cadenaser.com/ser/podcasts/', NULL
+	1, 'es', 'ES', 'Cadena Ser', 'http://cadenaser.com/ser/podcasts/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cadena_Ser_logo.svg/600px-Cadena_Ser_logo.svg.png'
 );
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	2, 'es', 'ES', 'El Pais', 'https://servicios.elpais.com/rss/', NULL
+	2, 'es', 'ES', 'El Pais', 'https://servicios.elpais.com/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/El_Pais_logo_2007.svg/578px-El_Pais_logo_2007.svg.png'
 );
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	3, 'es', 'ES', 'Diario.es', 'http://www.eldiario.es/Feeds.html', NULL
+	3, 'es', 'ES', 'Diario.es', 'http://www.eldiario.es/Feeds.html', 'http://images.eldiario.es/sociedad/Logo-nuevo-eldiarioes_EDIIMA20140915_0671_14.jpg'
 );
 
 

@@ -6,7 +6,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-item icon-start *ngFor="let item of feedList" text-wrap>
+        <button ion-item icon-start *ngFor="let item of feedList" (click)="viewFeed(item)">
             <ion-thumbnail item-left><img src="{{item.imUrl}}"></ion-thumbnail>
             <h2>{{item.title}}</h2>
 
@@ -16,6 +16,6 @@
             <button item-right *ngIf="!item.followed" (click)="followFeed(item)">
               <ion-icon name="heart-outline"></ion-icon>
             </button>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-content>

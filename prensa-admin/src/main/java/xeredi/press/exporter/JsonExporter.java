@@ -16,7 +16,25 @@ public abstract class JsonExporter {
 	 * @return the string
 	 */
 	protected final String getString(final String value) {
-		return value == null ? "NULL" : "'" + value + "'";
+		if (value == null) {
+			return "NULL";
+		}
+
+		final StringBuffer buffer = new StringBuffer();
+
+		buffer.append('\'');
+
+		for (int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i);
+
+			if (c != '\'' && c != '\"' && c != '\\') {
+				buffer.append(c);
+			}
+		}
+
+		buffer.append('\'');
+
+		return buffer.toString();
 	}
 
 	/**

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Noticias
+      {{feed.title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="resultList">
-    <button ion-item *ngFor="let item of resultList" text-wrap (click)="viewNew(item)">
+  <ion-list>
+    <button ion-item *ngFor="let item of newList" text-wrap (click)="viewNew(item)">
       <ion-thumbnail item-left><img *ngIf="item.image" src="{{item.image.url}}"></ion-thumbnail>
       <h2>{{ item.title }}</h2>
       <p><span>{{item.meta.title}}</span></p>

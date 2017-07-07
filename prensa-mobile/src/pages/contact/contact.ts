@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NewDetailPage } from '../new-detail';
 
-import * as feedparser from 'feedparser-promised';
-
+import { FeedReaderService } from './../../app/feed/feed-reader.service';
 
 @Component({
   selector: 'page-contact',
@@ -12,7 +11,7 @@ import * as feedparser from 'feedparser-promised';
 export class ContactPage {
   resultList: any[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, fdrdService: FeedReaderService) {
     console.log("CONTACTS PAGE!!!");
 
     // http://www.ondacero.es/rss/podcast/8502/podcast.xml
@@ -20,13 +19,7 @@ export class ContactPage {
     // https://recursosweb.prisaradio.com/podcasts/324p.xml
 
 
-    feedparser.parse('https://recursosweb.prisaradio.com/podcasts/324p.xml').then((items) => {
-      this.resultList = items;
-
-      console.log("CONTACTS LOADED: " + this.resultList.length);
-
-      // items.forEach(item => console.log('item:' + JSON.stringify(item)));
-    }).catch(error => console.error('error: ', error));
+    fdrdService.readFeed('https://recursosweb.prisaradio.com/podcasts/324p.xml').then(items => this.resultList = items);
   }
 
 

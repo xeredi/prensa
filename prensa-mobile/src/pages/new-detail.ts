@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AudioProvider } from 'ionic-audio';
+// import { AudioProvider } from 'ionic-audio';
 
 @Component({
     selector: 'new-detail',
@@ -10,7 +10,7 @@ export class NewDetailPage {
     new: any;
     audio: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private _audioProvider: AudioProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams/*, private _audioProvider: AudioProvider*/) {
         this.new = navParams.get("new");
 
         if (this.new.enclosures[0].type == 'audio/mpeg') {
@@ -27,11 +27,8 @@ export class NewDetailPage {
         }
     }
 
-    ionViewDidLoad() {
-        console.log("I'm alive!");
-    }
-
     ionViewWillLeave() {
+/*
         console.log("Looks like I'm about to leave :(");
         console.log("Track: " + this._audioProvider.current);
 
@@ -46,5 +43,6 @@ export class NewDetailPage {
         });
         this._audioProvider.tracks.pop();
         this._audioProvider = null;
+*/
     }
 }

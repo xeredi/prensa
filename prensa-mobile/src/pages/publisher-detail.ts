@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FeedService } from './../app/database/feed.service';
 import { FollowFeedService } from './../app/database/follow-feed.service';
 
+import { FeedDetailPage } from './feed-detail';
+
 @Component({
     selector: 'publisher-detail',
     templateUrl: 'publisher-detail.html'
@@ -17,6 +19,10 @@ export class PublisherDetailPage {
         this.publisher = navParams.get("publisher");
 
         this.feedService.selectByPublisher(this.publisher.id).then(items => this.feedList = items);
+    }
+
+    viewFeed(feed) {
+        this.navCtrl.push(FeedDetailPage, { feed: feed });
     }
 
     followFeed(feed: any) {
