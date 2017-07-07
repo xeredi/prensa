@@ -11,6 +11,7 @@
 		<result column="pblr_country" property="country" />
 		<result column="pblr_lang" property="language" />
 		<result column="pblr_name" property="name" />
+		<result column="pblr_webType" property="webType" />
 		<result column="pblr_webUrl" property="webUrl" />
 		<result column="pblr_logoUrl" property="logoUrl" />
 	</resultMap>
@@ -18,7 +19,7 @@
 	<sql id="SelectPrefix">
     <![CDATA[
     SELECT
-        pblr_pk, pblr_ctgr_pk, pblr_country, pblr_lang, pblr_name, pblr_webUrl, pblr_logoUrl
+        pblr_pk, pblr_ctgr_pk, pblr_country, pblr_lang, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl
     FROM publisher_pblr
     ]]>
 	</sql>

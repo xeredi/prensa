@@ -39,14 +39,14 @@
         </div>
 
         <div *ngIf="!audio">
-            <img src="{{new.enclosures[0].url}}">
+            <img *ngIf="new.enclosures[0]" src="{{new.enclosures[0].url}}">
             <ion-card-content>
                 <ion-list>
-                    <ion-item>
+                    <ion-item *ngIf="new.author">
                         <ion-icon name="person" item-left></ion-icon>
                         <small item-right>{{new.author}}</small>
                     </ion-item>
-                    <ion-item>
+                    <ion-item *ngIf="new.pubDate">
                         <ion-icon name="clock" item-left></ion-icon>
                         <small item-right>{{new.pubDate}}</small>
                     </ion-item>
@@ -56,6 +56,6 @@
             </ion-card-content>
         </div>
 
-        <p [innerHTML]="new.description"></p>
+        <p *ngIf="new.description" [innerHTML]="new.description"></p>
     </ion-card>
 </ion-content>

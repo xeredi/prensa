@@ -24,6 +24,8 @@ public final class Publisher {
 	/** The name. */
 	private String name;
 
+	private String webType;
+
 	/** The web url. */
 	private String webUrl;
 

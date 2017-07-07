@@ -22,7 +22,7 @@ export class DbService {
                     location: 'default'
                 })
                     .then((db: SQLiteObject) => {
-                        console.log("CategoryService CONNECTED");
+                        console.log("DB CONNECTED");
 
                         this.db = db;
                         this.isOpen = true;

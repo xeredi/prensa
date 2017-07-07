@@ -111,7 +111,8 @@ public final class FeedFinder {
 		// }
 		// }
 
-		if (publisher.getWebUrl() != null) {
+		switch (publisher.getWebType()) {
+		case "html":
 			LOG.info("Scan looking for channels: " + publisher.getWebUrl());
 
 			try {
@@ -171,6 +172,28 @@ public final class FeedFinder {
 				LOG.error("Error accediendo a la url: " + publisher.getWebUrl());
 				LOG.error(ex, ex);
 			}
+
+			break;
+		default:
+			try {
+				final Feed feed = findFeed(publisher, publisher.getWebUrl());
+
+				feeds.add(feed);
+			} catch (final MalformedURLException ex) {
+				LOG.error("MalformedURLException with: " + publisher.getWebUrl());
+				LOG.error(ex.getMessage());
+			} catch (final FeedException ex) {
+				LOG.error("FeedException with: " + publisher.getWebUrl());
+				LOG.error(ex.getMessage());
+			} catch (final IllegalArgumentException ex) {
+				LOG.error("IllegalArgumentException with: " + publisher.getWebUrl());
+				LOG.error(ex.getMessage());
+			} catch (final IOException ex) {
+				LOG.error("IOException with: " + publisher.getWebUrl());
+				LOG.error(ex.getMessage());
+			}
+
+			break;
 		}
 
 		return feeds;

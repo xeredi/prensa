@@ -16,7 +16,11 @@ export class FeedDetailPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, fdrdService: FeedReaderService) {
         this.feed = navParams.get("feed");
 
-        fdrdService.readFeed(this.feed.url).then(items => this.newList = items);
+        fdrdService.readFeed(this.feed.url).then(items => {
+            this.newList = items;
+
+            console.log("newsList: " + JSON.stringify(this.newList));
+        });
     }
 
     viewNew(anew) {

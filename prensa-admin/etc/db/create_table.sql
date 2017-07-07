@@ -6,36 +6,16 @@ CREATE TABLE category_ctgr(
 	, ctgr_icon VARCHAR(20)
 );
 
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	1, 'Radio', 'musical-notes'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	2, 'Prensa General', 'paper'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	3, 'Prensa Digital', 'finger-print'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	4, 'Prensa Internacional', 'globe'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	5, 'Deportes', 'football'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	6, 'Economia', 'logo-usd'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	7, 'Cultura y Ciencia', 'logo-android'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	8, 'Viajes', 'paper-plane'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	9, 'Motor', 'car'
-);
-INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (
-	10, 'Corazón', 'heart'
-);
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (1, 'Radio', 'musical-notes');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (2, 'Prensa General', 'paper');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (3, 'Prensa Digital', 'finger-print');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (4, 'Prensa Internacional', 'globe');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (5, 'Deportes', 'football');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (6, 'Economia', 'logo-usd');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (7, 'Cultura y Ciencia', 'logo-android');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (8, 'Viajes', 'paper-plane');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (9, 'Motor', 'car');
+INSERT INTO category_ctgr(ctgr_pk, ctgr_name, ctgr_icon) VALUES (10, 'Corazón', 'heart');
 
 
 
@@ -48,28 +28,43 @@ CREATE TABLE publisher_pblr(
 	, pblr_lang VARCHAR(2)
 	, pblr_country VARCHAR(2)
 	, pblr_name VARCHAR(50)
+	, pblr_webType VARCHAR(5)
 	, pblr_webUrl VARCHAR(200)
 	, pblr_logoUrl VARCHAR(200)
 );
 
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	5, 'es', 'ES', 'Marca', 'http://www.marca.com/deporte/rss/', 'http://e00-marca.uecdn.es/assets/v6/img/logo-marca.png'
-);
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	5, 'es', 'ES', 'Sport', 'http://www.sport.es/es/rss/', 'http://www.sport.es/img/logo.png'
-);
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'es', 'ES', 'Onda Cero', 'http://www.ondacero.es/podcast/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Onda_Cero_logo.svg/225px-Onda_Cero_logo.svg.png'
-);
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'es', 'ES', 'Cadena Ser', 'http://cadenaser.com/ser/podcasts/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cadena_Ser_logo.svg/600px-Cadena_Ser_logo.svg.png'
-);
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	2, 'es', 'ES', 'El Pais', 'https://servicios.elpais.com/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/El_Pais_logo_2007.svg/578px-El_Pais_logo_2007.svg.png'
-);
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webUrl, pblr_logoUrl) VALUES (
-	3, 'es', 'ES', 'Diario.es', 'http://www.eldiario.es/Feeds.html', 'http://images.eldiario.es/sociedad/Logo-nuevo-eldiarioes_EDIIMA20140915_0671_14.jpg'
-);
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'es', 'ES', 'Muy Interesante', 'feed', 'http://feeds.feedburner.com/Muyinteresantees', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Muy_Interesante_logo.jpg/1024px-Muy_Interesante_logo.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'es', 'ES', 'Muy Historia', 'feed', 'https://www.muyhistoria.es/rss', 'https://estaticos.muyhistoria.es/images/muy_historia_logo_.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'es', 'ES', 'National Geographic', 'feed', 'http://www.nationalgeographic.com.es/feeds/rss.html', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/National-Geographic-Logo.svg/800px-National-Geographic-Logo.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	9, 'es', 'ES', 'Motociclismo', 'feed', 'http://api.motorpress-iberica.es/rss/motociclismo', 'http://motorpress.suscripcionesrevistas.es/img/header/logo-motorpress.svg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	10, 'es', 'ES', 'Hola!', 'feed', 'http://www.hola.com/rss.xml', 'http://www.hola.com/imagenes/noticias-de-actualidad/2012/08/13/hola-revista.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	6, 'es', 'ES', 'Expansion', 'html', 'http://www.expansion.com/rss/', 'http://e01-expansion.uecdn.es/assets/desktop/master/img/logos/logo_expansion_portada.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	5, 'es', 'ES', 'Marca', 'html', 'http://www.marca.com/deporte/rss/', 'http://e00-marca.uecdn.es/assets/v6/img/logo-marca.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	5, 'es', 'ES', 'Sport', 'html', 'http://www.sport.es/es/rss/', 'http://www.sport.es/img/logo.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	4, 'es', 'ES', 'New York Times', 'html', 'http://www.nytimes.com/services/xml/rss/index.html', 'https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'es', 'ES', 'Huffington Post', 'feed', 'http://www.huffingtonpost.es/feeds/index.xml', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Huffington_Post_Logo.svg/640px-Huffington_Post_Logo.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'es', 'ES', 'Europa Press', 'html', 'http://www.europapress.es/contenidosrss.aspx', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Logo_Europa_Press.jpeg/245px-Logo_Europa_Press.jpeg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'es', 'ES', 'Diario.es', 'html', 'http://www.eldiario.es/Feeds.html', 'http://images.eldiario.es/sociedad/Logo-nuevo-eldiarioes_EDIIMA20140915_0671_14.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'es', 'ES', 'Radio 3', 'html', 'http://www.rtve.es/programas_radio3/rss.php', 'https://upload.wikimedia.org/wikipedia/commons/2/23/Radio3_RGB_POS-01.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'es', 'ES', 'Onda Cero', 'html', 'http://www.ondacero.es/podcast/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Onda_Cero_logo.svg/225px-Onda_Cero_logo.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'es', 'ES', 'Cadena Ser', 'html', 'http://cadenaser.com/ser/podcasts/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cadena_Ser_logo.svg/600px-Cadena_Ser_logo.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	2, 'es', 'ES', 'El Pais', 'html', 'https://servicios.elpais.com/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/El_Pais_logo_2007.svg/578px-El_Pais_logo_2007.svg.png');
 
 
 
