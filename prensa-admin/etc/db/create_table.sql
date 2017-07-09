@@ -50,9 +50,11 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	5, 'es', 'ES', 'Sport', 'html', 'http://www.sport.es/es/rss/', 'http://www.sport.es/img/logo.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	4, 'es', 'ES', 'New York Times', 'html', 'http://www.nytimes.com/services/xml/rss/index.html', 'https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png');
+	5, 'es', 'ES', 'AS', 'html', 'https://as.com/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Logo_diario_AS.svg/640px-Logo_diario_AS.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	3, 'es', 'ES', 'Huffington Post', 'feed', 'http://www.huffingtonpost.es/feeds/index.xml', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Huffington_Post_Logo.svg/640px-Huffington_Post_Logo.svg.png');
+	4, 'es', 'ES', 'New York Times', 'html', 'http://www.nytimes.com/services/xml/rss/index.html', 'https://static1.squarespace.com/static/547fad3be4b01c408c292fe5/55524dd7e4b092ca32b26354/55524dd8e4b0c14095c83e2c/1431457287081/the-new-york-times-logo-vert.png?format=300w');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'es', 'ES', 'Huffington Post', 'feed', 'http://www.huffingtonpost.es/feeds/index.xml', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Huffington_Post_logo.svg/640px-The_Huffington_Post_logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'es', 'ES', 'Europa Press', 'html', 'http://www.europapress.es/contenidosrss.aspx', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Logo_Europa_Press.jpeg/245px-Logo_Europa_Press.jpeg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -64,7 +66,11 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'es', 'ES', 'Cadena Ser', 'html', 'http://cadenaser.com/ser/podcasts/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cadena_Ser_logo.svg/600px-Cadena_Ser_logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	2, 'es', 'ES', 'El Mundo', 'html', 'http://rss.elmundo.es/rss/', 'http://www.brandemia.org/sites/default/files/sites/default/files/logo_el_mundo.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	2, 'es', 'ES', 'El Pais', 'html', 'https://servicios.elpais.com/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/El_Pais_logo_2007.svg/578px-El_Pais_logo_2007.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	2, 'es', 'ES', 'El Periodico', 'html', 'http://www.elperiodico.com/es/rss/portada_rss.shtml', 'https://upload.wikimedia.org/wikipedia/commons/4/4f/El_Peri%C3%B3dico_de_Catalunya_newspaper_logo.PNG');
 
 
 

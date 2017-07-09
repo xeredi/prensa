@@ -6,8 +6,8 @@
 
 <ion-content>
     <ion-list>
-        <button ion-item icon-start *ngFor="let item of feedList" (click)="viewFeed(item)">
-            <ion-thumbnail item-left><img src="{{item.imUrl}}"></ion-thumbnail>
+        <button ion-item icon-start *ngFor="let item of feedList" text-wrap (click)="viewFeed(item)">
+            <ion-thumbnail item-left><img  style="max-width: 64px; max-height: 64px;" src="{{item.imUrl}}"></ion-thumbnail>
             <h2>{{item.title}}</h2>
 
             <button item-right *ngIf="item.followed" (click)="unfollowFeed(item)">

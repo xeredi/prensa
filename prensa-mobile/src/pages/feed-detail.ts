@@ -19,7 +19,9 @@ export class FeedDetailPage {
         fdrdService.readFeed(this.feed.url).then(items => {
             this.newList = items;
 
-            console.log("newsList: " + JSON.stringify(this.newList));
+            this.newList.map(item => {
+                console.log("new: " + JSON.stringify(item));
+            });
         });
     }
 
