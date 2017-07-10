@@ -50,21 +50,20 @@ public final class FeedExporter extends JsonExporter {
 				final Feed feed = iterator.next();
 
 				writer.println("\"INSERT INTO feed_feed("
-						+ "feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator"
+						+ "feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_encoding, feed_feedType, feed_generator"
 						+ ", feed_language, feed_link, feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast"
-						+ ", feed_subtitle) VALUES (" + feedExporter.getNumber(feed.getId()) + ", "
+						+ ") VALUES (" + feedExporter.getNumber(feed.getId()) + ", "
 						+ feedExporter.getNumber(feed.getPblrId()) + ", " + feedExporter.getString(feed.getUrl()) + ", "
 						+ feedExporter.getString(feed.getAuthor()) + ", " + feedExporter.getString(feed.getCopyright())
-						+ ", " + feedExporter.getString(feed.getDescription()) + ", "
-						+ feedExporter.getString(feed.getEncoding()) + ", " + feedExporter.getString(feed.getFeedType())
-						+ ", " + feedExporter.getString(feed.getGenerator()) + ", "
+						+ ", " + feedExporter.getString(feed.getEncoding()) + ", "
+						+ feedExporter.getString(feed.getFeedType()) + ", "
+						+ feedExporter.getString(feed.getGenerator()) + ", "
 						+ feedExporter.getString(feed.getLanguage()) + ", " + feedExporter.getString(feed.getLink())
 						+ ", " + feedExporter.getDate(feed.getPublishedDate()) + ", "
 						+ feedExporter.getString(feed.getTitle()) + ", " + feedExporter.getString(feed.getUri()) + ", "
 						+ feedExporter.getString(feed.getImUrl()) + ", " + feedExporter.getNumber(feed.getImHeight())
 						+ ", " + feedExporter.getNumber(feed.getImWidth()) + ", "
-						+ feedExporter.getBoolean(feed.getPodcast()) + ", " + feedExporter.getString(feed.getSubtitle())
-						+ ")\"");
+						+ feedExporter.getBoolean(feed.getPodcast()) + ")\"");
 
 				if (iterator.hasNext()) {
 					writer.print(",");

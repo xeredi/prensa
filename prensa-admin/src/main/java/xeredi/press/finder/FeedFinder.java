@@ -129,7 +129,9 @@ public final class FeedFinder {
 
 					LOG.debug("fileUrl: " + fileUrl);
 
-					if (!fileUrl.startsWith("javascript:") && !fileUrl.startsWith("itpc://")) {
+					if (!fileUrl.startsWith("javascript:") && !fileUrl.startsWith("itpc://")
+							&& !fileUrl.contains("itunes.apple.com") && !fileUrl.contains("www.live.com")
+							&& !fileUrl.contains("fusion.google.com") && !fileUrl.contains("www.bloglines.com")) {
 						String channelUrl = null;
 
 						if (fileUrl.startsWith("http") || fileUrl.startsWith("www") || fileUrl.startsWith("itpc://")) {
@@ -174,6 +176,10 @@ public final class FeedFinder {
 			}
 
 			break;
+		case "ivoox":
+			feeds.addAll(findIvooxFeeds(publisher, publisher.getWebUrl()));
+
+			break;
 		default:
 			try {
 				final Feed feed = findFeed(publisher, publisher.getWebUrl());
@@ -195,6 +201,85 @@ public final class FeedFinder {
 
 			break;
 		}
+
+		return feeds;
+	}
+
+	private List<Feed> findIvooxFeeds(final Publisher publisher, final String baseUrl) {
+		LOG.info("Ivoox: " + baseUrl);
+
+		final List<Feed> feeds = new ArrayList<>();
+		final Set<String> urlProcessedSet = new HashSet<>();
+
+		int iterationNo = 1;
+		String iterationUrl = baseUrl;
+
+		final List<Feed> iterationFeeds = new ArrayList<>();
+
+		do {
+			try {
+				LOG.debug("Iteration: " + iterationNo + ", url: " + iterationUrl);
+				iterationFeeds.clear();
+
+				final URL webUrl = new URL(iterationUrl);
+				final UrlValidator urlValidator = new UrlValidator();
+
+				final Document document = Jsoup.parse(new URL(iterationUrl), 30000);
+				final Elements links = document.select("a[href]");
+				final Iterator<Element> iterator = links.iterator();
+
+				while (iterator.hasNext()) {
+					final Element link = iterator.next();
+					final String fileUrl = link.attr("href").trim();
+
+					if (fileUrl.indexOf("_sq_") > 0) {
+						String chanelUrl = fileUrl;
+
+						chanelUrl = chanelUrl.replace("_sq_", "_fg_");
+						chanelUrl = chanelUrl.replace("_1.html", "_filtro_1.xml");
+						chanelUrl = chanelUrl.replace("podcast-", "");
+
+						// https://www.ivoox.com/alma-leon_fg_f1703_filtro_1.xml
+
+						if (!urlProcessedSet.contains(chanelUrl)) {
+							urlProcessedSet.add(chanelUrl);
+
+							if (urlValidator.isValid(chanelUrl)) {
+								LOG.debug("channelUrl: " + chanelUrl + ", fileUrl: " + fileUrl);
+
+								try {
+									final Feed feed = findFeed(publisher, chanelUrl);
+
+									iterationFeeds.add(feed);
+								} catch (final MalformedURLException ex) {
+									LOG.error("MalformedURLException with: " + chanelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
+								} catch (final FeedException ex) {
+									LOG.error("FeedException with: " + chanelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
+								} catch (final IllegalArgumentException ex) {
+									LOG.error("IllegalArgumentException with: " + chanelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
+								} catch (final IOException ex) {
+									LOG.error("IOException with: " + chanelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
+								}
+							} else {
+								LOG.error("Invalid URL: " + fileUrl + ", chanel: " + chanelUrl);
+							}
+						}
+					}
+				}
+			} catch (final MalformedURLException ex) {
+				LOG.error("MalformedURLException: " + baseUrl);
+			} catch (final IOException ex) {
+				LOG.error("IOException: " + baseUrl);
+			}
+
+			feeds.addAll(iterationFeeds);
+			iterationUrl = iterationUrl.replace("_" + iterationNo + ".", "_" + (iterationNo + 1) + ".");
+			iterationNo++;
+		} while (!iterationFeeds.isEmpty());
 
 		return feeds;
 	}
@@ -442,10 +527,14 @@ public final class FeedFinder {
 			System.out.println(pblr);
 
 			try {
-				for (final Feed feed : feedFinder.findFeeds(pblr)) {
-					System.out.println(feed);
+				final List<Feed> feeds = feedFinder.findFeeds(pblr);
 
-					feed.setImUrl(pblr.getLogoUrl());
+				for (final Feed feed : feeds) {
+					LOG.debug("feed: " + feed);
+
+					if (feed.getImUrl() == null) {
+						feed.setImUrl(pblr.getLogoUrl());
+					}
 
 					if (feedService.exists(feed)) {
 						feedService.update(feed);
@@ -453,6 +542,8 @@ public final class FeedFinder {
 						feedService.insert(feed);
 					}
 				}
+
+				LOG.info("feeds loaded: " + feeds.size());
 			} catch (final Exception ex) {
 				ex.printStackTrace(System.err);
 			}

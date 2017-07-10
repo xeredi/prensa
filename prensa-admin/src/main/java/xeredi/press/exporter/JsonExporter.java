@@ -27,7 +27,7 @@ public abstract class JsonExporter {
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 
-			if (c != '\'' && c != '\"' && c != '\\') {
+			if (c != '\'' && c != '\"' && c != '\\' && c != '\n' && c != '\r') {
 				buffer.append(c);
 			}
 		}

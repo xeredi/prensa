@@ -41,7 +41,7 @@ export class InitDbService extends DbService {
                 });
 
                 this.db.executeSql("DROP TABLE IF EXISTS feed_feed", []);
-                this.db.executeSql("CREATE TABLE feed_feed(feed_pk INTEGER PRIMARY KEY, feed_pblr_pk INTEGER, feed_url VARCHAR(200), feed_author VARCHAR(50), feed_copyright VARCHAR(50), feed_description VARCHAR(200), feed_encoding VARCHAR(20), feed_feedType VARCHAR(20), feed_generator VARCHAR(50), feed_language VARCHAR(2), feed_link VARCHAR(200), feed_publishedDate DATETIME, feed_title VARCHAR(200), feed_uri VARCHAR(200), feed_imUrl VARCHAR(200), feed_imHeight INTEGER, feed_imWidth INTEGER, feed_podcast BOOLEAN, feed_subtitle VARCHAR(200), CONSTRAINT uq_feed_url UNIQUE (feed_url))", []);
+                this.db.executeSql("CREATE TABLE feed_feed(feed_pk INTEGER PRIMARY KEY, feed_pblr_pk INTEGER, feed_url VARCHAR(200), feed_author VARCHAR(50), feed_copyright VARCHAR(50), feed_encoding VARCHAR(20), feed_feedType VARCHAR(20), feed_generator VARCHAR(50), feed_language VARCHAR(2), feed_link VARCHAR(200), feed_publishedDate DATETIME, feed_title VARCHAR(200), feed_uri VARCHAR(200), feed_imUrl VARCHAR(200), feed_imHeight INTEGER, feed_imWidth INTEGER, feed_podcast BOOLEAN, CONSTRAINT uq_feed_url UNIQUE (feed_url))", []);
 
                 this.http.get("assets/feeds.json").subscribe((res) => {
                     var feeds = res.json().feeds;
