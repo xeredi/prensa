@@ -17,6 +17,8 @@ export class FeedDetailPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, fdrdService: FeedReaderService, private flfdService: FollowFeedService) {
         this.feed = navParams.get("feed");
 
+        console.log("read feed: " + this.feed.url);
+
         fdrdService.readFeed(this.feed.url).then(items => {
             this.newList = items;
 

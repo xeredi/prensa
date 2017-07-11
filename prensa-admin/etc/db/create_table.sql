@@ -34,6 +34,10 @@ CREATE TABLE publisher_pblr(
 );
 
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'en', 'ES', 'Cadena Ser', 'ivoox', 'https://www.ivoox.com/escuchar-cadena-ser_nq_166_1.html', 'https://static-1.ivooxcdn.com/canales/0/8/5/6/461459066580_MD.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	1, 'en', 'ES', 'Onda Cero', 'ivoox', 'https://www.ivoox.com/escuchar-onda-cero_nq_343_1.html', 'https://static-2.ivooxcdn.com/canales/9/5/8/3/4091471443859_MD.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'en', 'ES', 'Radio 3', 'ivoox', 'https://www.ivoox.com/escuchar-radio-3-rne_nq_403_1.html', 'https://upload.wikimedia.org/wikipedia/commons/2/23/Radio3_RGB_POS-01.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'en', 'ES', 'COPE', 'ivoox', 'https://www.ivoox.com/escuchar-cope_nq_158_1.html', 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Cadena_COPE.png');
@@ -65,10 +69,6 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 	1, 'en', 'ES', 'Vaughan Radio', 'ivoox', 'https://www.ivoox.com/escuchar-vaughan_nq_255_1.html', 'https://static-2.ivooxcdn.com/canales/1/3/9/3/5711471443931_MD.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'en', 'ES', 'Radio Marca', 'html', 'http://www.marca.com/radio/rss.html', 'http://d2jljza7x0a5yy.cloudfront.net/media/k2/items/cache/23ddb2f5acb26c69184f51b6023afcfb_XL.jpg');
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'en', 'ES', 'Onda Cero', 'html', 'http://www.ondacero.es/podcast/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Onda_Cero_logo.svg/225px-Onda_Cero_logo.svg.png');
-INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'en', 'ES', 'Cadena Ser', 'html', 'http://cadenaser.com/ser/podcasts/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cadena_Ser_logo.svg/600px-Cadena_Ser_logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	7, 'en', 'ES', 'Muy Interesante', 'feed', 'http://feeds.feedburner.com/Muyinteresantees', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Muy_Interesante_logo.jpg/1024px-Muy_Interesante_logo.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -110,11 +110,21 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	4, 'en', 'ES', 'Le Monde', 'html', 'http://www.lemonde.fr/rss/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Le_Monde.svg/1280px-Le_Monde.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	4, 'en', 'ES', 'BBC (en español)', 'html', 'http://www.bbc.com/mundo/lg/servicios/2009/03/000000_rss.shtml', 'http://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/1.2.0/bbc_news_logo.png?cb=1');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	4, 'en', 'ES', 'Reuters', 'html', 'http://www.reuters.com/tools/rss', 'http://s3.reutersmedia.net/resources/r/?m=02&d=20170131&t=2&i=1170902432&w=780&fh=&fw=&ll=&pl=&sq=&r=LYNXMPED0U165');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'Huffington Post', 'feed', 'http://www.huffingtonpost.es/feeds/index.xml', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Huffington_Post_logo.svg/640px-The_Huffington_Post_logo.svg.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'en', 'ES', 'Publico', 'html', '/home/xeredi/git/prensa/prensa-admin/etc/web/RSS en publico.es _ Publico.html', 'http://blogs.publico.es/fbimg.png?r');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'Europa Press', 'html', 'http://www.europapress.es/contenidosrss.aspx', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Logo_Europa_Press.jpeg/245px-Logo_Europa_Press.jpeg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'Diario.es', 'html', 'http://www.eldiario.es/Feeds.html', 'http://images.eldiario.es/sociedad/Logo-nuevo-eldiarioes_EDIIMA20140915_0671_14.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'en', 'ES', 'La Marea', 'feed', 'http://www.lamarea.com/feed/', 'http://www.lamarea.com/wp-content/uploads/clubamigos/img/logo_popup.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'en', 'ES', 'CTXT', 'feed', 'http://ctxt.es/es/?tpl=87', 'http://ctxt.es/themes/publication_1/theme_1/img/logo.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	2, 'en', 'ES', 'El Mundo', 'html', 'http://rss.elmundo.es/rss/', 'http://www.brandemia.org/sites/default/files/sites/default/files/logo_el_mundo.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (

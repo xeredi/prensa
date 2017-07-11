@@ -1,5 +1,6 @@
 package xeredi.press.finder;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -117,10 +118,18 @@ public final class FeedFinder {
 			LOG.info("Scan looking for channels: " + publisher.getWebUrl());
 
 			try {
-				final URL webUrl = new URL(publisher.getWebUrl());
 				final UrlValidator urlValidator = new UrlValidator();
 
-				final Document document = Jsoup.parse(new URL(publisher.getWebUrl()), 30000);
+				URL webUrl = null;
+				Document document = null;
+
+				if (publisher.getWebUrl().startsWith("/")) {
+					document = Jsoup.parse(new File(publisher.getWebUrl()), null);
+				} else {
+					webUrl = new URL(publisher.getWebUrl());
+					document = Jsoup.parse(new URL(publisher.getWebUrl()), 30000);
+				}
+
 				final Elements links = document.select("a[href]");
 				final Iterator<Element> iterator = links.iterator();
 
@@ -132,7 +141,9 @@ public final class FeedFinder {
 
 					if (!fileUrl.startsWith("javascript:") && !fileUrl.startsWith("itpc://")
 							&& !fileUrl.contains("itunes.apple.com") && !fileUrl.contains("www.live.com")
-							&& !fileUrl.contains("fusion.google.com") && !fileUrl.contains("www.bloglines.com")) {
+							&& !fileUrl.contains("fusion.google.com") && !fileUrl.contains("www.bloglines.com")
+							&& !fileUrl.contains("reader.aol.com") && !fileUrl.contains("www.netvibes.com")
+							&& !fileUrl.contains("add.my.yahoo.com")) {
 						String channelUrl = null;
 
 						if (fileUrl.startsWith("http") || fileUrl.startsWith("www") || fileUrl.startsWith("itpc://")) {
