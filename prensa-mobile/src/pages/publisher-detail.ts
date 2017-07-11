@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { FeedService } from './../app/database/feed.service';
-import { FollowFeedService } from './../app/database/follow-feed.service';
 
 import { FeedDetailPage } from './feed-detail';
 
@@ -15,7 +14,7 @@ export class PublisherDetailPage {
     feedList: any[];
 
     constructor(public navCtrl: NavController, public navParams: NavParams
-        , private feedService: FeedService, private flfdService: FollowFeedService) {
+        , private feedService: FeedService) {
         this.publisher = navParams.get("publisher");
 
         this.feedService.selectByPublisher(this.publisher.id).then(items => this.feedList = items);
@@ -23,13 +22,5 @@ export class PublisherDetailPage {
 
     viewFeed(feed) {
         this.navCtrl.push(FeedDetailPage, { feed: feed });
-    }
-
-    followFeed(feed: any) {
-        this.flfdService.insert(feed);
-    }
-
-    unfollowFeed(feed: any) {
-        this.flfdService.delete(feed);
     }
 }

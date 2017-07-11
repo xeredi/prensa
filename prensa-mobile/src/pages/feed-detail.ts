@@ -1,9 +1,10 @@
+import { FollowFeedService } from './../app/database/follow-feed.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { FeedReaderService } from './../app/feed/feed-reader.service';
-
 import { NewDetailPage } from './new-detail';
+
+import { FeedReaderService } from './../app/feed/feed-reader.service';
 
 @Component({
     selector: 'feed-detail',
@@ -13,7 +14,7 @@ export class FeedDetailPage {
     feed: any;
     newList: any[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, fdrdService: FeedReaderService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, fdrdService: FeedReaderService, private flfdService: FollowFeedService) {
         this.feed = navParams.get("feed");
 
         fdrdService.readFeed(this.feed.url).then(items => {
@@ -27,5 +28,13 @@ export class FeedDetailPage {
 
     viewNew(anew) {
         this.navCtrl.push(NewDetailPage, { new: anew });
+    }
+
+    followFeed() {
+        this.flfdService.insert(this.feed);
+    }
+
+    unfollowFeed() {
+        this.flfdService.delete(this.feed);
     }
 }

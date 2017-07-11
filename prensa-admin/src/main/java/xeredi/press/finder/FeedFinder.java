@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -342,6 +343,23 @@ public final class FeedFinder {
 
 			feed.setPodcast(false);
 
+			if (syndFeed.getPublishedDate() == null) {
+				Date publishedDate = null;
+
+				for (final SyndEntry syndEntry : syndFeed.getEntries()) {
+					if (publishedDate == null) {
+						publishedDate = syndEntry.getPublishedDate();
+					} else {
+						if (syndEntry.getPublishedDate() != null
+								&& publishedDate.before(syndEntry.getPublishedDate())) {
+							publishedDate = syndEntry.getPublishedDate();
+						}
+					}
+				}
+
+				feed.setPublishedDate(publishedDate);
+			}
+
 			for (final org.jdom2.Element element : syndFeed.getForeignMarkup()) {
 				if ("itunes".equals(element.getNamespace().getPrefix())) {
 					feed.setPodcast(true);
@@ -523,8 +541,16 @@ public final class FeedFinder {
 		final PublisherService pblrService = injector.getInstance(PublisherService.class);
 		final FeedService feedService = injector.getInstance(FeedService.class);
 
+		final Calendar calendar = Calendar.getInstance();
+
+		calendar.add(Calendar.MONTH, -1);
+
+		final Date minDate = calendar.getTime();
+
 		for (final Publisher pblr : pblrService.selectList(new PublisherCriteria())) {
 			System.out.println(pblr);
+
+			int processed = 0;
 
 			try {
 				final List<Feed> feeds = feedFinder.findFeeds(pblr);
@@ -536,14 +562,24 @@ public final class FeedFinder {
 						feed.setImUrl(pblr.getLogoUrl());
 					}
 
+					if (feed.getPublishedDate() == null) {
+						LOG.info("NULL DATE FOR: " + feed.getUrl());
+					} else {
+						if (feed.getPublishedDate().before(minDate)) {
+							LOG.info("TOO OLD FOR: " + feed.getUrl());
+						}
+					}
+
 					if (feedService.exists(feed)) {
 						feedService.update(feed);
 					} else {
 						feedService.insert(feed);
 					}
+
+					processed++;
 				}
 
-				LOG.info("feeds loaded: " + feeds.size());
+				LOG.info("feeds loaded: " + processed);
 			} catch (final Exception ex) {
 				ex.printStackTrace(System.err);
 			}

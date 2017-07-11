@@ -7,11 +7,18 @@
 </ion-header>
 
 <ion-content>
+  <a ion-button block *ngIf="feed.followed" (click)="unfollowFeed()">
+    <span>Dejar de recibir noticias</span>:&nbsp;<ion-icon name="heart"></ion-icon>
+  </a>
+  <a ion-button block *ngIf="!feed.followed" (click)="followFeed()">
+    <span>Recibir noticias</span>:&nbsp;<ion-icon name="heart-outline"></ion-icon>
+  </a>
+
   <ion-list>
     <button ion-item *ngFor="let item of newList" text-wrap (click)="viewNew(item)">
-      <ion-thumbnail item-left><img *ngIf="item.image" src="{{item.image.url}}"></ion-thumbnail>
-      <h2>{{ item.title }}</h2>
-      <p><span>{{item.meta.title}}</span></p>
+      <ion-thumbnail item-left *ngIf="item.image.url"><img src="{{item.image.url}}"></ion-thumbnail>
+      <h2 [innerHTML]="item.title"></h2>
+      <p *ngIf="!feed"><span>{{item.meta.title}}</span></p>
       <p *ngIf="item.author">        
         <ion-icon name="person"></ion-icon>
         <small>{{item.author}}</small>

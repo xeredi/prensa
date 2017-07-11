@@ -6,7 +6,7 @@
 
 <ion-content padding>
     <ion-card>
-        <ion-card-title text-wrap> {{new.title}} </ion-card-title>
+        <ion-card-title text-wrap [innerHTML]="new.title"></ion-card-title>
 
         <div *ngIf="audio">
             <ion-card-content>
