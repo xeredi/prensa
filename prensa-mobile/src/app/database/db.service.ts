@@ -9,12 +9,12 @@ export class DbService {
     public openSQLiteDatabase() {
         return new Promise((resolve, reject) => {
             if (this.isOpen) {
-                console.log("DB IS OPEN");
+                // console.log("DB IS OPEN");
                 resolve(this.isOpen);
             }
 
             else {
-                console.log("DB IS NOT OPEN");
+                // console.log("DB IS NOT OPEN");
                 var sqlite = new SQLite();
 
                 sqlite.create({
@@ -22,7 +22,7 @@ export class DbService {
                     location: 'default'
                 })
                     .then((db: SQLiteObject) => {
-                        console.log("DB CONNECTED");
+                        // console.log("DB CONNECTED");
 
                         this.db = db;
                         this.isOpen = true;

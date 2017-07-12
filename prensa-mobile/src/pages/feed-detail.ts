@@ -24,9 +24,12 @@ export class FeedDetailPage {
         fdrdService.readFeed(this.feed).then(items => {
             this.newList = items;
 
-            this.newList.map(item => {
-                console.log("new: " + JSON.stringify(item));
-            });
+            if (this.feed.followed) {
+                this.newList.map(item => {
+                    // console.log("save item: " + JSON.stringify(item));
+                    itemService.save(item, this.feed);
+                });
+            }
         });
     }
 

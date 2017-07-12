@@ -13,6 +13,7 @@ export class FeedReaderService {
                 items.map(item => {
                     var itemData: any = {};
 
+                    itemData.pblrId = feed.pblrId;
                     itemData.link = item.link;
                     itemData.title = item.title;
                     itemData.pubDate = item.pubdate;
