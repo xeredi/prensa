@@ -9,6 +9,7 @@ import { InitDbService } from './database/init-db.service';
 import { CategoryService } from './database/category.service';
 import { PublisherService } from './database/publisher.service';
 import { FeedService } from './database/feed.service';
+import { ItemService } from './database/item.service';
 import { FollowFeedService } from './database/follow-feed.service';
 import { FeedReaderService } from './feed/feed-reader.service';
 
@@ -61,6 +62,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     , CategoryService
     , PublisherService
     , FeedService
+    , ItemService
     , FollowFeedService
     , FeedReaderService
 

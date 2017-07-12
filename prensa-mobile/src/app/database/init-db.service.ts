@@ -51,6 +51,10 @@ export class InitDbService extends DbService {
                     }
                 });
 
+                this.db.executeSql("CREATE TABLE IF NOT EXISTS item_item(item_pk INTEGER PRIMARY KEY, item_pblr_pk INTEGER, item_link VARCHAR(200), item_pubDate DATETIME, item_thumbnailUrl VARCHAR(200), item_imUrl VARCHAR(200), item_enclosureUrl VARCHAR(200), item_author VARCHAR(50), item_description VARCHAR(200), CONSTRAINT uq_item_link UNIQUE (item_pblr_pk, item_link))", []);
+
+                this.db.executeSql("CREATE TABLE IF NOT EXISTS item_feed_itfd(itfd_item_pk INTEGER, itfd_feed_pk INTEGER, CONSTRAINT uq_itfd UNIQUE (itfd_item_pk, itfd_feed_pk))", []);
+
                 this.db.executeSql("CREATE TABLE IF NOT EXISTS follow_feed_flfd(flfd_feed_pk INTEGER PRIMARY KEY)", []);
             }).catch(e => { console.log(e); });
         });

@@ -76,6 +76,8 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	7, 'en', 'ES', 'National Geographic', 'feed', 'http://www.nationalgeographic.com.es/feeds/rss.html', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/National-Geographic-Logo.svg/800px-National-Geographic-Logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'en', 'ES', 'Wired', 'html', 'https://www.wired.com/about/rss_feeds/', 'https://www.wired.com/images_blogs/underwire/images/2007/04/17/wired_logo.gif');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	9, 'en', 'ES', 'Motociclismo', 'feed', 'http://api.motorpress-iberica.es/rss/motociclismo', 'http://motorpress.suscripcionesrevistas.es/img/header/logo-motorpress.svg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	9, 'en', 'ES', 'Autopista', 'feed', 'http://api.motorpress-iberica.es/rss/autopista/', 'http://www.motorpress-iberica.es/img/publicaciones/logo-autopista.jpg');
@@ -98,6 +100,10 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	6, 'en', 'ES', 'Expansion', 'html', 'http://www.expansion.com/rss/', 'http://e01-expansion.uecdn.es/assets/desktop/master/img/logos/logo_expansion_portada.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	6, 'en', 'ES', 'Emprendedores', 'feed', 'http://www.emprendedores.es/rss/feed/site', 'http://logicaecommerce.com/wp-content/uploads/2016/03/revista-emprendedores.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	6, 'en', 'ES', 'Cinco Dias', 'html', 'http://cincodias.com/rss/', 'http://www.gedeth.com/web/wp-content/uploads/2016/02/LOGO-Cinco-D%C3%ADas.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	5, 'en', 'ES', 'Marca', 'html', 'http://www.marca.com/deporte/rss/', 'http://e00-marca.uecdn.es/assets/v6/img/logo-marca.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	5, 'en', 'ES', 'Sport', 'html', 'http://www.sport.es/es/rss/', 'http://www.sport.es/img/logo.png');
@@ -116,7 +122,7 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'Huffington Post', 'feed', 'http://www.huffingtonpost.es/feeds/index.xml', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Huffington_Post_logo.svg/640px-The_Huffington_Post_logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	3, 'en', 'ES', 'Publico', 'html', '/home/xeredi/git/prensa/prensa-admin/etc/web/RSS en publico.es _ Publico.html', 'http://blogs.publico.es/fbimg.png?r');
+	3, 'en', 'ES', 'Publico', 'html', '/home/xeredi/git/prensa/prensa-admin/etc/web/RSS en publico.es _ Publico.html', 'http://blogs.publico.es/logo-publico.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'Europa Press', 'html', 'http://www.europapress.es/contenidosrss.aspx', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Logo_Europa_Press.jpeg/245px-Logo_Europa_Press.jpeg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -125,6 +131,8 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 	3, 'en', 'ES', 'La Marea', 'feed', 'http://www.lamarea.com/feed/', 'http://www.lamarea.com/wp-content/uploads/clubamigos/img/logo_popup.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	3, 'en', 'ES', 'CTXT', 'feed', 'http://ctxt.es/es/?tpl=87', 'http://ctxt.es/themes/publication_1/theme_1/img/logo.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	3, 'en', 'ES', 'El Confidencial', 'feed', 'http://www.elconfidencial.com/rss/', 'http://www.ecestaticos.com/file/0be042580f4f0f53813bd70f7984033c/1456834011.svg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	2, 'en', 'ES', 'El Mundo', 'html', 'http://rss.elmundo.es/rss/', 'http://www.brandemia.org/sites/default/files/sites/default/files/logo_el_mundo.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -163,12 +171,37 @@ CREATE TABLE feed_feed(
 	, CONSTRAINT uq_feed_url UNIQUE (feed_url)
 );
 
+DROP TABLE IF EXISTS item_item;
+
+CREATE TABLE IF NOT EXISTS item_item(
+	item_pk INTEGER PRIMARY KEY
+	, item_pblr_pk INTEGER
+	, item_link VARCHAR(200)
+	, item_pubDate DATETIME
+	, item_thumbnailUrl VARCHAR(200)
+	, item_imUrl VARCHAR(200)
+	, item_enclosureUrl VARCHAR(200)
+	, item_author VARCHAR(50)
+	, item_description VARCHAR(200)
+
+	, CONSTRAINT uq_item_link UNIQUE (item_pblr_pk, item_link)
+);
+
+DROP TABLE IF EXISTS item_feed_itfd;
+
+CREATE TABLE IF NOT EXISTS item_feed_itfd(
+	itfd_item_pk INTEGER
+	, itfd_feed_pk INTEGER
+
+	, CONSTRAINT uq_itfd UNIQUE (itfd_item_pk, itfd_feed_pk)
+);
 
 
 DROP TABLE IF EXISTS follow_feed_flfd;
 
 CREATE TABLE IF NOT EXISTS follow_feed_flfd(
 	flfd_feed_pk INTEGER PRIMARY KEY
+	, flfd_lastRead DATETIME
 );
 
 INSERT INTO follow_feed_flfd(flfd_feed_pk) VALUES (1);

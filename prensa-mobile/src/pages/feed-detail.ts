@@ -1,10 +1,11 @@
-import { FollowFeedService } from './../app/database/follow-feed.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { NewDetailPage } from './new-detail';
 
+import { ItemService } from './../app/database/item.service';
 import { FeedReaderService } from './../app/feed/feed-reader.service';
+import { FollowFeedService } from './../app/database/follow-feed.service';
 
 @Component({
     selector: 'feed-detail',
@@ -14,12 +15,13 @@ export class FeedDetailPage {
     feed: any;
     newList: any[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, fdrdService: FeedReaderService, private flfdService: FollowFeedService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams
+        , fdrdService: FeedReaderService, private flfdService: FollowFeedService, private itemService: ItemService) {
         this.feed = navParams.get("feed");
 
         console.log("read feed: " + this.feed.url);
 
-        fdrdService.readFeed(this.feed.url).then(items => {
+        fdrdService.readFeed(this.feed).then(items => {
             this.newList = items;
 
             this.newList.map(item => {

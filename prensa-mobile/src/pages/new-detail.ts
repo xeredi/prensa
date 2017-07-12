@@ -13,13 +13,13 @@ export class NewDetailPage {
     constructor(public navCtrl: NavController, public navParams: NavParams/*, private _audioProvider: AudioProvider*/) {
         this.new = navParams.get("new");
 
-        if (this.new.enclosures[0] && this.new.enclosures[0].type == 'audio/mpeg') {
+        if (this.new.enclosureUrl) {
             // console.log("AUDIO!!!");
             this.audio = {
-                src: this.new.enclosures[0].url
-                , artist: this.new.meta.title
+                src: this.new.enclosureUrl
+                , artist: this.new.author
                 , title: this.new.title
-                , art: this.new.image.url
+                , art: this.new.thumbnailUrl
                 , preload: 'metadata'
             };
             // console.log("AUDIO: " + JSON.stringify(this.audio));
