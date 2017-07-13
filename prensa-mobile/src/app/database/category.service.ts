@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 export class CategoryService extends DbService {
 
     selectAll() {
-        console.log("CategoryService SELECTALL");
-
         return this.openSQLiteDatabase().then(() => {
             return this.db.executeSql("SELECT * FROM category_ctgr", []).then(data => {
                 var items = [];
@@ -19,8 +17,6 @@ export class CategoryService extends DbService {
                         });
                     }
                 }
-
-                console.log("ITEMS: " + JSON.stringify(items));
 
                 return items;
             });

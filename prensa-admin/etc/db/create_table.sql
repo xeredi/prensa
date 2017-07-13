@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXISTS item_item(
 	, item_imUrl VARCHAR(200)
 	, item_enclosureUrl VARCHAR(200)
 	, item_author VARCHAR(50)
+	, item_title VARCHAR(200)
 	, item_description VARCHAR(200)
 
 	, CONSTRAINT uq_item_link UNIQUE (item_pblr_pk, item_link)

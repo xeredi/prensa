@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { CategoryService } from './../../app/database/category.service';
-import { CategoryDetailPage } from '../category-detail'
+import { CategoryService } from './../app/database/category.service';
+
+import { CategoryDetailPage } from './category-detail';
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'category-list',
+  templateUrl: 'category-list.html'
 })
-export class AboutPage {
+export class CategoryListPage {
   categoriesList: any[];
 
   constructor(public navCtrl: NavController, ctgrService: CategoryService) {

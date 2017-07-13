@@ -24,7 +24,7 @@ export class PublisherService extends DbService {
                     }
                 }
 
-                console.log("ITEMS: " + JSON.stringify(items));
+                // console.log("ITEMS: " + JSON.stringify(items));
 
                 return items;
             });

@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
 
-import { InitDbService } from './../../app/database/init-db.service';
+import { ItemService } from './../../app/database/item.service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  itemList: any[];
 
-  constructor(public navCtrl: NavController, initDbService: InitDbService/**/) {
-    initDbService.initDb();
+  constructor(private itemService: ItemService) {
   }
 
+  ngOnInit() {
+    this.itemService.selectList(20, 1).then(list => {
+      this.itemList = list;
+
+      console.log('List: ' + JSON.stringify(this.itemList));
+    });
+  }
 }

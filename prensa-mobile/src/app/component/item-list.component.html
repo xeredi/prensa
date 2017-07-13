@@ -1,0 +1,15 @@
+<ion-list>
+    <ion-item *ngFor="let item of itemList" text-wrap (click)="viewNew(item)">
+        <ion-thumbnail item-left *ngIf="item.thumbnailUrl">
+            <img src="{{item.thumbnailUrl}}">
+        </ion-thumbnail>
+        <h2 text-justify [innerHTML]="item.title"></h2>
+        <div>
+            <div item-start>{{item.pblr.name}}</div>
+            <div item-end *ngIf="item.pubDate">
+                <ion-icon name="clock"></ion-icon>
+                <span>{{item.pubDate | date: 'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </ion-item>
+</ion-list>

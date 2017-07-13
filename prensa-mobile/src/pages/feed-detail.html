@@ -24,18 +24,6 @@
 	    <p *ngIf="!feed">
 		    <span>{{item.meta.title}}</span>
 	    </p>
-
-	<!--ion-row>
-        <ion-col item-left>
-          <ion-icon name="person"></ion-icon>
-          <small>{{item.author}}</small>
-        </ion-col>
-        <ion-col item-right>
-          <ion-icon name="clock"></ion-icon>
-          <small>{{item.pubDate | date: 'dd/MM/yyyy HH:mm'}}</small>
-        </ion-col>
-      </ion-row-->
-
 	<p *ngIf="item.author">
 		<ion-icon name="person"></ion-icon>
 		<small>{{item.author}}</small>

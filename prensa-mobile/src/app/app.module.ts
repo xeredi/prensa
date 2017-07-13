@@ -13,14 +13,16 @@ import { ItemService } from './database/item.service';
 import { FollowFeedService } from './database/follow-feed.service';
 import { FeedReaderService } from './feed/feed-reader.service';
 
-import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CategoryListPage } from './../pages/category-list';
 import { CategoryDetailPage } from '../pages/category-detail';
 import { PublisherDetailPage } from '../pages/publisher-detail';
 import { FeedDetailPage } from './../pages/feed-detail';
 import { NewDetailPage } from '../pages/new-detail';
+
+import { ItemListComponent } from './component/item-list.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,14 +32,16 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
     TabsPage,
+    CategoryListPage, 
     CategoryDetailPage, 
     FeedDetailPage,
     NewDetailPage, 
-    PublisherDetailPage
+    PublisherDetailPage,
+
+    ItemListComponent
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -47,10 +51,10 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
-    , AboutPage
     , ContactPage
     , HomePage
     , TabsPage
+    , CategoryListPage
     , CategoryDetailPage
     , PublisherDetailPage
     , FeedDetailPage
