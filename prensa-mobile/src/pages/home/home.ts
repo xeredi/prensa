@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
     this.itemService.selectList(20, 1).then(list => {
       this.itemList = list;
 
-      console.log('List: ' + JSON.stringify(this.itemList));
+      // console.log('List: ' + JSON.stringify(this.itemList));
     });
   }
 }

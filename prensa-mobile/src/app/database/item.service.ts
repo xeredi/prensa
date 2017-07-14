@@ -21,6 +21,7 @@ export class ItemService extends DbService {
                             + " WHERE item_pblr_pk = ? AND item_link = ? "
                             , [item.pubDate, item.thumbnailUrl, item.imUrl, item.enclosureUrl, item.author, item.title, item.description, item.pblrId, item.link])
                             .then(data => data)
+                            .catch(e => { console.log(e); return null; })
                             ;
 
                         this.db.executeSql(
@@ -35,6 +36,7 @@ export class ItemService extends DbService {
                                         ;
                                 }
                             })
+                            .catch(e => { console.log(e); return null; })
                             ;
                     } else {
                         // console.log('insert');
@@ -51,14 +53,15 @@ export class ItemService extends DbService {
                                     "INSERT INTO item_feed_itfd (itfd_item_pk, itfd_feed_pk) VALUES (?, ?) "
                                     , [item.id, feed.id])
                                     .then(data => data)
+                                    .catch(e => { console.log(e); return null; })
                                     ;
 
                                 return data;
                             })
+                            .catch(e => { console.log(e); return null; })
                             ;
                     }
-                })
-                ;
+                }).catch(e => { console.log(e); return null; });
         }).catch(e => { console.log(e); return null; });
     }
 
@@ -77,11 +80,24 @@ export class ItemService extends DbService {
                     }
 
                     return items;
-                });
+                }).catch(e => { console.log(e); return null; });
         }).catch(e => { console.log(e); return null; });
     }
 
     private readItem(data: any) {
+        // console.log("data.item_pubDate: " + data.item_pubDate + ", msec: " + (Date.now() - Date.parse(data.item_pubDate)));
+
+        var msec = Date.now() - Date.parse(data.item_pubDate);
+        var timeMessage = null;
+
+        if (msec > 0) {
+            if (msec < 3600000) {
+                timeMessage = 'Hace ' + Math.round(msec / 60000) + " minutos";
+            } else if (msec < (24 * 3600000)) {
+                timeMessage = 'Hace ' + Math.round(msec / 3600000) + " horas";
+            }
+        }
+
         return {
             id: data.item_pk
             , pblrId: data.item_pblr_pk
@@ -93,6 +109,8 @@ export class ItemService extends DbService {
             , author: data.item_author
             , title: data.item_title
             , description: data.item_description
+            , msec: msec
+            , timeMessage: timeMessage
             , pblr: {
                 id: data.item_pblr_pk
                 , name: data.pblr_name

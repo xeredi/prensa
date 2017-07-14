@@ -13,12 +13,26 @@ export class FeedReaderService {
                 items.map(item => {
                     var itemData: any = {};
 
+                    var msec = Date.now() - Date.parse(item.pubdate.toDateString());
+                    var timeMessage = null;
+
+                    if (msec > 0) {
+                        if (msec < 3600000) {
+                            timeMessage = 'Hace ' + Math.round(msec / 60000) + " minutos";
+                        } else if (msec < (24 * 3600000)) {
+                            timeMessage = 'Hace ' + Math.round(msec / 3600000) + " horas";
+                        }
+                    }                    
+
+                    itemData.pblr = feed.pblr;
                     itemData.pblrId = feed.pblrId;
                     itemData.link = item.link;
                     itemData.title = item.title;
                     itemData.pubDate = item.pubdate;
                     itemData.author = item.author;
                     itemData.description = item.description;
+                    itemData.msec = msec;
+                    itemData.timeMessage = timeMessage;
 
                     if (item.image) {
                         itemData.thumbnailUrl = item.image.url

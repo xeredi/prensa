@@ -16,22 +16,6 @@
       <ion-icon name="heart-outline"></ion-icon>
     </a>
   </div>
-  <ion-list>
-    <button ion-item *ngFor="let item of newList" text-wrap (click)="viewNew(item)">
-	    <ion-thumbnail item-left *ngIf="item.thumbnailUrl">
-	    <img src="{{item.thumbnailUrl}}"></ion-thumbnail>
-	    <h2 text-justify [innerHTML]="item.title"></h2>
-	    <p *ngIf="!feed">
-		    <span>{{item.meta.title}}</span>
-	    </p>
-	<p *ngIf="item.author">
-		<ion-icon name="person"></ion-icon>
-		<small>{{item.author}}</small>
-	</p>
-	<p *ngIf="item.pubDate">
-		<ion-icon name="clock"></ion-icon>
-		<small>{{item.pubDate | date: 'dd/MM/yyyy HH:mm'}}</small>
-	</p>
-</button>
-  </ion-list>
+
+  <item-list [itemList]="newList"></item-list>
 </ion-content>

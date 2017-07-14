@@ -10,6 +10,7 @@ export class FeedService extends DbService {
                 "SELECT feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_encoding, feed_feedType, feed_generator "
                 + " , feed_language, feed_link, feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast "
                 + " , (SELECT 1 FROM follow_feed_flfd WHERE flfd_feed_pk = feed_pk) AS feed_followed "
+                + " , (SELECT pblr_name FROM publisher_pblr WHERE pblr_pk = feed_pblr_pk) AS pblr_name "
                 + " FROM feed_feed WHERE feed_pblr_pk = ? "
                 , [pblrId]).then(data => {
                     var items = [];
@@ -20,7 +21,7 @@ export class FeedService extends DbService {
                     }
 
                     return items;
-                });
+                }).catch(e => { console.log(e); return null; });
         }).catch(e => { console.log(e); return null; });
     }
 
@@ -44,6 +45,10 @@ export class FeedService extends DbService {
             , imWidth: data.feed_imWidth
             , podcast: data.feed_podcast
             , followed: data.feed_followed
+            , pblr: {
+                id: data.feed_pblr_pk
+                , name: data.pblr_name
+            }
         };
     }
 }

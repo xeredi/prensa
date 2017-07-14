@@ -25,6 +25,7 @@ export class FeedDetailPage {
             this.newList = items;
 
             if (this.feed.followed) {
+                console.log("save feed!");
                 this.newList.map(item => {
                     // console.log("save item: " + JSON.stringify(item));
                     itemService.save(item, this.feed);
