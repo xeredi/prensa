@@ -7,5 +7,13 @@
 <ion-content padding>
   <h2>Benvidooo to Ionic!</h2>
 
-  <item-list [itemList] = 'itemList'></item-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <item-list [itemList]='itemList'></item-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

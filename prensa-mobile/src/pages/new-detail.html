@@ -1,15 +1,19 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Noticia</ion-title>
+        <ion-title>{{new.pblr.name}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <ion-card>
-        <ion-card-title text-wrap text-justify [innerHTML]="new.title"></ion-card-title>
 
-        <div *ngIf="audio">
-            <ion-card-content>
+        <ion-card-header>
+            <ion-card-title text-wrap text-justify [innerHTML]="new.title"></ion-card-title>
+            <img *ngIf="new.imUrl" src="{{new.imUrl}}">
+        </ion-card-header>
+
+        <ion-card-content>
+            <div *ngIf="audio">
                 <!--
                 <audio-track #track [track]="audio">
                     <ion-item>
@@ -33,23 +37,23 @@
                     <audio controls preload="metadata">
                         <source src="{{audio.src}}" type="audio/mpeg">
                     </audio>
-                </ion-item> <img src="{{audio.art}}" *ngIf="audio.art"> </ion-card-content>
-        </div>
+                </ion-item> <img src="{{audio.art}}" *ngIf="audio.art">
+            </div>
 
-        <div *ngIf="!audio">
-            <img *ngIf="new.imUrl" src="{{new.imUrl}}">
-            <ion-card-content>
+            <div *ngIf="!audio">
                 <ion-list>
                     <ion-item *ngIf="new.author">
                         <ion-icon name="person" item-left></ion-icon>
-                        <small item-right>{{new.author}}</small> </ion-item>
+                        <small item-right>{{new.author}}</small>
+                    </ion-item>
                     <ion-item *ngIf="new.pubDate">
-                        <ion-icon name="clock" item-left></ion-icon> <small item-right>{{new.pubDate
-		| date: 'dd/MM/yyyy HH:mm'}}</small> </ion-item>
-                </ion-list> <a ion-button block href="{{new.link}}">Ver
-		Noticia Completa</a> </ion-card-content>
-        </div>
+                        <ion-icon name="clock" item-left></ion-icon> <small item-right>{{new.pubDate | date: 'dd/MM/yyyy HH:mm'}}</small>
+                    </ion-item>
+                </ion-list>
+                <a ion-button block href="{{new.link}}">Ver Noticia Completa</a>
+            </div>
 
-        <p *ngIf="new.description" [innerHTML]="new.description" text-justify></p>
+            <p *ngIf="new.description" [innerHTML]="new.description" text-justify></p>
+        </ion-card-content>
     </ion-card>
 </ion-content>

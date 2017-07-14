@@ -16,22 +16,16 @@ export class FeedDetailPage {
     newList: any[];
 
     constructor(public navCtrl: NavController, public navParams: NavParams
-        , fdrdService: FeedReaderService, private flfdService: FollowFeedService, private itemService: ItemService) {
+        , private fdrdService: FeedReaderService, private flfdService: FollowFeedService, private itemService: ItemService) {
         this.feed = navParams.get("feed");
 
-        console.log("read feed: " + this.feed.url);
+        this.doSearch();
+    }
 
-        fdrdService.readFeed(this.feed).then(items => {
-            this.newList = items;
+    doRefresh(refresher) {
+        console.log('Begin doRefresh', refresher);
 
-            if (this.feed.followed) {
-                console.log("save feed!");
-                this.newList.map(item => {
-                    // console.log("save item: " + JSON.stringify(item));
-                    itemService.save(item, this.feed);
-                });
-            }
-        });
+        this.doSearch().then(() => refresher.complete());
     }
 
     viewNew(anew) {
@@ -44,5 +38,21 @@ export class FeedDetailPage {
 
     unfollowFeed() {
         this.flfdService.delete(this.feed);
+    }
+
+    private doSearch() {
+        console.log("read feed: " + this.feed.url);
+
+        return this.fdrdService.readFeed(this.feed).then(items => {
+            this.newList = items;
+
+            if (this.feed.followed) {
+                console.log("save feed!");
+                this.newList.map(item => {
+                    // console.log("save item: " + JSON.stringify(item));
+                    this.itemService.save(item, this.feed);
+                });
+            }
+        });
     }
 }

@@ -6,16 +6,18 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="feed">
-    <a ion-button block *ngIf="feed.followed" (click)="unfollowFeed()"> 
+  <a ion-button block *ngIf="feed.followed" (click)="unfollowFeed()"> 
       <span>Dejar de recibir noticias</span>:&nbsp;
       <ion-icon name="heart"></ion-icon>
-    </a>
-    <a ion-button block *ngIf="!feed.followed" (click)="followFeed()">
+  </a>
+  <a ion-button block *ngIf="!feed.followed" (click)="followFeed()">
 	    <span>Recibir noticias</span>:&nbsp;
       <ion-icon name="heart-outline"></ion-icon>
-    </a>
-  </div>
+  </a>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <item-list [itemList]="newList"></item-list>
 </ion-content>
