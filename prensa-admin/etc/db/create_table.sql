@@ -60,7 +60,7 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'en', 'ES', 'Canal Fiesta Radio', 'ivoox', 'https://www.ivoox.com/escuchar-canal-fiesta-radio_nq_4111_1.html', 'https://static-2.ivooxcdn.com/canales/5/2/1/2/6871471442125_MD.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	1, 'en', 'ES', 'RNE - Radio Nacional de España', 'ivoox', 'https://www.ivoox.com/escuchar-radio-nacional-espana-rne_nq_191_1.html', 'https://static-2.ivooxcdn.com/canales/9/2/9/3/9671471443929_MD.jpg');
+	1, 'en', 'ES', 'Radio Nacional de España', 'ivoox', 'https://www.ivoox.com/escuchar-radio-nacional-espana-rne_nq_191_1.html', 'https://static-2.ivooxcdn.com/canales/9/2/9/3/9671471443929_MD.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	1, 'en', 'ES', 'Rock FM', 'ivoox', 'https://www.ivoox.com/escuchar-rock-fm-antes-rock-and-gol_nq_382_1.html', 'https://static-2.ivooxcdn.com/canales/1/8/8/3/201471443881_MD.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -77,6 +77,10 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 	7, 'en', 'ES', 'National Geographic', 'feed', 'http://www.nationalgeographic.com.es/feeds/rss.html', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/National-Geographic-Logo.svg/800px-National-Geographic-Logo.svg.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	7, 'en', 'ES', 'Wired', 'html', 'https://www.wired.com/about/rss_feeds/', 'https://www.wired.com/images_blogs/underwire/images/2007/04/17/wired_logo.gif');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'en', 'ES', 'Xataka', 'feed', 'https://www.xataka.com/index.xml', 'https://i.blogs.es/0558dc/logo_xataka2/original.jpg');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	7, 'en', 'ES', 'Microsiervos', 'feed', 'http://www.microsiervos.com/index.xml', 'http://img.microsiervos.com/blog/logo-microsiervos.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	9, 'en', 'ES', 'Motociclismo', 'feed', 'http://api.motorpress-iberica.es/rss/motociclismo', 'http://motorpress.suscripcionesrevistas.es/img/header/logo-motorpress.svg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
@@ -102,7 +106,9 @@ INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pbl
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	6, 'en', 'ES', 'Emprendedores', 'feed', 'http://www.emprendedores.es/rss/feed/site', 'http://logicaecommerce.com/wp-content/uploads/2016/03/revista-emprendedores.jpg');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
-	6, 'en', 'ES', 'Cinco Dias', 'html', 'http://cincodias.com/rss/', 'http://www.gedeth.com/web/wp-content/uploads/2016/02/LOGO-Cinco-D%C3%ADas.png');
+	6, 'en', 'ES', 'Cinco Dias', 'html', 'https://cincodias.elpais.com/estaticos/rss/', 'http://www.gedeth.com/web/wp-content/uploads/2016/02/LOGO-Cinco-D%C3%ADas.png');
+INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
+	6, 'en', 'ES', 'El Blog Salmon', 'feed', 'https://www.elblogsalmon.com/index.xml', 'http://www.focus-economics.com/sites/default/files/wysiwyg_images/el_blog_salmon.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (
 	5, 'en', 'ES', 'Marca', 'html', 'http://www.marca.com/deporte/rss/', 'http://e00-marca.uecdn.es/assets/v6/img/logo-marca.png');
 INSERT INTO publisher_pblr(pblr_ctgr_pk, pblr_lang, pblr_country, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl) VALUES (

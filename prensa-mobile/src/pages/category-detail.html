@@ -5,10 +5,19 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+    <!--ion-list>
         <button ion-item icon-start *ngFor="let item of publisherList" (click)="viewPublisher(item)">
             <ion-thumbnail item-left><img src="{{item.logoUrl}}"></ion-thumbnail> 
             <h2>{{item.name}}</h2>
         </button>
-    </ion-list>
+    </ion-list-->
+
+    <ion-row wrap>
+        <ion-col width-33 *ngFor="let item of publisherList">
+            <button width-100 ion-item (click)="viewPublisher(item)">
+                <ion-thumbnail width-100><img class="center" src="{{item.logoUrl}}"></ion-thumbnail> 
+                <p text-wrap text-center>{{item.name}}</p>
+            </button>
+        </ion-col>
+    </ion-row>
 </ion-content>
