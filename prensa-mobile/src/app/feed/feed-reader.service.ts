@@ -22,7 +22,7 @@ export class FeedReaderService {
                         } else if (msec < (24 * 3600000)) {
                             timeMessage = 'Hace ' + Math.round(msec / 3600000) + " horas";
                         }
-                    }                    
+                    }
 
                     itemData.pblr = feed.pblr;
                     itemData.pblrId = feed.pblrId;
@@ -42,9 +42,9 @@ export class FeedReaderService {
                     if (item.enclosures[0]) {
                         var enclosureData: any = item.enclosures[0];
 
-                        if (enclosureData.type.indexOf('audio') >= 0 ) {
+                        if (enclosureData.type.indexOf('audio') >= 0) {
                             itemData.enclosureUrl = enclosureData.url;
-                        } else if (enclosureData.type.indexOf('image') >= 0 ) {
+                        } else if (enclosureData.type.indexOf('image') >= 0) {
                             itemData.imUrl = enclosureData.url;
 
                             if (itemData.thumbnailUrl == null) {
@@ -52,6 +52,17 @@ export class FeedReaderService {
                             }
                         } else {
                             console.log('Unknown enclosure Type: ' + enclosureData.type);
+                        }
+                    }
+
+                    if (itemData.thumbnailUrl == null) {
+                        let parser = new DOMParser();
+                        let parsedHtml = parser.parseFromString(itemData.description, 'text/html');
+
+                        if (parsedHtml.images[0]) {
+                            itemData.thumbnailUrl = parsedHtml.images[0].src;
+
+                            console.log("Image scanned: " + itemData.thumbnailUrl);
                         }
                     }
 

@@ -27,6 +27,10 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
     padding-right: 0px;
 }
 
+.label-md {
+    margin: 6px 8px 6px 0;
+}
+
 .item-md {
     padding-left: 4px;
 }
@@ -64,8 +68,10 @@ ion-card-header img {
 
 img.center {
     margin:0 auto;
-    //max-width: 80px !important;
-    //max-height: 80px !important;
+}
+
+ion-thumbnail {
+    margin-bottom: 3px;    
 }
 
 /*

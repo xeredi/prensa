@@ -5,10 +5,20 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+    <!--ion-list>
         <button ion-item icon-start *ngFor="let item of feedList" text-wrap (click)="viewFeed(item)">
             <ion-thumbnail item-left><img  style="max-width: 64px; max-height: 64px;" src="{{item.imUrl}}"></ion-thumbnail>
             <h2>{{item.title}}</h2>
         </button>
-    </ion-list>
+    </ion-list-->
+
+
+    <ion-row wrap>
+        <ion-col width-50 *ngFor="let item of feedList">
+            <button width-100 ion-item (click)="viewFeed(item)">
+                <ion-thumbnail width-100><img class="center" src="{{item.imUrl}}"></ion-thumbnail> 
+                <p text-wrap text-center>{{item.title}}</p>
+            </button>
+        </ion-col>
+    </ion-row>
 </ion-content>
