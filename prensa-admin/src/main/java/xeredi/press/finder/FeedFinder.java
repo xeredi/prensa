@@ -137,7 +137,7 @@ public final class FeedFinder {
 					final Element link = iterator.next();
 					final String fileUrl = link.attr("href").trim();
 
-					LOG.debug("fileUrl: " + fileUrl);
+					// LOG.debug("fileUrl: " + fileUrl);
 
 					if (!fileUrl.startsWith("javascript:") && !fileUrl.startsWith("itpc://")
 							&& !fileUrl.contains("itunes.apple.com") && !fileUrl.contains("www.live.com")
@@ -257,7 +257,7 @@ public final class FeedFinder {
 							urlProcessedSet.add(chanelUrl);
 
 							if (urlValidator.isValid(chanelUrl)) {
-								LOG.debug("channelUrl: " + chanelUrl + ", fileUrl: " + fileUrl);
+								// LOG.debug("channelUrl: " + chanelUrl + ", fileUrl: " + fileUrl);
 
 								try {
 									final Feed feed = findFeed(publisher, chanelUrl);
@@ -567,7 +567,7 @@ public final class FeedFinder {
 				final List<Feed> feeds = feedFinder.findFeeds(pblr);
 
 				for (final Feed feed : feeds) {
-					LOG.debug("feed: " + feed);
+					// LOG.debug("feed: " + feed);
 
 					if (feed.getImUrl() == null) {
 						feed.setImUrl(pblr.getLogoUrl());
