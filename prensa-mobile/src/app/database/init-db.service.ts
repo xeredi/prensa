@@ -9,12 +9,12 @@ export class InitDbService extends DbService {
         super();
     }
 
-    initDb() {
+    initDb(): Promise<boolean> {
         console.log("INIT DB");
 
-        this.platform.ready().then(readySource => {
-            this.openSQLiteDatabase().then(() => {
-                console.log("EXECUTE INIT DB");
+        return this.platform.ready().then(readySource => {
+            return this.openSQLiteDatabase().then(() => {
+                console.log("INIT DB START");
 
                 this.db.executeSql("DROP TABLE IF EXISTS category_ctgr", []);
                 this.db.executeSql("CREATE TABLE category_ctgr(ctgr_pk INTEGER PRIMARY KEY, ctgr_name VARCHAR(20), ctgr_icon VARCHAR(20))", []);
@@ -51,13 +51,18 @@ export class InitDbService extends DbService {
                     }
                 });
 
-                // this.db.executeSql("DROP TABLE IF EXISTS item_item", []);
-                this.db.executeSql("CREATE TABLE IF NOT EXISTS item_item(item_pk INTEGER PRIMARY KEY, item_pblr_pk INTEGER, item_link VARCHAR(200), item_pubDate DATETIME, item_thumbnailUrl VARCHAR(200), item_imUrl VARCHAR(200), item_enclosureUrl VARCHAR(200), item_author VARCHAR(50), item_title VARCHAR(200), item_description VARCHAR(200), CONSTRAINT uq_item_link UNIQUE (item_pblr_pk, item_link))", []);
+                this.db.executeSql("CREATE TABLE IF NOT EXISTS follow_feed_flfd(flfd_feed_pk INTEGER PRIMARY KEY)", []);
 
+                // this.db.executeSql("DROP TABLE IF EXISTS item_item", []);
+                this.db.executeSql("CREATE TABLE IF NOT EXISTS item_item(item_pk INTEGER PRIMARY KEY, item_pblr_pk INTEGER, item_link VARCHAR(200), item_pubDate DATETIME, item_readDate DATETIME, item_thumbnailUrl VARCHAR(200), item_imUrl VARCHAR(200), item_enclosureUrl VARCHAR(200), item_enclosureLength INTEGER, item_author VARCHAR(50), item_title VARCHAR(200), item_description VARCHAR(200), CONSTRAINT uq_item_link UNIQUE (item_pblr_pk, item_link))", []);
+
+                // this.db.executeSql("DROP TABLE IF EXISTS item_feed_itfd", []);
                 this.db.executeSql("CREATE TABLE IF NOT EXISTS item_feed_itfd(itfd_item_pk INTEGER, itfd_feed_pk INTEGER, CONSTRAINT uq_itfd UNIQUE (itfd_item_pk, itfd_feed_pk))", []);
 
-                this.db.executeSql("CREATE TABLE IF NOT EXISTS follow_feed_flfd(flfd_feed_pk INTEGER PRIMARY KEY)", []);
-            }).catch(e => { console.log(e); });
-        });
+                console.log("INIT DB END");
+
+                return true;
+            }).catch(e => { console.log(e); return false; });
+        }).catch(e => { console.log(e); return false; });
     }
 }

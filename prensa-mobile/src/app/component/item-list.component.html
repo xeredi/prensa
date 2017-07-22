@@ -4,6 +4,7 @@
             <img src="{{item.thumbnailUrl}}">
         </ion-thumbnail>
         <h2 text-justify [innerHTML]="item.title"></h2>
+        <!--p *ngIf="item.enclosureLength">({{item.enclosureLength}})</p-->
         <div>
             <div item-start>{{item.pblr.name}} <span *ngIf="item.author">({{item.author}})</span></div>
             <div item-end *ngIf="item.pubDate">

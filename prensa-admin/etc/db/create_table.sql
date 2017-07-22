@@ -184,9 +184,11 @@ CREATE TABLE IF NOT EXISTS item_item(
 	, item_pblr_pk INTEGER
 	, item_link VARCHAR(200)
 	, item_pubDate DATETIME
+	, item_readDate DATETIME
 	, item_thumbnailUrl VARCHAR(200)
 	, item_imUrl VARCHAR(200)
 	, item_enclosureUrl VARCHAR(200)
+	, item_enclosureLength INTEGER
 	, item_author VARCHAR(50)
 	, item_title VARCHAR(200)
 	, item_description VARCHAR(200)

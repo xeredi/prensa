@@ -1,3 +1,4 @@
+import { ItemService } from './../app/database/item.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 // import { AudioProvider } from 'ionic-audio';
@@ -10,8 +11,8 @@ export class NewDetailPage {
     new: any;
     audio: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams/*, private _audioProvider: AudioProvider*/) {
-        this.new = navParams.get("new");
+    constructor(private navCtrl: NavController, private navParams: NavParams, private itemService: ItemService/*, private _audioProvider: AudioProvider*/) {
+        this.new = this.navParams.get("new");
 
         if (this.new.enclosureUrl) {
             // console.log("AUDIO!!!");
@@ -24,6 +25,11 @@ export class NewDetailPage {
             };
             // console.log("AUDIO: " + JSON.stringify(this.audio));
         }
+
+        this.new.readDate = new Date();
+
+        console.log("mark read");
+        this.itemService.markRead(this.new.id, this.new.readDate);
     }
 
     ionViewWillLeave() {

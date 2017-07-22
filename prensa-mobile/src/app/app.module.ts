@@ -12,6 +12,7 @@ import { FeedService } from './database/feed.service';
 import { ItemService } from './database/item.service';
 import { FollowFeedService } from './database/follow-feed.service';
 import { FeedReaderService } from './feed/feed-reader.service';
+import { FeedReloaderService } from './feed/feed-reloader.service';
 
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -69,6 +70,7 @@ import { IonicAudioModule, defaultAudioProviderFactory } from 'ionic-audio';
     , ItemService
     , FollowFeedService
     , FeedReaderService
+    , FeedReloaderService
 
     , StatusBar
     , SplashScreen

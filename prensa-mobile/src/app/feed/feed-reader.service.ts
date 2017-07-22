@@ -44,6 +44,11 @@ export class FeedReaderService {
 
                         if (enclosureData.type.indexOf('audio') >= 0) {
                             itemData.enclosureUrl = enclosureData.url;
+                            itemData.enclosureLength = enclosureData.length;
+
+                            if (enclosureData.length) {
+                                // console.log('Audio length: ' + enclosureData.length);
+                            }
                         } else if (enclosureData.type.indexOf('image') >= 0) {
                             itemData.imUrl = enclosureData.url;
 
@@ -62,7 +67,7 @@ export class FeedReaderService {
                         if (parsedHtml.images[0]) {
                             itemData.thumbnailUrl = parsedHtml.images[0].src;
 
-                            console.log("Image scanned: " + itemData.thumbnailUrl);
+                            // console.log("Image scanned: " + itemData.thumbnailUrl);
                         }
                     }
 

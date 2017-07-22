@@ -17,9 +17,9 @@ export class ItemService extends DbService {
                         // console.log('id: ' + item.id);
                         this.db.executeSql(
                             "UPDATE item_item SET "
-                            + " item_pubDate = ?, item_thumbnailUrl = ?, item_imUrl = ?, item_enclosureUrl = ?, item_author = ?, item_title = ?, item_description = ? "
+                            + " item_pubDate = ?, item_thumbnailUrl = ?, item_imUrl = ?, item_enclosureUrl = ?, item_enclosureLength = ?, item_author = ?, item_title = ?, item_description = ? "
                             + " WHERE item_pblr_pk = ? AND item_link = ? "
-                            , [item.pubDate, item.thumbnailUrl, item.imUrl, item.enclosureUrl, item.author, item.title, item.description, item.pblrId, item.link])
+                            , [item.pubDate, item.thumbnailUrl, item.imUrl, item.enclosureUrl, item.enclosureLength, item.author, item.title, item.description, item.pblrId, item.link])
                             .then(data => data)
                             .catch(e => { console.log(e); return null; })
                             ;
@@ -41,9 +41,9 @@ export class ItemService extends DbService {
                     } else {
                         // console.log('insert');
                         this.db.executeSql(
-                            "INSERT INTO item_item (item_pblr_pk, item_link, item_pubDate, item_thumbnailUrl, item_imUrl, item_enclosureUrl, item_author, item_title, item_description) "
-                            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) "
-                            , [item.pblrId, item.link, item.pubDate, item.thumbnailUrl, item.imUrl, item.enclosureUrl, item.author, item.title, item.description])
+                            "INSERT INTO item_item (item_pblr_pk, item_link, item_pubDate, item_thumbnailUrl, item_imUrl, item_enclosureUrl, item_enclosureLength, item_author, item_title, item_description) "
+                            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+                            , [item.pblrId, item.link, item.pubDate, item.thumbnailUrl, item.imUrl, item.enclosureUrl, item.enclosureLength, item.author, item.title, item.description])
                             .then(data => {
                                 // console.log('inserted: ' + JSON.stringify(data));
                                 item.id = data.insertId;
@@ -65,10 +65,23 @@ export class ItemService extends DbService {
         }).catch(e => { console.log(e); return null; });
     }
 
+    markRead(itemId: number, readDate: Date) {
+        this.openSQLiteDatabase().then(() => {
+            this.db.executeSql(
+                "UPDATE item_item SET "
+                + " item_readDate = ? "
+                + " WHERE item_pk = ? "
+                , [itemId, readDate])
+                .then(data => data)
+                .catch(e => { console.log(e); return null; })
+                ;
+        }).catch(e => { console.log(e); return null; });
+    }
+
     selectList(limit: number, offset: number) {
         return this.openSQLiteDatabase().then(() => {
             return this.db.executeSql(
-                "SELECT item_pk, item_pblr_pk, item_link, item_pubDate, item_thumbnailUrl, item_imUrl, item_enclosureUrl, item_author, item_title, item_description "
+                "SELECT item_pk, item_pblr_pk, item_link, item_pubDate, item_readDate, item_thumbnailUrl, item_imUrl, item_enclosureUrl, item_enclosureLength, item_author, item_title, item_description "
                 + " , (SELECT pblr_name FROM publisher_pblr WHERE pblr_pk = item_pblr_pk) AS pblr_name "
                 + " FROM item_item ORDER BY item_pubDate DESC LIMIT ? OFFSET ? "
                 , [limit, offset]).then(data => {
@@ -103,9 +116,11 @@ export class ItemService extends DbService {
             , pblrId: data.item_pblr_pk
             , link: data.item_link
             , pubDate: data.item_pubDate
+            , readDate: data.item_readDate
             , thumbnailUrl: data.item_thumbnailUrl
             , imUrl: data.item_imUrl
             , enclosureUrl: data.item_enclosureUrl
+            , enclosureLength: data.item_enclosureLength
             , author: data.item_author
             , title: data.item_title
             , description: data.item_description
