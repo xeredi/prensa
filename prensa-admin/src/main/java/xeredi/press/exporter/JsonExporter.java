@@ -8,6 +8,10 @@ import java.util.Date;
  */
 public abstract class JsonExporter {
 
+	protected final String getFieldName(final String value) {
+		return "\"" + value + "\": ";
+	}
+
 	/**
 	 * Gets the string.
 	 *
@@ -22,7 +26,7 @@ public abstract class JsonExporter {
 
 		final StringBuffer buffer = new StringBuffer();
 
-		buffer.append('\'');
+		buffer.append('\"');
 
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
@@ -32,7 +36,7 @@ public abstract class JsonExporter {
 			}
 		}
 
-		buffer.append('\'');
+		buffer.append('\"');
 
 		return buffer.toString();
 	}
@@ -56,7 +60,7 @@ public abstract class JsonExporter {
 	 * @return the date
 	 */
 	protected final String getDate(final Date value) {
-		return value == null ? "NULL" : "'" + value.toString() + "'";
+		return value == null ? "NULL" : "\"" + value.toString() + "\"";
 	}
 
 	/**

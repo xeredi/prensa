@@ -33,6 +33,7 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
 
 import xeredi.press.model.Feed;
 import xeredi.press.model.Publisher;
@@ -74,6 +75,7 @@ public final class FeedFinder {
 	 *
 	 * @param publisher
 	 *            the publisher
+	 * @return the list
 	 * @throws SAXException
 	 *             the SAX exception
 	 * @throws ParserConfigurationException
@@ -87,31 +89,6 @@ public final class FeedFinder {
 
 		final Set<String> urlProcessedSet = new HashSet<>();
 		final List<Feed> feeds = new ArrayList<>();
-
-		// if (publisher.getChannelUrlList() != null) {
-		//
-		// for (final String channelUrl : publisher.getChannelUrlList()) {
-		// try {
-		// LOG.info("Load specific channel: " + channelUrl);
-		//
-		// loadFeed(publisher, channelUrl);
-		//
-		// urlProcessedSet.add(channelUrl);
-		// } catch (final MalformedURLException ex) {
-		// LOG.fatal("MalformedURLException with: " + channelUrl);
-		// LOG.fatal(ex.getMessage());
-		// } catch (final FeedException ex) {
-		// LOG.fatal("FeedException with: " + channelUrl);
-		// LOG.fatal(ex.getMessage());
-		// } catch (final IllegalArgumentException ex) {
-		// LOG.fatal("IllegalArgumentException with: " + channelUrl);
-		// LOG.fatal(ex.getMessage());
-		// } catch (final IOException ex) {
-		// LOG.fatal("IOException with: " + channelUrl);
-		// LOG.fatal(ex.getMessage());
-		// }
-		// }
-		// }
 
 		switch (publisher.getWebType()) {
 		case "html":
@@ -132,6 +109,8 @@ public final class FeedFinder {
 
 				final Elements links = document.select("a[href]");
 				final Iterator<Element> iterator = links.iterator();
+
+				LOG.info("Links found: " + links.size());
 
 				while (iterator.hasNext()) {
 					final Element link = iterator.next();
@@ -168,7 +147,11 @@ public final class FeedFinder {
 
 									feeds.add(feed);
 								} catch (final MalformedURLException ex) {
+									LOG.error("MalformedURLException with: " + channelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
 								} catch (final FeedException ex) {
+									LOG.error("FeedException with: " + channelUrl + ", fileUrl: " + fileUrl);
+									LOG.error(ex.getMessage());
 								} catch (final IllegalArgumentException ex) {
 									LOG.error("IllegalArgumentException with: " + channelUrl + ", fileUrl: " + fileUrl);
 									LOG.error(ex.getMessage());
@@ -217,7 +200,16 @@ public final class FeedFinder {
 		return feeds;
 	}
 
-	private List<Feed> findIvooxFeeds(final Publisher publisher, final String baseUrl) {
+	/**
+	 * Find ivoox feeds.
+	 *
+	 * @param publisher
+	 *            the publisher
+	 * @param baseUrl
+	 *            the base url
+	 * @return the list
+	 */
+	public List<Feed> findIvooxFeeds(final Publisher publisher, final String baseUrl) {
 		LOG.info("Ivoox: " + baseUrl);
 
 		final List<Feed> feeds = new ArrayList<>();
@@ -303,6 +295,7 @@ public final class FeedFinder {
 	 *            the publisher
 	 * @param channelUrl
 	 *            the channel url
+	 * @return the feed
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws MalformedURLException
@@ -312,7 +305,7 @@ public final class FeedFinder {
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 */
-	private Feed findFeed(final Publisher publisher, final String channelUrl)
+	public Feed findFeed(final Publisher publisher, final String channelUrl)
 			throws IOException, MalformedURLException, FeedException, IllegalArgumentException {
 		final URL url = new URL(channelUrl);
 		final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -325,13 +318,18 @@ public final class FeedFinder {
 		try (final InputStream is = urlConnection.getInputStream()) {
 			// LOG.debug("Get: " + channelUrl);
 
-			final SyndFeedInput input = new SyndFeedInput(true, new Locale(publisher.getLanguage()));
-			final InputSource source = new InputSource(is);
-			final SyndFeed syndFeed = input.build(source);
+			final SyndFeedInput input = new SyndFeedInput(false, new Locale(publisher.getLanguage()));
+
+			input.setAllowDoctypes(true);
+			// input.setXmlHealerOn(false);
+			// input.setPreserveWireFeed(true);
+
+			// final InputSource source = new InputSource(is);
+			final SyndFeed syndFeed = input.build(new XmlReader(url));
 
 			final Feed feed = new Feed();
 
-			feed.setPblrId(publisher.getId());
+			feed.setPblr(publisher);
 			feed.setUrl(channelUrl);
 
 			feed.setAuthor(syndFeed.getAuthor());
@@ -422,6 +420,8 @@ public final class FeedFinder {
 						break;
 					case "link":
 						break;
+					case "type":
+						break;
 					default:
 						LOG.debug("Unknown itunes Element: " + element.getName() + ", Attributes: "
 								+ element.getAttributes());
@@ -433,6 +433,8 @@ public final class FeedFinder {
 				case "atom":
 					switch (element.getName()) {
 					case "link":
+						break;
+					case "icon":
 						break;
 					default:
 						LOG.debug("Unknown atom Element: " + element.getName() + ", Attributes: "
@@ -459,6 +461,8 @@ public final class FeedFinder {
 					case "info":
 						break;
 					case "feedburnerHostname":
+						break;
+					case "feedFlare":
 						break;
 					case "emailServiceId":
 						break;
@@ -590,7 +594,7 @@ public final class FeedFinder {
 					processed++;
 				}
 
-				LOG.info("feeds loaded: " + processed);
+				LOG.info("publisher: " + pblr.getName() + ", feeds loaded: " + processed);
 			} catch (final Exception ex) {
 				ex.printStackTrace(System.err);
 			}

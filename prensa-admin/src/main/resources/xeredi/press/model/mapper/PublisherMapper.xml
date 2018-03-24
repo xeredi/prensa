@@ -7,19 +7,24 @@
 		<id column="pblr_pk" />
 
 		<result column="pblr_pk" property="id" />
-		<result column="pblr_ctgr_pk" property="ctgrId" />
 		<result column="pblr_country" property="country" />
 		<result column="pblr_lang" property="language" />
 		<result column="pblr_name" property="name" />
 		<result column="pblr_webType" property="webType" />
 		<result column="pblr_webUrl" property="webUrl" />
 		<result column="pblr_logoUrl" property="logoUrl" />
+
+        <association property="ctgr" javaType="Category">
+            <result column="pblr_ctgr_pk" property="id" />
+            <result column="ctgr_name" property="name" />
+        </association>
 	</resultMap>
 
 	<sql id="SelectPrefix">
     <![CDATA[
     SELECT
         pblr_pk, pblr_ctgr_pk, pblr_country, pblr_lang, pblr_name, pblr_webType, pblr_webUrl, pblr_logoUrl
+        , (SELECT ctgr_name FROM category_ctgr WHERE ctgr_pk = pblr_ctgr_pk) AS ctgr_name
     FROM publisher_pblr
     ]]>
 	</sql>

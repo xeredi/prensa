@@ -3,85 +3,91 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="xeredi.press.model.mapper.FeedMapper">
-	<resultMap type="Feed" id="ResultMap">
-		<id column="feed_pk" />
+    <resultMap type="Feed" id="ResultMap">
+        <id column="feed_pk" />
 
-		<result column="feed_pk" property="id" />
-		<result column="feed_pblr_pk" property="pblrId" />
-		<result column="feed_url" property="url" />
-		<result column="feed_author" property="author" />
-		<result column="feed_copyright" property="copyright" />
-		<result column="feed_description" property="description" />
-		<result column="feed_encoding" property="encoding" />
-		<result column="feed_feedType" property="feedType" />
-		<result column="feed_generator" property="generator" />
-		<result column="feed_language" property="language" />
-		<result column="feed_link" property="link" />
-		<result column="feed_publishedDate" property="publishedDate" />
-		<result column="feed_title" property="title" />
-		<result column="feed_uri" property="uri" />
-		<result column="feed_imUrl" property="imUrl" />
-		<result column="feed_imHeight" property="imHeight" />
-		<result column="feed_imWidth" property="imWidth" />
-		<result column="feed_podcast" property="podcast" />
-		<result column="feed_subtitle" property="subtitle" />
-	</resultMap>
+        <result column="feed_pk" property="id" />
+        <result column="feed_url" property="url" />
+        <result column="feed_author" property="author" />
+        <result column="feed_copyright" property="copyright" />
+        <result column="feed_description" property="description" />
+        <result column="feed_encoding" property="encoding" />
+        <result column="feed_feedType" property="feedType" />
+        <result column="feed_generator" property="generator" />
+        <result column="feed_language" property="language" />
+        <result column="feed_link" property="link" />
+        <result column="feed_publishedDate" property="publishedDate" />
+        <result column="feed_title" property="title" />
+        <result column="feed_uri" property="uri" />
+        <result column="feed_imUrl" property="imUrl" />
+        <result column="feed_imHeight" property="imHeight" />
+        <result column="feed_imWidth" property="imWidth" />
+        <result column="feed_podcast" property="podcast" />
+        <result column="feed_subtitle" property="subtitle" />
 
-	<sql id="SelectPrefix">
+        <association property="pblr" javaType="Publisher">
+            <result column="feed_pblr_pk" property="id" />
+            <result column="pblr_webUrl" property="webUrl" />
+        </association>
+    </resultMap>
+
+    <sql id="SelectPrefix">
     <![CDATA[
     SELECT
         feed_pk, feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language, feed_link
         , feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle
+        , (SELECT pblr_webUrl FROM publisher_pblr WHERE pblr_pk = feed_pblr_pk) AS pblr_webUrl
     FROM feed_feed
     ]]>
-	</sql>
+    </sql>
 
-	<sql id="SelectWhere">
-		<where>
-			<if test="pblrId != null">
-				AND feed_pblr_pk = #{pblrId}
-			</if>
-		</where>
-	</sql>
+    <sql id="SelectWhere">
+        <where>
+            <if test="pblrId != null">
+                AND feed_pblr_pk = #{pblrId}
+            </if>
+        </where>
+    </sql>
 
-	<select id="exists" parameterType="Feed" resultType="Boolean">
-		SELECT COUNT(1) FROM feed_feed WHERE feed_url = #{url}
-	</select>
+    <select id="exists" parameterType="Feed" resultType="Boolean">
+        SELECT COUNT(1) FROM feed_feed WHERE feed_url = #{url}
+    </select>
 
-	<select id="selectList" parameterType="FeedCriteria" resultMap="ResultMap">
-		<include refid="SelectPrefix"></include>
-		<include refid="SelectWhere"></include>
-		ORDER BY feed_pblr_pk, feed_pk
-	</select>
+    <select id="selectList" parameterType="FeedCriteria" resultMap="ResultMap">
+        <include refid="SelectPrefix"></include>
+        <include refid="SelectWhere"></include>
+        ORDER BY feed_pblr_pk, feed_pk
+    </select>
 
-	<insert id="insert" parameterType="Feed">
-		INSERT INTO feed_feed (
-			feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language, feed_link
-			, feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle
-		) VALUES (
-			#{pblrId}, #{url}, #{author}, #{copyright}, #{description}, #{encoding}, #{feedType}, #{generator}, #{language}, #{link}
-			, #{publishedDate}, #{title}, #{uri}, #{imUrl}, #{imHeight}, #{imWidth}, #{podcast}, #{subtitle}
-		)
-	</insert>
+    <insert id="insert" parameterType="Feed">
+        INSERT INTO feed_feed (
+        feed_pblr_pk, feed_url, feed_author, feed_copyright, feed_description, feed_encoding, feed_feedType, feed_generator, feed_language,
+        feed_link
+        , feed_publishedDate, feed_title, feed_uri, feed_imUrl, feed_imHeight, feed_imWidth, feed_podcast, feed_subtitle
+        ) VALUES (
+        #{pblr.id}, #{url}, #{author}, #{copyright}, #{description}, #{encoding}, #{feedType}, #{generator}, #{language}, #{link}
+        , #{publishedDate}, #{title}, #{uri}, #{imUrl}, #{imHeight}, #{imWidth}, #{podcast}, #{subtitle}
+        )
+    </insert>
 
-	<insert id="update" parameterType="Feed">
-		UPDATE feed_feed SET
-			feed_author = #{author}
-			, feed_copyright = #{copyright}
-			, feed_description = #{description}
-			, feed_encoding = #{encoding}
-			, feed_feedType = #{feedType}
-			, feed_generator = #{generator}
-			, feed_language = #{language}
-			, feed_link = #{link}
-			, feed_publishedDate = #{publishedDate}
-			, feed_title = #{title}
-			, feed_uri = #{uri}
-			, feed_imUrl = #{imUrl}
-			, feed_imHeight = #{imHeight}
-			, feed_imWidth = #{imWidth}
-			, feed_podcast = #{podcast}
-			, feed_subtitle = #{subtitle}
-		WHERE feed_url = #{url}
-	</insert>
+    <insert id="update" parameterType="Feed">
+        UPDATE feed_feed SET
+        feed_author = #{author}
+        , feed_copyright = #{copyright}
+        , feed_description = #{description}
+        , feed_encoding = #{encoding}
+        , feed_feedType = #{feedType}
+        , feed_generator = #{generator}
+        , feed_language = #{language}
+        , feed_link = #{link}
+        , feed_publishedDate = #{publishedDate}
+        , feed_title = #{title}
+        , feed_uri = #{uri}
+        , feed_imUrl = #{imUrl}
+        , feed_imHeight = #{imHeight}
+        , feed_imWidth = #{imWidth}
+        , feed_podcast = #{podcast}
+        , feed_subtitle = #{subtitle}
+        WHERE feed_url = #{url}
+    </insert>
 </mapper>
