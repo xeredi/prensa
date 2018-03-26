@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xeredi.press.model.mapper.CategoryMapper">
+    <resultMap type="Category" id="ResultMap">
+        <id column="feed_pk" />
+
+        <result column="ctgr_pk" property="id" />
+        <result column="ctgr_name" property="name" />
+        <result column="ctgr_icon" property="icon" />
+    </resultMap>
+
+    <sql id="SelectPrefix">
+    <![CDATA[
+    SELECT
+        ctgr_pk, ctgr_name, ctgr_icon
+    FROM category_ctgr
+    ]]>
+    </sql>
+
+    <select id="selectList" resultMap="ResultMap">
+        <include refid="SelectPrefix"></include>
+        ORDER BY ctgr_pk
+    </select>
+</mapper>

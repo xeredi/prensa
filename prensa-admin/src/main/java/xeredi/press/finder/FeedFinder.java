@@ -1,6 +1,7 @@
 package xeredi.press.finder;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -325,7 +326,8 @@ public final class FeedFinder {
 			// input.setPreserveWireFeed(true);
 
 			// final InputSource source = new InputSource(is);
-			final SyndFeed syndFeed = input.build(new XmlReader(url));
+			// final SyndFeed syndFeed = input.build(new XmlReader(url));
+			final SyndFeed syndFeed = input.build(new XmlReader(new URL(channelUrl).openStream(), true, "UTF-8"));
 
 			final Feed feed = new Feed();
 
